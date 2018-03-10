@@ -1,0 +1,25 @@
+## JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
+*.iml
+.idea/
+.tmp/
+.vscode/
+jsconfig.json
+
+## Sublime workspace files
+*.sublime-workspace
+public
+public/test/
+
+# node/bower
+node_modules/
+npm-debug.log
+bower_components/
+
+# Mac system files
+.DS_Store
+
+# sass
+.sass-cache/
+
+# Conflict resolution files
+*.orig
