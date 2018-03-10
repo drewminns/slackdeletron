@@ -1,15 +1,5 @@
-Tools
+To do
 
-React
-Redux
-React Router
-Express
-Styled Components
-
-Webpack
-eslint
-prettier
-
-jest
-chai
-enzyme
+- Configure development Pug/Webpack build
+- Create Tests
+- Create Slack auth
