@@ -40,7 +40,10 @@ if (process.env.NODE_ENV !== 'production') {
   );
 
   app.get('*', (req, res, next) => {
-    res.render(ENTRY.DEV, { assets: DEVOUTPUT });
+    res.render(ENTRY.DEV, {
+      scripts: DEVOUTPUT,
+      isDev: true,
+    });
   });
 } else {
   app.use(express.static(path.join(__dirname, 'dist')));

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
@@ -9,7 +10,8 @@ const ISPROD = process.env.NODE_ENV === 'production';
 const postcss = {
   loader: 'postcss-loader',
   options: {
-    plugins: [require('autoprefixer')()],
+    ident: 'postcss',
+    plugins: () => [autoprefixer],
   },
 };
 
@@ -31,10 +33,9 @@ const plugins = ISPROD
         filetype: 'pug',
       }),
       new HtmlWebpackPugPlugin(),
-      // new ExtractTextPlugin('styles.css'),
+      new ExtractTextPlugin('style.[hash:12].min.css'),
     ]
   : [
-      // new ExtractTextPlugin('style.css'),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ];
@@ -52,7 +53,7 @@ module.exports = {
   devtool: ISPROD ? 'cheap-module-source-map' : 'eval',
   output: {
     filename: ISPROD ? 'main.[hash:12].min.js' : 'main.js',
-    publicPath: ISPROD ? '/' : 'http://localhost:8081/scripts/',
+    publicPath: ISPROD ? '/' : 'http://localhost:8081/assets/',
   },
   target: 'web',
   plugins,
@@ -65,9 +66,7 @@ module.exports = {
       },
       {
         test: /\.(css|scss)?$/,
-        use: ExtractTextPlugin.extract({
-          use: ['css-loader?minimize=true', 'sass-loader'],
-        }),
+        use: cssLoader,
         exclude: '/node_modules/',
       },
     ],

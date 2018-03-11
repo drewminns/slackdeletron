@@ -3,10 +3,12 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
+    "start": "NODE_ENV=production node server.js",
     "prod": "npm run asset-build && npm start",
-    "dev": "npm run clean && NODE_ENV=development nodemon index.js",
+    "dev":
+      "npm run clean && NODE_ENV=development nodemon server.js --ignore src",
     "asset-build": "npm run clean && NODE_ENV=production webpack-cli",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist"
@@ -24,12 +26,12 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.10",
     "express": "^4.16.2",
-    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
     "html-webpack-pug-plugin": "^0.3.0",
     "node-sass": "^4.7.2",
     "postcss-loader": "^2.1.1",
+    "pug": "^2.0.1",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
