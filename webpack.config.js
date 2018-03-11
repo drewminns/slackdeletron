@@ -2,36 +2,49 @@ const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 
 const ISPROD = process.env.NODE_ENV === 'production';
 
-const autoprefixerConfig = new webpack.LoaderOptionsPlugin({
+const postcss = {
+  loader: 'postcss-loader',
   options: {
-    postcss: [require('autoprefixer')],
+    plugins: [require('autoprefixer')()],
   },
-});
+};
+
+const cssLoader = ISPROD
+  ? ExtractTextPlugin.extract({
+      use: ['css-loader?minimize=true', postcss, 'sass-loader'],
+    })
+  : ['style-loader', 'css-loader', postcss, 'sass-loader'];
 
 const plugins = ISPROD
   ? [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new HTMLWebpackPlugin({
-      template: path.join(__dirname, './src/config/template.html')
-    })
-    // new ExtractTextPlugin('main-[contenthash:10].min.css'),
-    // autoprefixerConfig,
-  ]
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production'),
+        },
+      }),
+      new HTMLWebpackPlugin({
+        template: path.join(__dirname, './index.pug'),
+        filetype: 'pug',
+      }),
+      new HtmlWebpackPugPlugin(),
+      // new ExtractTextPlugin('styles.css'),
+    ]
   : [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    // new ExtractTextPlugin('main.css'),
-    // autoprefixerConfig
-  ];
+      // new ExtractTextPlugin('style.css'),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    ];
 
-const ENTRY = ISPROD ? './src/index.js' : ['./src/index.js', 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'];
+const ENTRY = ISPROD
+  ? './src/index.js'
+  : [
+      './src/index.js',
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    ];
 
 module.exports = {
   mode: process.env.NODE_ENV,
