@@ -4,22 +4,23 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const config = require('./webpack.config.js');
-
 const PORT = 8081;
 const ENTRY = {
-  DEV: path.join(__dirname, '/index.pug'),
+  DEV: path.join(__dirname, '/config/index.pug'),
   PROD: path.join(__dirname, '/dist/index.pug'),
 };
 
-const compiler = webpack(config);
 const app = express();
-const DEVOUTPUT = config.output.publicPath + config.output.filename;
 
 app.set('port', PORT);
 app.set('view engine', 'pug');
 
 if (process.env.NODE_ENV !== 'production') {
+  // Load Webpack Config
+  const config = require('./config/webpack.config.js');
+  const compiler = webpack(config);
+  const DEVOUTPUT = config.output.publicPath + config.output.filename;
+
   app.use(
     webpackDevMiddleware(compiler, {
       hot: true,

@@ -1,5 +1,12 @@
 import React from 'react';
 
-const Button = () => <button>Click Me</button>;
+const Button = () => {
+  const text = `Click Me`;
+  return <button>{text}</button>;
+};
+
+hello => {
+  console.log(hello);
+};
 
 export default Button;

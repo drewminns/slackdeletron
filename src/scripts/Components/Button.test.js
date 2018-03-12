@@ -6,6 +6,6 @@ import Button from './Button';
 describe('<Button />', () => {
   it('renders a button component', () => {
     const wrapper = shallow(<Button />);
-    expect(wrapper.text()).toBe('button');
+    expect(wrapper.text()).toBe('Click Me');
   });
 });
