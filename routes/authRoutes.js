@@ -17,6 +17,9 @@ module.exports = (app) => {
   });
 
   app.get('/api/profile', function(req, res) {
+    if (!req.user) {
+      res.redirect('/');
+    }
     res.send(req.user);
   });
 };

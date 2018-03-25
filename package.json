@@ -12,9 +12,9 @@
     "setupTestFrameworkScriptFile": "./config/setupTests.js"
   },
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build && npm start",
-    "dev": "NODE_ENV=development nodemon server.js --ignore src",
+    "dev": "NODE_ENV=development nodemon index.js --ignore client",
     "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
     "clean": "rimraf dist"

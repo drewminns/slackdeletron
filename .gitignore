@@ -27,3 +27,4 @@ bower_components/
 dist
 
 config/keys/dev.js
+package-lock.json

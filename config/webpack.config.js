@@ -41,9 +41,9 @@ const plugins = ISPROD
     ];
 
 const ENTRY = ISPROD
-  ? './src/index.js'
+  ? './client/index.js'
   : [
-      './src/index.js',
+      './client/index.js',
       'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     ];
 

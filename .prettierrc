@@ -2,5 +2,7 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false
 }

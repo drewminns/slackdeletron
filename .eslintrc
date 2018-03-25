@@ -34,7 +34,7 @@
   "rules": {
     "arrow-parens": ["warn", "always"],
     "eol-last": ["off"],
-    "jsx-quotes": ["warn", "prefer-single"],
+    "jsx-quotes": ["warn", "prefer-double"],
     "no-console": "error",
     "prefer-template": "warn",
     "quotes": ["warn", "single"],
@@ -50,16 +50,6 @@
     ],
     "react/jsx-boolean-value": "warn",
     "react/jsx-closing-bracket-location": ["error", "line-aligned"],
-    "react/jsx-curly-spacing": [
-      "error",
-      "always",
-      {
-        "allowMultiline": true,
-        "spacing": {
-          "objectLiterals": "always"
-        }
-      }
-    ],
     "react/jsx-handler-names": [
       "off",
       {

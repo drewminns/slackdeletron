@@ -1,9 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import './styles/main.scss';
-
-import sum from './scripts/utils/sum';
 
 const Home = () => (
   <div>
@@ -17,23 +13,17 @@ const About = () => (
   </div>
 );
 
-class Main extends Component {
+class Routes extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Fragment>
           <Route path="/" component={Home} />
           <Route path="/ok" component={About} />
-        </div>
+        </Fragment>
       </Router>
     );
-    // const hello = sum();
-    // return <Fragment>Hello</Fragment>;
   }
 }
 
-ReactDOM.render(<Main />, document.getElementById('main'));
-
-if (module.hot) {
-  module.hot.accept();
-}
+export default Routes;
