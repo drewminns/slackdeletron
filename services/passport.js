@@ -18,7 +18,15 @@ passport.use(
       clientSecret: keys.slackClientSecret,
     },
     (accessToken, refreshToken, profile, done) => {
-      done(null, profile);
+      const object = {
+        name: profile.user.name,
+        userId: profile.user.id,
+        teamId: profile.team.id,
+        avatar: profile.user.image_192,
+        accessToken: accessToken,
+      };
+
+      done(null, object);
     }
   )
 );

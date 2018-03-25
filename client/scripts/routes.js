@@ -1,13 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import Home from './Components/Home';
-
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
+import Home from './Containers/Home';
+import Dashboard from './Containers/Dashboard';
 
 class Routes extends Component {
   render() {
@@ -15,7 +10,7 @@ class Routes extends Component {
       <Router>
         <Fragment>
           <Route exact path="/" component={Home} />
-          <Route exact path="/ok" component={About} />
+          <Route exact path="/dashboard" component={Dashboard} />
         </Fragment>
       </Router>
     );
