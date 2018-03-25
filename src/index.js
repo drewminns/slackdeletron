@@ -1,13 +1,34 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './styles/main.scss';
 
 import sum from './scripts/utils/sum';
 
+const Home = () => (
+  <div>
+    <h2>Home</h2>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
+
 class Main extends Component {
   render() {
-    const hello = sum();
-    return <Fragment>Hello</Fragment>;
+    return (
+      <Router>
+        <div>
+          <Route path="/" component={Home} />
+          <Route path="/ok" component={About} />
+        </div>
+      </Router>
+    );
+    // const hello = sum();
+    // return <Fragment>Hello</Fragment>;
   }
 }
 

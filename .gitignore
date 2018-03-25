@@ -25,3 +25,5 @@ bower_components/
 *.orig
 
 dist
+
+config/keys/dev.js

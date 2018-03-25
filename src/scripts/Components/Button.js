@@ -5,7 +5,7 @@ const Button = () => {
   return <button>{text}</button>;
 };
 
-hello => {
+(hello) => {
   console.log(hello);
 };
 
