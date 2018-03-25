@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-);
+import Home from './Components/Home';
 
 const About = () => (
   <div>
@@ -18,8 +14,8 @@ class Routes extends Component {
     return (
       <Router>
         <Fragment>
-          <Route path="/" component={Home} />
-          <Route path="/ok" component={About} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/ok" component={About} />
         </Fragment>
       </Router>
     );

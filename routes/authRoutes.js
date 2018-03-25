@@ -1,5 +1,7 @@
 const passport = require('passport');
 
+const requireLogin = require('../middlewares/requireLogin');
+
 module.exports = (app) => {
   app.get('/api/slack/login', passport.authenticate('slack'));
 
@@ -16,10 +18,7 @@ module.exports = (app) => {
     res.redirect('/');
   });
 
-  app.get('/api/profile', function(req, res) {
-    if (!req.user) {
-      res.redirect('/');
-    }
+  app.get('/api/profile', requireLogin, (req, res) => {
     res.send(req.user);
   });
 };
