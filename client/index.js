@@ -5,7 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import './styles/main.scss';
 
-import Routes from './scripts/routes';
+import Main from './scripts/Main';
 import reducers from './scripts/reducers';
 
 const composeEnhancers =
@@ -22,7 +22,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Routes />
+    <Main />
   </Provider>,
   document.getElementById('main')
 );

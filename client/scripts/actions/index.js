@@ -1,22 +1,19 @@
 import axios from 'axios';
 
-import { FETCH_USER, FETCH_USER_ERROR, LOGIN_USER } from './types';
+import { LOGIN_USER, LOGOUT_USER, ERROR_USER } from './types';
 
-export const fetchUser = (history = {}) => async (dispatch, getState) => {
+export const userAuth = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile');
-    dispatch({ type: FETCH_USER, payload: res.data });
+    switch (res.data.loggedIn) {
+      case true:
+        return dispatch({ type: LOGIN_USER, payload: res.data.profile });
+      case false:
+        return dispatch({ type: LOGOUT_USER });
+      default:
+        return dispatch({ type: ERROR_USER });
+    }
   } catch (err) {
-    dispatch({ type: FETCH_USER_ERROR });
-    history.push('/');
-  }
-};
-
-export const loginUser = (history = {}) => async (dispatch) => {
-  try {
-    await axios.get('/api/slack/login');
-    dispatch({ type: LOGIN_USER });
-  } catch (err) {
-    dispatch({ type: FETCH_USER_ERROR });
+    dispatch({ type: ERROR_USER });
   }
 };

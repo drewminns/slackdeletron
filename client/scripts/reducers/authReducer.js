@@ -1,19 +1,28 @@
-import { FETCH_USER, FETCH_USER_ERROR } from '../actions/types';
+import { LOGIN_USER, LOGOUT_USER, ERROR_USER } from '../actions/types';
 
 const initialState = {
-  profile: null,
+  profile: {
+    name: '',
+    avatar: '',
+  },
   loggedIn: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case FETCH_USER:
+    case LOGIN_USER:
       return {
         ...state,
         profile: action.payload,
         loggedIn: true,
       };
-    case FETCH_USER_ERROR:
+    case LOGOUT_USER:
+      return {
+        ...state,
+        profile: initialState.profile,
+        loggedIn: false,
+      };
+    case ERROR_USER:
       return {
         ...initialState,
       };
