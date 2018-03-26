@@ -5,7 +5,10 @@ module.exports = (app) => {
 
   app.get(
     '/api/slack/callback',
-    passport.authenticate('slack', { failureRedirect: '/' }),
+    passport.authenticate('slack', {
+      successRedirect: '/',
+      failureRedirect: '/',
+    }),
     function(req, res) {
       res.redirect('/');
     }
@@ -22,6 +25,7 @@ module.exports = (app) => {
         loggedIn: false,
         profile: null,
       });
+      return;
     }
 
     res.send({
