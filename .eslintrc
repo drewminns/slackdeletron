@@ -1,11 +1,7 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  // import plugin is temporarily disabled, scroll below to see why
-  "plugins": [ /*"import", */
-    "jsx-a11y",
-    "react"
-  ],
+  "plugins": ["jsx-a11y", "react"],
   "env": {
     "browser": true,
     "commonjs": true,
@@ -27,41 +23,21 @@
       "node_modules",
       "\\.(json|css|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$"
     ],
-    "import/extensions": [
-      ".js"
-    ],
+    "import/extensions": [".js"],
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".json"
-        ]
+        "extensions": [".js", ".jsx", ".json"]
       }
     }
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:jsx-a11y/strict"
-  ],
+  "extends": ["eslint:recommended", "plugin:jsx-a11y/strict"],
   "rules": {
-    "arrow-parens": [
-      "warn",
-      "always"
-    ],
-    "eol-last": [
-      "off"
-    ],
-    "jsx-quotes": [
-      "warn",
-      "prefer-single"
-    ],
+    "arrow-parens": ["warn", "always"],
+    "eol-last": ["off"],
+    "jsx-quotes": ["warn", "prefer-double"],
     "no-console": "error",
     "prefer-template": "warn",
-    "quotes": [
-      "warn",
-      "single"
-    ],
+    "quotes": ["warn", "single"],
     "semi": "warn",
     "space-infix-ops": "warn",
     "valid-jsdoc": "warn",
@@ -73,20 +49,7 @@
       }
     ],
     "react/jsx-boolean-value": "warn",
-    "react/jsx-closing-bracket-location": [
-      "error",
-      "line-aligned"
-    ],
-    "react/jsx-curly-spacing": [
-      "error",
-      "always",
-      {
-        "allowMultiline": true,
-        "spacing": {
-          "objectLiterals": "always"
-        }
-      }
-    ],
+    "react/jsx-closing-bracket-location": ["error", "line-aligned"],
     "react/jsx-handler-names": [
       "off",
       {
@@ -94,22 +57,10 @@
         "eventHandlerPropPrefix": "on"
       }
     ],
-    "react/jsx-equals-spacing": [
-      "warn",
-      "never"
-    ],
-    "react/jsx-first-prop-new-line": [
-      "warn",
-      "multiline"
-    ],
-    "react/jsx-indent": [
-      "warn",
-      2
-    ],
-    "react/jsx-indent-props": [
-      "warn",
-      2
-    ],
+    "react/jsx-equals-spacing": ["warn", "never"],
+    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    "react/jsx-indent": ["warn", 2],
+    "react/jsx-indent-props": ["warn", 2],
     "react/jsx-key": "off",
     "react/jsx-max-props-per-line": [
       "off",
@@ -140,9 +91,7 @@
         "ignore": []
       }
     ],
-    "react/jsx-uses-react": [
-      "warn"
-    ],
+    "react/jsx-uses-react": ["warn"],
     "react/jsx-uses-vars": "warn",
     "react/jsx-wrap-multilines": [
       "warn",
@@ -154,12 +103,8 @@
     ],
     "react/no-children-prop": "warn",
     "react/no-deprecated": "warn",
-    "react/no-did-mount-set-state": [
-      "warn"
-    ],
-    "react/no-did-update-set-state": [
-      "warn"
-    ],
+    "react/no-did-mount-set-state": ["warn"],
+    "react/no-did-update-set-state": ["warn"],
     "react/no-direct-mutation-state": "warn",
     "react/no-find-dom-node": "warn",
     "react/no-is-mounted": "warn",
@@ -176,9 +121,7 @@
     "react/require-extension": [
       "off",
       {
-        "extensions": [
-          ".jsx"
-        ]
+        "extensions": [".jsx"]
       }
     ],
     "react/require-render-return": "warn",
@@ -204,22 +147,13 @@
         "commentPattern": "^no default$"
       }
     ],
-    "dot-location": [
-      "warn",
-      "property"
-    ],
-    "eqeqeq": [
-      "warn",
-      "allow-null"
-    ],
+    "dot-location": ["warn", "property"],
+    "eqeqeq": ["warn", "allow-null"],
     "guard-for-in": "warn",
     "new-parens": "warn",
     "no-array-constructor": "warn",
     "no-caller": "warn",
-    "no-cond-assign": [
-      "warn",
-      "always"
-    ],
+    "no-cond-assign": ["warn", "always"],
     "no-const-assign": "warn",
     "no-control-regex": "warn",
     "no-delete-var": "warn",
@@ -253,33 +187,10 @@
       "warn",
       {
         "groups": [
-          [
-            "&",
-            "|",
-            "^",
-            "~",
-            "<<",
-            ">>",
-            ">>>"
-          ],
-          [
-            "==",
-            "!=",
-            "===",
-            "!==",
-            ">",
-            ">=",
-            "<",
-            "<="
-          ],
-          [
-            "&&",
-            "||"
-          ],
-          [
-            "in",
-            "instanceof"
-          ]
+          ["&", "|", "^", "~", "<<", ">>", ">>>"],
+          ["==", "!=", "===", "!==", ">", ">=", "<", "<="],
+          ["&&", "||"],
+          ["in", "instanceof"]
         ],
         "allowSamePrecedence": false
       }
@@ -296,11 +207,7 @@
     "no-octal-escape": "warn",
     "no-redeclare": "warn",
     "no-regex-spaces": "warn",
-    "no-restricted-syntax": [
-      "warn",
-      "LabeledStatement",
-      "WithStatement"
-    ],
+    "no-restricted-syntax": ["warn", "LabeledStatement", "WithStatement"],
     "no-script-url": "warn",
     "no-self-assign": "warn",
     "no-self-compare": "warn",
@@ -322,10 +229,7 @@
         "args": "none"
       }
     ],
-    "no-use-before-define": [
-      "warn",
-      "nofunc"
-    ],
+    "no-use-before-define": ["warn", "nofunc"],
     "no-useless-computed-key": "warn",
     "no-useless-concat": "warn",
     "no-useless-constructor": "warn",
@@ -340,24 +244,12 @@
     ],
     "no-with": "warn",
     "no-whitespace-before-property": "warn",
-    "operator-assignment": [
-      "warn",
-      "always"
-    ],
+    "operator-assignment": ["warn", "always"],
     "radix": "warn",
     "require-yield": "warn",
-    "rest-spread-spacing": [
-      "warn",
-      "never"
-    ],
-    "strict": [
-      "warn",
-      "never"
-    ],
-    "unicode-bom": [
-      "warn",
-      "never"
-    ],
+    "rest-spread-spacing": ["warn", "never"],
+    "strict": ["warn", "never"],
+    "unicode-bom": ["warn", "never"],
     "use-isnan": "warn",
     "valid-typeof": "warn"
   }

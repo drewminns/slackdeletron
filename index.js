@@ -1,50 +1,32 @@
 const express = require('express');
-const path = require('path');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-
-const config = require('./webpack.config.js');
 
 const app = express();
-const ENTRY = {
-  dev: { FILE: path.join(__dirname, '/src/config/index.pug') },
-  prod: { FILE: path.join(__dirname, 'dist/index.html'), DIR: path.join(__dirname, 'dist') }
-};
 
-const compiler = webpack(config);
-const PORT = 8081;
-const IS_DEV = process.env.NODE_ENV !== 'production';
+app.use(function(req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
-app.set('port', PORT);
-app.set('view engine', 'pug');
+  // Request methods you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  );
 
-if (IS_DEV) {
-  app.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    filename: 'main.js',
-    publicPath: config.output.publicPath,
-    stats: {
-      colors: true,
-    },
-    historyApiFallback: true,
-  }));
+  // Request headers you wish to allow
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type'
+  );
 
-  app.use(webpackHotMiddleware(compiler, {
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000,
-  }));
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
 
-  app.get('*', (req, res, next) => {
-    res.render(ENTRY.dev.FILE, { assets: config.output.publicPath + config.output.filename });
-  });
+  // Pass to next layer of middleware
+  next();
+});
 
-} else {
-  app.use(express.static(ENTRY.prod.DIR));
+require('./server/index')(app);
 
-  app.get('*', (req, res) => {
-    res.sendFile(ENTRY.prod.FILE);
-  });
-}
-
-app.listen(app.get('port'));
+const PORT = process.env.PORT || 8081;
+app.listen(PORT);

@@ -3,11 +3,17 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
+  "jest": {
+    "setupTestFrameworkScriptFile": "./config/setupTests.js"
+  },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "dev": "npm run clean && NODE_ENV=development nodemon index.js",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "npm test && npm run asset-build && npm start",
+    "dev": "NODE_ENV=development nodemon index.js --ignore client",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "test": "jest",
     "clean": "rimraf dist"
   },
   "keywords": [],
@@ -15,23 +21,52 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^8.1.0",
+    "axios": "^0.18.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "css-loader": "^0.28.10",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
-    "extract-text-webpack-plugin": "^3.0.2",
+    "express-session": "^1.15.6",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
+    "html-webpack-pug-plugin": "^0.3.0",
+    "jest": "^22.4.2",
+    "node-sass": "^4.7.2",
+    "npm": "^5.8.0",
+    "passport": "^0.4.0",
+    "passport-slack": "0.0.7",
+    "postcss-loader": "^2.1.1",
+    "prop-types": "^15.6.1",
+    "pug": "^2.0.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.20.3",
+    "url-loader": "^1.0.1",
     "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11",
     "webpack-dev-middleware": "^3.0.1",
-    "webpack-hot-middleware": "^2.21.2",
-    "yarn": "^1.5.1"
+    "webpack-hot-middleware": "^2.21.2"
   },
   "devDependencies": {
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "webpack-cli": "^2.0.11"
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0"
   }
 }

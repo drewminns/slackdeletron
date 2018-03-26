@@ -23,3 +23,8 @@ bower_components/
 
 # Conflict resolution files
 *.orig
+
+dist
+
+config/keys/dev.js
+package-lock.json
