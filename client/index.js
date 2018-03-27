@@ -15,13 +15,25 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose;
 
-const store = createStore(
-  reducers,
-  composeEnhancers(applyMiddleware(reduxThunk))
-);
+function configureStore(initialState) {
+  const store = createStore(
+    reducers,
+    composeEnhancers(applyMiddleware(reduxThunk))
+  );
+
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('./scripts/reducers', () => {
+      const nextRootReducer = require('./scripts/reducers');
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
+}
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={configureStore({})}>
     <Main />
   </Provider>,
   document.getElementById('main')

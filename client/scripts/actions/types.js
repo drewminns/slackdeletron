@@ -1,5 +1,7 @@
-// export const FETCH_USER = 'FETCH_USER';
-// export const FETCH_USER_ERROR = 'NETWORK_USER_ERROR';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 export const ERROR_USER = 'ERROR_USER';
+export const GET_FILES = 'GET_FILES';
+export const GET_FILES_ERROR = 'GET_FILES_ERROR';
+export const DELETE_FILE_SUCCESS = 'DELETE_FILE_SUCCESS';
+export const DELETE_FILE_ERROR = 'DELETE_FILE_ERROR';
