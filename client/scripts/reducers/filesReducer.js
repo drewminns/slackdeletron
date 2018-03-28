@@ -15,7 +15,6 @@ const initialState = {
 
 function filterFiles(state, id) {
   const filteredFiles = state.files.filter((item) => item.id !== id);
-  console.log(filteredFiles);
   return filteredFiles.length ? filteredFiles : [];
 }
 

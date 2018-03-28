@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from './actions';
 
 import Header from './Components/Header';
+import Form from './Components/Form';
 
 class Main extends Component {
   static propTypes = {
@@ -17,10 +18,6 @@ class Main extends Component {
   componentDidMount() {
     this.props.userAuth();
   }
-
-  getFiles = () => {
-    this.props.getFiles();
-  };
 
   deleteFile = (fileId) => {
     this.props.deleteFile(fileId);
@@ -43,7 +40,7 @@ class Main extends Component {
       <Fragment>
         <Header isLoggedIn={this.props.loggedIn} />
         <main>
-          <button onClick={this.getFiles}>Get Files</button>
+          <Form />
           <ul>{this.displayFiles()}</ul>
         </main>
       </Fragment>
