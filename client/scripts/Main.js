@@ -1,63 +1,61 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as actions from './actions';
+import axios from 'axios';
 
+import FileProvider from './Providers/FileProvider';
 import Header from './Components/Header';
-import Form from './Components/Form';
+// import Form from './Components/Form';
+import FileContainer from './Components/FileContainer';
 
 class Main extends Component {
-  static propTypes = {
-    userAuth: PropTypes.func,
-    getFiles: PropTypes.func,
-    deleteFile: PropTypes.func,
-    loggedIn: PropTypes.bool,
-    files: PropTypes.array,
+  state = {
+    loggedIn: false,
+    profile: {},
   };
 
   componentDidMount() {
-    this.props.userAuth();
+    this.getUserAuth();
   }
 
-  deleteFile = (fileId) => {
-    this.props.deleteFile(fileId);
-  };
+  getUserAuth = async () => {
+    try {
+      const res = await axios.get('/api/profile');
 
-  displayFiles = () => {
-    return this.props.files.map((file) => {
-      return (
-        <li key={file.id}>
-          <img src={file.thumb_360} alt={file.title} />
-          {file.title}
-          <button onClick={() => this.deleteFile(file.id)}>Delete File</button>
-        </li>
-      );
-    });
+      if (res.data.loggedIn) {
+        this.setState({
+          profile: res.data.profile,
+          loggedIn: true,
+        });
+      } else {
+        this.setState({
+          profile: {},
+          loggedIn: false,
+        });
+      }
+    } catch (err) {
+      this.setState({
+        profile: {},
+        loggedIn: false,
+      });
+    }
   };
 
   render() {
     return (
       <Fragment>
-        <Header isLoggedIn={this.props.loggedIn} />
-        <main>
-          <Form />
-          <ul>{this.displayFiles()}</ul>
-        </main>
+        <Header isLoggedIn={this.state.loggedIn} />
+        <FileProvider
+          isLoggedIn={this.state.loggedIn}
+          accessToken={this.state.profile.accessToken}
+        >
+          <Fragment>
+            <main>
+              <FileContainer />
+            </main>
+          </Fragment>
+        </FileProvider>
       </Fragment>
     );
   }
 }
 
-function mapStateToProps({ auth, files }) {
-  return {
-    loggedIn: auth.loggedIn,
-    name: auth.profile.name,
-    avatar: auth.profile.avatar,
-    token: auth.profile.accessToken,
-    userId: auth.profile.userId,
-    teamId: auth.profile.teamId,
-    files: files.files,
-  };
-}
-
-export default connect(mapStateToProps, actions)(Main);
+export default Main;

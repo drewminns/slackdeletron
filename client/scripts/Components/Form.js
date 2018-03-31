@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 
 const TYPES_DICT = {
-  all: 'All',
   spaces: 'Posts',
   snippets: 'Snippets',
   images: 'Images',
@@ -15,7 +12,6 @@ const TYPES_DICT = {
 };
 
 const INIT_TYPES_STATE = {
-  all: true,
   spaces: false,
   snippets: false,
   images: false,
@@ -54,17 +50,16 @@ class Form extends Component {
   };
 
   updateType = (e) => {
+    const selected = e.target.value;
     const types = this.state.types;
-    const value = types[e.target.value];
-    if (e.target.value !== 'all') {
-      this.setState({
-        types: { ...this.state.types, all: false, [e.target.value]: !value },
-      });
-    } else {
-      this.setState({
-        types: { ...INIT_TYPES_STATE, all: true },
-      });
+    const value = types[selected];
+    if (selected === 'all') {
+      return;
     }
+
+    this.setState({
+      types: { ...this.state.types, all: false, [selected]: !value },
+    });
   };
 
   renderTypeOptions = () => {
@@ -85,6 +80,10 @@ class Form extends Component {
   };
 
   render() {
+    const typeSelected = Object.keys(this.state.types).filter(
+      (type) => this.state.types[type] === true
+    );
+
     return (
       <div>
         <input
@@ -97,15 +96,23 @@ class Form extends Component {
           value={this.state.endDate}
           onChange={(e) => this.updateField('endDate', e.target.value)}
         />
-        <div>{this.renderTypeOptions()}</div>
+        <div>
+          <div>
+            <input
+              type="checkbox"
+              id="all"
+              checked={!typeSelected.length}
+              onChange={this.updateType}
+              value="all"
+            />
+            <label htmlFor="all">All</label>
+          </div>
+          {this.renderTypeOptions()}
+        </div>
         <button onClick={this.getFiles}>Get Files</button>
       </div>
     );
   }
 }
 
-function mapStateToProps({ form }) {
-  return {};
-}
-
-export default connect(mapStateToProps, actions)(Form);
+export default Form;
