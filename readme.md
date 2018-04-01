@@ -1,5 +1,5 @@
 To do
 
-- Configure development Pug/Webpack build
-- Create Tests
-- Create Slack auth
+* File Size
+* Filter by Size and Date
+* Search for messages

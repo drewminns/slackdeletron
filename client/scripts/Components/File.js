@@ -1,5 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Box } from 'grid-styled';
+import styled from 'styled-components';
+import moment from 'moment';
+
+import { formatBytes } from '../utils';
+
+const Card = styled.article``;
+const CardImage = styled.figure`
+  width: 100%;
+  margin: 0;
+
+  img {
+    max-width: 100%;
+  }
+`;
 
 function renderImage(file) {
   let image = null;
@@ -20,13 +35,17 @@ function renderImage(file) {
 }
 
 const File = ({ details, deleteFile }) => {
+  const date = moment.unix(details.created).format('MMM Do YYYY h:mma');
   return (
-    <div className="column is-one-quarter">
-      <article className="card">
-        <div className="card-image">
-          <figure className="image is-4by3">{renderImage(details)}</figure>
-        </div>
+    <Box width={1 / 4} m={2}>
+      <Card>
+        <CardImage>{renderImage(details)}</CardImage>
         <p>{details.name}</p>
+        <p>
+          Created:
+          {date}
+        </p>
+        <p>Size: {formatBytes(details.size)}</p>
         <button
           onClick={() => {
             deleteFile(details.id);
@@ -34,8 +53,8 @@ const File = ({ details, deleteFile }) => {
         >
           Delete File
         </button>
-      </article>
-    </div>
+      </Card>
+    </Box>
   );
 };
 

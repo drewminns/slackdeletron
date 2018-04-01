@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     present: false,
     message: '',
   },
+  deletedSize: 0,
 };
 
 export const FileContext = createContext();
@@ -91,13 +92,20 @@ export default class FileProvider extends Component {
   };
 
   deleteFile = (fileId) => {
+    const file = this.state.files.filter((item) => item.id === fileId)[0];
     const filteredFiles = this.state.files.filter((item) => item.id !== fileId);
     if (!filteredFiles.length) {
       this.setState({ files: [], error: INITIAL_STATE.error });
       return;
     }
 
-    this.setState({ files: filteredFiles, error: INITIAL_STATE.error });
+    const fileSize = file.size + this.state.deletedSize;
+
+    this.setState({
+      files: filteredFiles,
+      error: INITIAL_STATE.error,
+      deletedSize: fileSize,
+    });
   };
 
   render() {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DateFields from '../../Components/DateFields/DateFields';
-import Button from '../../Components/Button/Button';
+import DateFields from '../Components/DateFields';
+import Button from '../Components/Button';
+import Checkbox from '../Components/Checkbox';
 
 const TYPES_DICT = {
   spaces: 'Posts',
@@ -61,6 +62,10 @@ class Form extends Component {
     const types = this.state.types;
     const value = types[selected];
     if (selected === 'all') {
+      this.setState({
+        all: true,
+        types: INIT_TYPES_STATE,
+      });
       return;
     }
 
@@ -72,16 +77,13 @@ class Form extends Component {
   renderTypeOptions = () => {
     return Object.keys(TYPES_DICT).map((type) => {
       return (
-        <div key={type}>
-          <input
-            type="checkbox"
-            id={type}
-            checked={this.state.types[type]}
-            onChange={this.updateType}
-            value={type}
-          />
-          <label htmlFor={type}>{TYPES_DICT[type]}</label>
-        </div>
+        <Checkbox
+          key={type}
+          onChange={this.updateType}
+          type={type}
+          isChecked={this.state.types[type]}
+          label={TYPES_DICT[type]}
+        />
       );
     });
   };
@@ -99,16 +101,12 @@ class Form extends Component {
           endDate={this.state.endDate}
         />
         <div>
-          <div>
-            <input
-              type="checkbox"
-              id="all"
-              checked={!typeSelected.length}
-              onChange={this.updateType}
-              value="all"
-            />
-            <label htmlFor="all">All</label>
-          </div>
+          <Checkbox
+            onChange={this.updateType}
+            type={'all'}
+            isChecked={!typeSelected.length}
+            label={'All'}
+          />
           {this.renderTypeOptions()}
         </div>
         <Button onClick={this.getFiles} text="Get Files" />
