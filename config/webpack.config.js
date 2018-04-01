@@ -15,11 +15,21 @@ const postcss = {
   },
 };
 
+const sassResources = {
+  loader: 'sass-resources-loader',
+  options: {
+    resources: [
+      './client/styles/partials/_variables.scss',
+      './client/styles/partials/_tools.scss',
+    ],
+  },
+};
+
 const cssLoader = ISPROD
   ? ExtractTextPlugin.extract({
-      use: ['css-loader?minimize=true', postcss, 'sass-loader'],
+      use: ['css-loader?minimize=true', postcss, 'sass-loader', sassResources],
     })
-  : ['style-loader', 'css-loader', postcss, 'sass-loader'];
+  : ['style-loader', 'css-loader', postcss, 'sass-loader', sassResources];
 
 const plugins = ISPROD
   ? [

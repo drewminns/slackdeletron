@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { FileContext } from '../Providers/FileProvider';
-import Form from './Form';
-import File from '../Components/File';
+import { FileContext } from '../../Providers/FileProvider';
+import Form from '../Form/Form';
+import File from '../../Components/File/File';
 class FileContainer extends Component {
   static propTypes = {
     isLoggedIn: PropTypes.bool,

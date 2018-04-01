@@ -51,11 +51,3 @@ $columns: 12;
 
 $gutter: 20px;
 $padding: $gutter;
-
-.box-shadow {
-  box-shadow: $boxShadow;
-
-  &:hover {
-    box-shadow: $boxShadowHover;
-  }
-}

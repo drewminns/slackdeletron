@@ -3,3 +3,40 @@
 @import 'partials/tools';
 @import 'partials/layout';
 @import 'partials/typography';
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.cf {
+  *zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+    line-height: 0;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.box-shadow {
+  box-shadow: $boxShadow;
+
+  &:hover {
+    box-shadow: $boxShadowHover;
+  }
+}

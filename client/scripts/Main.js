@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 
 import FileProvider from './Providers/FileProvider';
-import Header from './Components/Header';
-import FileContainer from './Containers/FileContainer';
+import Header from './Components/Header/Header';
+import FileContainer from './Containers/FileContainer/FileContainer';
 
 export default class Main extends Component {
   state = {

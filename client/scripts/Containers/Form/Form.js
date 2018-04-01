@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import DateFields from '../Components/DateFields';
-import Button from '../Components/Button';
+import DateFields from '../../Components/DateFields/DateFields';
+import Button from '../../Components/Button/Button';
 
 const TYPES_DICT = {
   spaces: 'Posts',
