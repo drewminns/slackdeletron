@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateFields from '../Components/DateFields';
-import Button from '../Components/Button';
-import Checkbox from '../Components/Checkbox';
+// import Button from '../Components/Button';
+// import Checkbox from '../Components/Checkbox';
+import { Checkbox, Label, Button } from 'rebass';
 
 const TYPES_DICT = {
   spaces: 'Posts',
@@ -77,13 +78,15 @@ class Form extends Component {
   renderTypeOptions = () => {
     return Object.keys(TYPES_DICT).map((type) => {
       return (
-        <Checkbox
-          key={type}
-          onChange={this.updateType}
-          type={type}
-          isChecked={this.state.types[type]}
-          label={TYPES_DICT[type]}
-        />
+        <Label key={type}>
+          <Checkbox
+            id={type}
+            checked={this.state.types[type]}
+            onChange={this.updateType}
+            value={type}
+          />
+          {TYPES_DICT[type]}
+        </Label>
       );
     });
   };
@@ -101,15 +104,18 @@ class Form extends Component {
           endDate={this.state.endDate}
         />
         <div>
-          <Checkbox
-            onChange={this.updateType}
-            type={'all'}
-            isChecked={!typeSelected.length}
-            label={'All'}
-          />
+          <Label>
+            <Checkbox
+              id="all"
+              value="all"
+              checked={!typeSelected.length}
+              onChange={this.updateType}
+            />
+            All
+          </Label>
           {this.renderTypeOptions()}
         </div>
-        <Button onClick={this.getFiles} text="Get Files" />
+        <Button onClick={this.getFiles} children="Get Files" />
       </div>
     );
   }
