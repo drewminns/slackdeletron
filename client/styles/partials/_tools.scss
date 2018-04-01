@@ -1,0 +1,151 @@
+@mixin bp($point) {
+  @if $point == xl {
+    // 1050px
+    @media (min-width: 1200px) and (min-device-width: 1200px) {
+      @content;
+    }
+  } @else if $point == lg {
+    // 900px
+    @media (min-width: 992px) and (min-device-width: 992px) {
+      @content;
+    }
+  } @else if $point == md {
+    // 768px
+    @media (min-width: 768px) and (min-device-width: 768px) {
+      @content;
+    }
+  } @else if $point == xs {
+    // 600px
+    @media (min-width: 600px) and (min-device-width: 600px) {
+      @content;
+    }
+  } @else if $point == xs {
+    // 400px
+    @media (max-width: 400px - 1px) and (min-device-width: 400px - 1px) {
+      @content;
+    }
+  }
+}
+
+@mixin xs {
+  @media (max-width: #{ $xs - 1 }) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: #{ $sm }) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{ $md }) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{ $lg }) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{ $xl }) {
+    @content;
+  }
+}
+
+@mixin cf {
+  *zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+    line-height: 0;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+.cf {
+  *zoom: 1;
+  &::before,
+  &::after {
+    display: table;
+    content: '';
+    line-height: 0;
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// Hide text
+// ---------
+@mixin hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+@function parseInt($n) {
+  /* 2 */
+  @return $n / ($n * 0 + 1);
+}
+
+@mixin rem($property, $values) {
+  $px: (); /* 3 */
+  $rem: (); /* 3 */
+
+  @each $value in $values {
+    /* 4 */
+
+    @if $value == 0 or $value == auto {
+      /* 5 */
+      $px: append($px, $value);
+      $rem: append($rem, $value);
+    } @else {
+      $unit: unit($value); /* 6 */
+      $val: parseInt($value); /* 6 */
+
+      @if $unit == 'px' {
+        /* 7 */
+        $px: append($px, $value);
+        $rem: append($rem, ($val / 10 + rem));
+      }
+
+      @if $unit == 'rem' {
+        /* 7 */
+        $px: append($px, ($val * 10 + px));
+        $rem: append($rem, $value);
+      }
+    }
+  }
+
+  @if $px == $rem {
+    /* 8 */
+    #{$property}: $px; /* 9 */
+  } @else {
+    #{$property}: $px; /* 9 */
+    #{$property}: $rem; /* 9 */
+  }
+}

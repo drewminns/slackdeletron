@@ -1,0 +1,212 @@
+html {
+  font-size: 10px;
+  font-size: 62.5%;
+}
+
+// 1.333 Perfect Fourth
+body {
+  @include rem(font-size, $base-px);
+  line-height: 1.7;
+  font-family: $base-font;
+  letter-spacing: 0.05em;
+  line-height: 2;
+}
+
+h1,
+.h1 {
+  @include rem(font-size, 40px);
+}
+
+h2,
+.h2 {
+  @include rem(font-size, 32px);
+}
+
+h3,
+.h3 {
+  @include rem(font-size, 28px);
+}
+
+h4,
+.h4 {
+  @include rem(font-size, 24px);
+}
+
+h5,
+.h5 {
+  @include rem(font-size, 20px);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-family: $base-font;
+  color: inherit;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  margin: 0 0 0.7rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+  @include rem(font-size, 15px);
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 10px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.meta {
+  text-transform: uppercase;
+  color: $red;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.title {
+  color: $blue;
+  @include rem(font-size, 21px);
+  margin-bottom: 1rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+  font-weight: bold;
+  letter-spacing: 0.07em;
+  font-size: 1.4rem;
+}
+
+a {
+  color: $blue;
+  transition: all 1s;
+
+  &:hover {
+    color: $blue-light;
+  }
+}
+
+.lead {
+  color: $grey;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.blue {
+  color: $blue;
+}
+.red {
+  color: $red;
+}
+.green {
+  color: $green;
+}
+.yellow {
+  color: $yellow;
+}
+.turquoise {
+  color: $turquoise;
+}
+.black {
+  color: $black;
+}
+.grey {
+  color: $grey;
+}
+
+.thin {
+  font-weight: normal;
+}
+
+.list-group {
+  list-style: none;
+  padding: 0;
+}
+
+.inline-list {
+  @include cf;
+
+  & > li {
+    float: left;
+    margin-right: 3rem;
+  }
+}
+
+.flex-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > li {
+    flex: 1 0 50%;
+  }
+}
+
+p.mb-0 {
+  margin-bottom: 0;
+}
+
+.text-muted {
+  color: $grey;
+}
+
+.image-thumb {
+  width: 128px;
+  height: 128px;
+  overflow: hidden;
+  position: relative;
+  margin: 0;
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--small {
+    width: 86px;
+    height: 86px;
+  }
+}
+
+ol,
+ul {
+  padding-left: 1rem;
+}
+
+.small {
+  font-size: 1.4rem;
+}

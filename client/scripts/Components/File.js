@@ -21,17 +21,21 @@ function renderImage(file) {
 
 const File = ({ details, deleteFile }) => {
   return (
-    <article>
-      {renderImage(details)}
-      <p>{details.name}</p>
-      <button
-        onClick={() => {
-          deleteFile(details.id);
-        }}
-      >
-        Delete File
-      </button>
-    </article>
+    <div className="column is-one-quarter">
+      <article className="card">
+        <div className="card-image">
+          <figure className="image is-4by3">{renderImage(details)}</figure>
+        </div>
+        <p>{details.name}</p>
+        <button
+          onClick={() => {
+            deleteFile(details.id);
+          }}
+        >
+          Delete File
+        </button>
+      </article>
+    </div>
   );
 };
 

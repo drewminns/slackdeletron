@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import DateFields from '../Components/DateFields';
+import Button from '../Components/Button';
 
 const TYPES_DICT = {
   spaces: 'Posts',
@@ -30,8 +32,8 @@ class Form extends Component {
     super(props);
 
     this.state = {
-      startDate: '',
-      endDate: '',
+      startDate: null,
+      endDate: null,
       types: INIT_TYPES_STATE,
       channel: null,
     };
@@ -47,6 +49,11 @@ class Form extends Component {
 
   updateField = (field, value) => {
     this.setState({ [field]: value });
+  };
+
+  updateDate = ({ startDate, endDate }) => {
+    // console.log(startDate, endDate);
+    this.setState({ startDate, endDate });
   };
 
   updateType = (e) => {
@@ -86,15 +93,10 @@ class Form extends Component {
 
     return (
       <div>
-        <input
-          type="date"
-          value={this.state.startDate}
-          onChange={(e) => this.updateField('startDate', e.target.value)}
-        />
-        <input
-          type="date"
-          value={this.state.endDate}
-          onChange={(e) => this.updateField('endDate', e.target.value)}
+        <DateFields
+          onChange={this.updateDate}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
         />
         <div>
           <div>
@@ -109,7 +111,7 @@ class Form extends Component {
           </div>
           {this.renderTypeOptions()}
         </div>
-        <button onClick={this.getFiles}>Get Files</button>
+        <Button onClick={this.getFiles} text="Get Files" />
       </div>
     );
   }

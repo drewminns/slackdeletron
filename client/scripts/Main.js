@@ -3,13 +3,13 @@ import axios from 'axios';
 
 import FileProvider from './Providers/FileProvider';
 import Header from './Components/Header';
-// import Form from './Components/Form';
-import FileContainer from './Components/FileContainer';
+import FileContainer from './Containers/FileContainer';
 
-class Main extends Component {
+export default class Main extends Component {
   state = {
     loggedIn: false,
     profile: {},
+    loading: true,
   };
 
   componentDidMount() {
@@ -24,17 +24,20 @@ class Main extends Component {
         this.setState({
           profile: res.data.profile,
           loggedIn: true,
+          loading: false,
         });
       } else {
         this.setState({
           profile: {},
           loggedIn: false,
+          loading: false,
         });
       }
     } catch (err) {
       this.setState({
         profile: {},
         loggedIn: false,
+        loading: false,
       });
     }
   };
@@ -42,20 +45,18 @@ class Main extends Component {
   render() {
     return (
       <Fragment>
-        <Header isLoggedIn={this.state.loggedIn} />
-        <FileProvider
+        <Header
           isLoggedIn={this.state.loggedIn}
-          accessToken={this.state.profile.accessToken}
-        >
-          <Fragment>
-            <main>
-              <FileContainer />
-            </main>
-          </Fragment>
+          name={this.state.profile.name}
+          avatar={this.state.profile.avatar}
+          loading={this.state.loading}
+        />
+        <FileProvider accessToken={this.state.profile.accessToken}>
+          <main>
+            <FileContainer />
+          </main>
         </FileProvider>
       </Fragment>
     );
   }
 }
-
-export default Main;

@@ -1,0 +1,91 @@
+// Gridz
+// ------------------------
+@mixin gridBuild($className) {
+  @for $i from 1 through $columns {
+    .col-#{$className}-#{$i} {
+      width: #{8.3333333333% * $i};
+    }
+    .offset-#{$className}-#{$i} {
+      margin-left: #{8.3333333333% * $i};
+    }
+  }
+}
+
+@mixin gridBP($className, $bpSize: null) {
+  @if $bpSize {
+    @media screen and (min-width: $bpSize) {
+      .contain {
+        max-width: $bpSize;
+      }
+      .hide-#{$className} {
+        display: none;
+      }
+      .offset-#{$className}-0 {
+        margin-left: 0;
+      }
+      @include gridBuild($className);
+    }
+  } @else {
+    .contain {
+      max-width: $bpSize;
+    }
+    .hide-#{$className} {
+      display: none;
+    }
+    .offset-#{$className}-0 {
+      margin-left: 0;
+    }
+    @include gridBuild($className);
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.container {
+  max-width: $max-container-width;
+  margin: 0 auto;
+}
+
+[class*='col-'] {
+  width: 100%;
+  float: left;
+  vertical-align: middle;
+  padding-left: 7px;
+  padding-right: 8px;
+}
+
+.contain {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@include gridBP(xs);
+@include gridBP(sm, $sm);
+@include gridBP(md, $md);
+@include gridBP(lg, $lg);
+@include gridBP(xl, $xl);
+
+.row {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @include md {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}

@@ -1,0 +1,61 @@
+$base-px: 1.5rem !default;
+$base-font: 'Work Sans', Futura, 'Trebuchet MS', Arial, sans-serif;
+$base-weight: 400;
+$thick-weight: bolder;
+
+$component-px: 1.4rem !default;
+$black: #484848;
+$black-light: #949494;
+$border: #e8e8e8;
+$blue: #2000ff;
+$blue-light: #0067ff;
+$red: #fb2067;
+$red-light: #ff6195;
+$green: #1ad677;
+$green-light: #46da90;
+$yellow: #ffba00;
+$yellow-light: #ffda74;
+$sand: #5d6900;
+$sand-light: #879239;
+$grey: #697378;
+$grey-light: #92a3ab;
+$grey-dark: #2d3032;
+$light: #f7f7f7;
+$border-grey: #bbc4c9;
+$white: #fff;
+
+$turquoise: $green;
+
+$primary: $blue;
+$error: $red;
+$secondary: $turquoise;
+$warning: $yellow;
+
+$boxShadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+$boxShadowHover: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+
+$body-bg: $light;
+$body-color: $black;
+
+$text-color: $black;
+$border-color: $black;
+$border-light: #eaeaea;
+
+$max-container-width: 1280px;
+
+$xl: 1200px;
+$lg: 996px;
+$md: 768px;
+$sm: 544px;
+$columns: 12;
+
+$gutter: 20px;
+$padding: $gutter;
+
+.box-shadow {
+  box-shadow: $boxShadow;
+
+  &:hover {
+    box-shadow: $boxShadowHover;
+  }
+}

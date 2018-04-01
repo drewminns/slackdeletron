@@ -1,6 +1,7 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import moment from 'moment';
 
 const ENDPOINT = 'https://slack.com/api/';
 
@@ -17,7 +18,6 @@ export const FileContext = createContext();
 export default class FileProvider extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
-    isLoggedIn: PropTypes.bool,
     accessToken: PropTypes.string,
   };
 
@@ -29,12 +29,25 @@ export default class FileProvider extends Component {
     types = null,
     channel = null
   ) => {
+    const now = moment()
+      .seconds(0)
+      .milliseconds(0)
+      .minutes(0);
+    let fromValue, toValue;
+    if (from) {
+      fromValue = from ? moment(from).unix() : null;
+    }
+
+    if (to) {
+      toValue = !moment(now).isSame(to) ? moment(to).unix() : null;
+    }
+
     try {
       const res = await axios.get(`${ENDPOINT}files.list`, {
         params: {
           token: this.props.accessToken,
-          from,
-          to,
+          ts_from: fromValue,
+          ts_to: toValue,
           types,
           channel,
         },

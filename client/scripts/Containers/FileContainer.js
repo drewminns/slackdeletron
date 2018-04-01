@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { FileContext } from '../Providers/FileProvider';
-import Form from '../Components/Form';
+import Form from './Form';
 import File from '../Components/File';
 class FileContainer extends Component {
   static propTypes = {
@@ -22,8 +22,14 @@ class FileContainer extends Component {
         <FileContext.Consumer>
           {(context) => (
             <Fragment>
-              <Form getFiles={context.getFiles} />
-              {this.renderFiles(context.state.files, context.deleteFile)}
+              <div className="columns">
+                <div className="column is-one-quarter">
+                  <Form getFiles={context.getFiles} />
+                </div>
+                <div className="column">
+                  {this.renderFiles(context.state.files, context.deleteFile)}
+                </div>
+              </div>
             </Fragment>
           )}
         </FileContext.Consumer>

@@ -1,1 +1,5 @@
-@import 'normalize/import-now';
+@import 'normalize/_import-now.scss';
+@import 'partials/variables';
+@import 'partials/tools';
+@import 'partials/layout';
+@import 'partials/typography';
