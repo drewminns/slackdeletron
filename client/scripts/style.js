@@ -3,14 +3,16 @@ import 'normalize.css/normalize.css';
 
 export const PRIMARY_FONT =
   '-apple-system, BlinkMacSystemFont, “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”, “Fira Sans”, “Droid Sans”, “Helvetica Neue”,sans-serif';
-export const BASE_PX = '15px';
+export const BASE_PX = '18px';
 
-export const BLACK = '#010101';
-export const BLACK_LIGHT = '#2f2f2f';
-export const BLUE = '#2000ff';
-export const RED = '#fb2067';
-export const LIGHT_GREY = '#f7f7f7';
+export const BLACK = '#303030';
+export const WHITE_DARK = '#F8F8FF';
 export const WHITE = '#FFF';
+export const BLUE = '#4800EA';
+export const PINK = '#FB2067';
+export const PURPLE = '#9013FE';
+
+export const DROP_SHADOW = '0 5px 12px 0 rgba(0,0,0,0.10)';
 
 export default injectGlobal`
   html {
@@ -19,7 +21,7 @@ export default injectGlobal`
 
   body {
     font-size: ${BASE_PX};
-    background-color: ghostwhite;
+    background-color: ${WHITE_DARK};
     font-family: ${PRIMARY_FONT};
   }
 

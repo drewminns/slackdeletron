@@ -3,11 +3,7 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
     "setupTestFrameworkScriptFile": "./config/setupTests.js"
   },
@@ -15,7 +11,8 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build && npm start",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
     "clean": "rimraf dist"
   },
@@ -35,7 +32,6 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.2",
-    "bulma": "^0.6.2",
     "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
     "css-loader": "^0.28.10",
@@ -45,7 +41,6 @@
     "express-session": "^1.15.6",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
-    "grid-styled": "^3.2.1",
     "html-webpack-plugin": "^3.0.6",
     "html-webpack-pug-plugin": "^0.3.0",
     "jest": "^22.4.2",
@@ -64,7 +59,6 @@
     "rebass": "^1.0.7",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
-    "sass-resources-loader": "^1.3.3",
     "style-loader": "^0.20.3",
     "styled-components": "^3.2.5",
     "url-loader": "^1.0.1",

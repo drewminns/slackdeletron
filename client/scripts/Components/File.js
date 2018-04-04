@@ -1,33 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grid-styled';
-import styled from 'styled-components';
 import moment from 'moment';
 
+import Button from '../Components/Button';
 import { formatBytes } from '../utils';
-
-const Card = styled.article``;
-const CardImage = styled.figure`
-  width: 100%;
-  margin: 0;
-
-  img {
-    max-width: 100%;
-  }
-`;
 
 function renderImage(file) {
   let image = null;
 
   switch (file.mimetype) {
     case 'image/jpeg':
-      image = <img src={file.thumb_480} alt={file.name} />;
+      image = file.thumb_480;
       break;
     case 'image/gif':
-      image = <img src={file.thumb_360_gif} alt={file.name} />;
+      image = file.thumb_360_gif;
       break;
     default:
-      image = <p>No Image</p>;
+      image = 'https://commons.wikimedia.org/wiki/File:No_image_available.svg';
       break;
   }
 
@@ -35,25 +25,25 @@ function renderImage(file) {
 }
 
 const File = ({ details, deleteFile }) => {
-  const date = moment.unix(details.created).format('MMM Do YYYY h:mma');
+  const date = moment.unix(details.created).fromNow();
   return (
-    <Box width={1 / 4} m={2}>
-      <Card>
-        <CardImage>{renderImage(details)}</CardImage>
-        <p>{details.name}</p>
+    <Box width={1 / 4} px={2} py={2}>
+      <div>
+        <img src={renderImage(details)} alt={details.name} />
+
+        <h3>{details.name}</h3>
         <p>
           Created:
           {date}
         </p>
         <p>Size: {formatBytes(details.size)}</p>
-        <button
+        <Button
+          text="Delete File"
           onClick={() => {
             deleteFile(details.id);
           }}
-        >
-          Delete File
-        </button>
-      </Card>
+        />
+      </div>
     </Box>
   );
 };

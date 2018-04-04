@@ -1,26 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Checkbox, Label } from 'rebass';
+import styled from 'styled-components';
 
-const CheckboxEl = ({ type, label, onChange, isChecked }) => {
+const CheckboxDiv = styled.div``;
+const CheckboxLabel = styled.label``;
+const CheckboxInput = styled.input``;
+
+const Checkbox = ({
+  label = '',
+  checked = false,
+  onChange = () => {},
+  value = '',
+}) => {
   return (
-    <Label>
-      <Checkbox
-        id={type}
-        checked={isChecked}
-        onChange={onChange}
-        value={type}
-      />
-      {label}
-    </Label>
+    <CheckboxDiv>
+      <CheckboxLabel>
+        <CheckboxInput
+          id={value}
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          value={value}
+        />
+        {label}
+      </CheckboxLabel>
+    </CheckboxDiv>
   );
 };
 
-CheckboxEl.propTypes = {
-  type: PropTypes.string,
+Checkbox.propTypes = {
   label: PropTypes.string,
+  checked: PropTypes.bool,
   onChange: PropTypes.func,
-  isChecked: PropTypes.bool,
+  value: PropTypes.string,
 };
 
-export default CheckboxEl;
+export default Checkbox;

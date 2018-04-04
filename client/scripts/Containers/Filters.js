@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Select from '../Components/Select';
+
+const CHANNELS = [
+  { id: 'newest', name: 'Newest' },
+  { id: 'oldest', name: 'Oldest' },
+];
+
+const SIZE = [
+  { id: 'largest', name: 'Largest' },
+  { id: 'smallest', name: 'Smallest' },
+];
 
 class Filters extends Component {
   static propTypes = {
@@ -14,30 +25,24 @@ class Filters extends Component {
       <div>
         <h2>Filters</h2>
         <div>
-          <label>Sort by Date</label>
-          <select
+          <Select
+            label="Sort by Date"
+            emptyValue="none"
+            emptyText="None"
+            options={CHANNELS}
             onChange={this.props.onDateChange}
             value={this.props.dateValue}
-          >
-            <option value="none" disabled>
-              None
-            </option>
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-          </select>
+          />
         </div>
         <div>
-          <label>Sort by Size</label>
-          <select
+          <Select
+            label="Sort by Size"
+            emptyValue="none"
+            emptyText="None"
+            options={SIZE}
             onChange={this.props.onSizeChange}
             value={this.props.sizeValue}
-          >
-            <option value="none" disabled>
-              None
-            </option>
-            <option value="largest">Largest</option>
-            <option value="smallest">Smallest</option>
-          </select>
+          />
         </div>
       </div>
     );

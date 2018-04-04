@@ -1,68 +1,36 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Flex, Box } from 'grid-styled';
 import Button from '../Components/Button';
-import { BLACK, WHITE, BLUE } from '../style';
-
-const HeaderWrap = styled.header`
-  padding: 15px 25px;
-  background: ${WHITE};
-  color: ${BLACK};
-`;
-
-const HeaderTitle = styled.h1`
-  font-size: 21px;
-  margin: 0;
-`;
-
-const HeaderLoggedIn = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const HeaderUser = styled.div`
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-
-  img {
-    width: 64px;
-    height: 64px;
-    margin-right: 10px;
-  }
-`;
 
 const Header = ({ isLoggedIn, name, avatar }) => {
   let markup = (
-    <HeaderLoggedIn>
-      <Button text="Login with Slack" link="api/slack/login" />
-    </HeaderLoggedIn>
+    <Fragment>
+      <Button text="Login with Slack" href="api/slack/login" isLink />
+    </Fragment>
   );
 
   if (isLoggedIn) {
     markup = (
-      <HeaderLoggedIn>
-        <HeaderUser>
-          <img src={avatar} alt={name} />
-          <p>Hey {name}</p>
-        </HeaderUser>
-        <Button text="Logout" link="api/logout" color={BLUE} />
-      </HeaderLoggedIn>
+      <Fragment>
+        <img src={avatar} />
+        <p>Hey {name}</p>
+        <Button text="Logout" href="api/logout" isLink />
+      </Fragment>
     );
   }
 
   return (
-    <HeaderWrap>
-      <Flex justifyContent={'space-between'}>
+    <header>
+      <Flex px={2} py={3}>
         <Flex width={1 / 2} alignItems="center">
-          <HeaderTitle>Slack Deletron</HeaderTitle>
+          <h1>Slack Deletron</h1>
         </Flex>
-        <Flex width={1 / 2} justifyContent={'flex-end'}>
+        <Flex alignItems="center" ml="auto">
           {markup}
         </Flex>
       </Flex>
-    </HeaderWrap>
+    </header>
   );
 };
 

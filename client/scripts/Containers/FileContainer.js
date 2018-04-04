@@ -44,16 +44,20 @@ class FileContainer extends Component {
       return null;
     }
     return (
-      <Fragment>
-        <Count data={files} />
-        <p>Files Deleted: {formatBytes(deletedSize)}</p>
-        <Filters
-          sizeValue={this.state.size}
-          dateValue={this.state.date}
-          onSizeChange={this.onSizeChange}
-          onDateChange={this.onDateChange}
-        />
-      </Fragment>
+      <Flex px={2} py={2}>
+        <Box width={3 / 4}>
+          <Count data={files} />
+          <p>Files Deleted: {formatBytes(deletedSize)}</p>
+        </Box>
+        <Box width={1 / 4}>
+          <Filters
+            sizeValue={this.state.size}
+            dateValue={this.state.date}
+            onSizeChange={this.onSizeChange}
+            onDateChange={this.onDateChange}
+          />
+        </Box>
+      </Flex>
     );
   }
 
@@ -80,16 +84,18 @@ class FileContainer extends Component {
       <FileContext.Consumer>
         {(context) => (
           <Flex>
-            <Box width={1 / 5}>
-              <Form getFiles={context.getFiles} />
+            <Box width={1 / 5} p={2}>
+              <Form getFiles={context.getFiles} channels={context.channels} />
+            </Box>
+            <Box width={4 / 5} p={2}>
               {this.displayFilters(
                 context.state.files,
                 context.state.deletedSize
               )}
+              <Flex flexWrap="wrap">
+                {this.renderFiles(context.state.files, context.deleteFile)}
+              </Flex>
             </Box>
-            <Flex width={4 / 5}>
-              {this.renderFiles(context.state.files, context.deleteFile)}
-            </Flex>
           </Flex>
         )}
       </FileContext.Consumer>

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import DateFields from '../Components/DateFields';
-// import Button from '../Components/Button';
-// import Checkbox from '../Components/Checkbox';
-import { Checkbox, Label, Button } from 'rebass';
+import Button from '../Components/Button';
+import Checkbox from '../Components/Checkbox';
+import Select from '../Components/Select';
 
 const TYPES_DICT = {
   spaces: 'Posts',
@@ -28,6 +28,7 @@ const INIT_TYPES_STATE = {
 class Form extends Component {
   static propTypes = {
     getFiles: PropTypes.func,
+    channels: PropTypes.array,
   };
 
   constructor(props) {
@@ -37,7 +38,7 @@ class Form extends Component {
       startDate: null,
       endDate: null,
       types: INIT_TYPES_STATE,
-      channel: null,
+      channel: '',
     };
   }
 
@@ -75,18 +76,38 @@ class Form extends Component {
     });
   };
 
+  handleChannelSelect = (e) => {
+    this.setState({
+      channel: e.target.value,
+    });
+  };
+
+  renderChannelSelect = () => {
+    const channels = this.props.channels;
+    if (channels.length) {
+      return (
+        <Select
+          label="Channels"
+          emptyText="All Channels"
+          emptyValue=""
+          options={channels}
+          value={this.state.channel}
+          onChange={this.handleChannelSelect}
+        />
+      );
+    }
+  };
+
   renderTypeOptions = () => {
     return Object.keys(TYPES_DICT).map((type) => {
       return (
-        <Label key={type}>
-          <Checkbox
-            id={type}
-            checked={this.state.types[type]}
-            onChange={this.updateType}
-            value={type}
-          />
-          {TYPES_DICT[type]}
-        </Label>
+        <Checkbox
+          key={TYPES_DICT[type]}
+          checked={this.state.types[type]}
+          onChange={this.updateType}
+          value={type}
+          label={TYPES_DICT[type]}
+        />
       );
     });
   };
@@ -95,27 +116,24 @@ class Form extends Component {
     const typeSelected = Object.keys(this.state.types).filter(
       (type) => this.state.types[type] === true
     );
-
     return (
       <div>
+        {this.renderChannelSelect()}
         <DateFields
           onChange={this.updateDate}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
         />
         <div>
-          <Label>
-            <Checkbox
-              id="all"
-              value="all"
-              checked={!typeSelected.length}
-              onChange={this.updateType}
-            />
-            All
-          </Label>
+          <Checkbox
+            checked={!typeSelected.length}
+            onChange={this.updateType}
+            value="all"
+            label="All"
+          />
           {this.renderTypeOptions()}
         </div>
-        <Button onClick={this.getFiles} children="Get Files" />
+        <Button onClick={this.getFiles} text="Get Files" />
       </div>
     );
   }

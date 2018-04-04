@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import moment from 'moment';
 
-const ENDPOINT = 'https://slack.com/api/';
+import { ENDPOINT } from '../../../config/constants';
 
 const INITIAL_STATE = {
   files: [],
@@ -12,6 +12,7 @@ const INITIAL_STATE = {
     message: '',
   },
   deletedSize: 0,
+  paging: 1,
 };
 
 export const FileContext = createContext();
@@ -20,6 +21,7 @@ export default class FileProvider extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     accessToken: PropTypes.string,
+    channels: PropTypes.array,
   };
 
   state = { ...INITIAL_STATE };
@@ -113,6 +115,7 @@ export default class FileProvider extends Component {
       <FileContext.Provider
         value={{
           state: this.state,
+          channels: this.props.channels,
           getFiles: this.callGetFiles,
           deleteFile: this.callDeleteFile,
         }}
