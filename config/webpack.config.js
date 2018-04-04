@@ -65,6 +65,11 @@ module.exports = {
         exclude: [/node_modules/],
       },
       {
+        test: /\.(svg|png|gif|jpg)$/,
+        use: ['url-loader?limit=30000&name=images/[hash:12].[ext]'],
+        exclude: '/node_modules/',
+      },
+      {
         test: /\.(css|scss)?$/,
         use: cssLoader,
         exclude: '/node_modules/',
