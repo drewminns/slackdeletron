@@ -1,4 +1,7 @@
 const passport = require('passport');
+const axios = require('axios');
+
+const { ENDPOINT } = require('../config/constants');
 
 module.exports = (app) => {
   app.get('/api/slack/login', passport.authenticate('slack'));
@@ -19,7 +22,7 @@ module.exports = (app) => {
     res.redirect('/');
   });
 
-  app.get('/api/profile', (req, res) => {
+  app.get('/api/profile', async (req, res) => {
     if (!req.user) {
       res.send({
         loggedIn: false,
@@ -28,9 +31,16 @@ module.exports = (app) => {
       return;
     }
 
+    const userInfo = await axios.get(`${ENDPOINT}users.info`, {
+      params: {
+        token: req.user.accessToken,
+        user: req.user.userId,
+      },
+    });
+
     res.send({
       loggedIn: true,
-      profile: req.user,
+      profile: { ...req.user, isAdmin: userInfo.data.user.is_admin },
     });
   });
 };

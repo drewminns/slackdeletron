@@ -1,21 +1,23 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Box } from 'grid-styled';
+import { Flex } from 'grid-styled';
 import Button from '../Components/Button';
 
-const Header = ({ isLoggedIn, name, avatar }) => {
-  let markup = (
-    <Fragment>
-      <Button text="Login with Slack" href="api/slack/login" isLink />
-    </Fragment>
-  );
+const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
+  let markup = null;
 
-  if (isLoggedIn) {
+  if (isLoggedIn && name && avatar) {
     markup = (
       <Fragment>
-        <img src={avatar} />
+        <img src={avatar} alt={name} />
         <p>Hey {name}</p>
         <Button text="Logout" href="api/logout" isLink />
+      </Fragment>
+    );
+  } else {
+    markup = (
+      <Fragment>
+        <Button text="Login with Slack" href="api/slack/login" isLink />
       </Fragment>
     );
   }
