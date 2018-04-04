@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './scripts/Main';
+const keys = require('../config/keys');
+
 import './scripts/style';
+
+if (process.env.NODE_ENV === 'production') {
+  Raven.config(keys.sentry).install();
+}
 
 ReactDOM.render(<Main />, document.getElementById('main'));
 
