@@ -1,29 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
 import DateFields from '../Components/DateFields';
 import Button from '../Components/Button';
 import Checkbox from '../Components/Checkbox';
 import Select from '../Components/Select';
 
-const TYPES_DICT = {
-  spaces: 'Posts',
-  snippets: 'Snippets',
-  images: 'Images',
-  videos: 'Videos',
-  gdocs: 'Google Docs',
-  zips: 'Zip Files',
-  pdfs: 'PDF Files',
-};
+import { TYPES_DICT, INIT_TYPES_STATE } from '../../../config/constants';
+import { BLUE } from '../style';
 
-const INIT_TYPES_STATE = {
-  spaces: false,
-  snippets: false,
-  images: false,
-  videos: false,
-  gdocs: false,
-  zips: false,
-  pdfs: false,
-};
+const FormWrapper = styled.div`
+  background-color: ${BLUE};
+  padding: 40px 20px 20px;
+`;
 
 class Form extends Component {
   static propTypes = {
@@ -91,6 +81,8 @@ class Form extends Component {
           emptyText="All Channels"
           emptyValue=""
           options={channels}
+          darkLabel
+          isLarge
           value={this.state.channel}
           onChange={this.handleChannelSelect}
         />
@@ -117,7 +109,7 @@ class Form extends Component {
       (type) => this.state.types[type] === true
     );
     return (
-      <div>
+      <FormWrapper>
         {this.renderChannelSelect()}
         <DateFields
           onChange={this.updateDate}
@@ -134,7 +126,7 @@ class Form extends Component {
           {this.renderTypeOptions()}
         </div>
         <Button onClick={this.getFiles} text="Get Files" />
-      </div>
+      </FormWrapper>
     );
   }
 }

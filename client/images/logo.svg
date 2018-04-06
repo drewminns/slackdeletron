@@ -1,0 +1,8 @@
+<svg width="285" height="75" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" fill-rule="evenodd">
+    <text font-family="Interface-BoldItalic, Interface" font-size="38" font-style="italic" font-weight="bold" fill="#303030" transform="translate(3 3)">
+      <tspan x="18" y="48">slack deletron</tspan>
+    </text>
+    <path stroke="#040404" stroke-width="6" d="M3 3h279v69H3z"/>
+  </g>
+</svg>
