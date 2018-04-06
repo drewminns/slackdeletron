@@ -84,7 +84,7 @@ class FileContainer extends Component {
       <FileContext.Consumer>
         {(context) => (
           <Flex>
-            <Box width={1 / 5} p={2}>
+            <Box width={1 / 5}>
               <Form getFiles={context.getFiles} channels={context.channels} />
             </Box>
             <Box width={4 / 5} p={2}>
