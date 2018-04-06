@@ -1,9 +1,15 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Button from '../Components/Button';
 
 describe('<Button />', () => {
+  it('Renders Correctly', () => {
+    const button = renderer.create(<Button />).toJSON();
+    expect(button).toMatchSnapshot();
+  });
+
   it('Mounts a Button element correctly', () => {
     const button = shallow(<Button />);
     expect(button).toHaveLength(1);

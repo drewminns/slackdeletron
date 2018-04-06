@@ -31,6 +31,7 @@ const HeaderAvatar = styled.img`
   width: 73px;
   height: 73px;
   margin-right: 30px;
+  box-shadow: ${BOX_SHADOW};
 `;
 
 const HeaderName = styled.p`

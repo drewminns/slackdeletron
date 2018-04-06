@@ -12,11 +12,21 @@ export const BLUE = '#4800EA';
 export const PINK = '#FB2067';
 export const PURPLE = '#9013FE';
 
-export const BOX_SHADOW = '0 5px 12px 0 rgba(0,0,0,0.10)';
+export const BOX_SHADOW = '0 4px 6px 0 rgba(0,0,0,0.20)';
 
 export default injectGlobal`
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 62.5%;
+  }
+
+  html,body {
+    padding: 0;
+    margin: 0;
   }
 
   body {

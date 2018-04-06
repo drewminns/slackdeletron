@@ -13,6 +13,8 @@ const ButtonEl = styled.button`
   cursor: pointer;
   font-size: ${(props) => (props.large ? '26px' : '18px')};
   width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
+  border: none;
+  appearance: none;
 `;
 const ButtonLink = styled.a`
   background-color: ${BLACK};

@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import renderer from 'react-test-renderer';
 
 import Header from '../Components/Header';
 
@@ -8,6 +9,11 @@ const AVATAR =
 const NAME = 'George Jetson';
 
 describe('<Header />', () => {
+  it('Renders Correctly', () => {
+    const header = renderer.create(<Header />).toJSON();
+    expect(header).toMatchSnapshot();
+  });
+
   it('renders a Header component', () => {
     const wrapper = shallow(<Header />);
     expect(wrapper).toHaveLength(1);
