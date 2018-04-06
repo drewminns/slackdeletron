@@ -12,8 +12,10 @@
     "setupTestFrameworkScriptFile": "./config/setupTests.js"
   },
   "husky": {
-    "pre-commit": "npm test",
-    "pre-push": "npm test"
+    "hooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
