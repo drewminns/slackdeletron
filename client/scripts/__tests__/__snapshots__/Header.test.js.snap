@@ -2,7 +2,7 @@
 
 exports[`<Header /> Renders Correctly 1`] = `
 <header
-  className="sc-EHOje kKNruh"
+  className="sc-EHOje gWwVIw"
 >
   <div
     className="sc-bwzfXH pjOvZ"
@@ -20,7 +20,7 @@ exports[`<Header /> Renders Correctly 1`] = `
       className="sc-bwzfXH jJbKFp"
     >
       <a
-        className="sc-bxivhb fRTnxb"
+        className="sc-bxivhb knvyqT"
         href="api/slack/login"
       >
         Login with Slack

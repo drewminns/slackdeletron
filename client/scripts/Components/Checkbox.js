@@ -29,7 +29,7 @@ const CheckboxLabel = styled.label`
     height: 37px;
     background-color: ${WHITE};
     color: ${BLACK};
-      padding: 2px 5px 4px 1px;
+    padding: 2px 5px 4px 1px;
     content: ${(props) => (props.checked ? `url(${Checkmark})` : '')}
   }
 `;
