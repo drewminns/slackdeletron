@@ -11,9 +11,11 @@
     },
     "setupTestFrameworkScriptFile": "./config/setupTests.js"
   },
-  "scripts": {
+  "husky": {
     "pre-commit": "npm test",
-    "pre-push": "npm test",
+    "pre-push": "npm test"
+  },
+  "scripts": {
     "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build && npm start",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
