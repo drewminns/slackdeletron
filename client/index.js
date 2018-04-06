@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'production') {
   Raven.config(keys.sentry).install();
 }
 
-https: ReactDOM.render(<Main />, document.getElementById('main'));
+ReactDOM.render(<Main />, document.getElementById('main'));
 
 if (module.hot) {
   module.hot.accept();

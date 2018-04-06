@@ -3,25 +3,22 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
     "setupTestFrameworkScriptFile": "./config/setupTests.js"
   },
   "scripts": {
+    "pre-commit": "npm test",
+    "pre-push": "npm test",
     "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build && npm start",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
     "clean": "rimraf dist"
   },
@@ -79,6 +76,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.15.0-rc.13",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "jest-styled-components": "^5.0.1",
