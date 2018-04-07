@@ -2,6 +2,9 @@
   "root": true,
   "parser": "babel-eslint",
   "plugins": ["jsx-a11y", "react"],
+  "globals": {
+    "Raven": true
+  },
   "env": {
     "browser": true,
     "commonjs": true,

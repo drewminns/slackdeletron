@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Select from '../Components/Select';
 
@@ -22,28 +22,23 @@ class Filters extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Filters</h2>
-        <div>
-          <Select
-            label="Sort by Date"
-            emptyValue="none"
-            emptyText="None"
-            options={CHANNELS}
-            onChange={this.props.onDateChange}
-            value={this.props.dateValue}
-          />
-        </div>
-        <div>
-          <Select
-            label="Sort by Size"
-            emptyValue="none"
-            emptyText="None"
-            options={SIZE}
-            onChange={this.props.onSizeChange}
-            value={this.props.sizeValue}
-          />
-        </div>
+      <div className="Filters">
+        <Select
+          label="Sort by Date"
+          emptyValue="none"
+          emptyText="None"
+          options={CHANNELS}
+          onChange={this.props.onDateChange}
+          value={this.props.dateValue}
+        />
+        <Select
+          label="Sort by Size"
+          emptyValue="none"
+          emptyText="None"
+          options={SIZE}
+          onChange={this.props.onSizeChange}
+          value={this.props.sizeValue}
+        />
       </div>
     );
   }

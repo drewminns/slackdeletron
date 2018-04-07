@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import DateFields from '../Components/DateFields';
 import Button from '../Components/Button';
 import Checkbox from '../Components/Checkbox';
 import Select from '../Components/Select';
+import Label from '../Components/Label';
 
 import { TYPES_DICT, INIT_TYPES_STATE } from '../../../config/constants';
-import { BLUE } from '../style';
-
-const FormWrapper = styled.div`
-  background-color: ${BLUE};
-  padding: 40px 20px 20px;
-`;
 
 class Form extends Component {
   static propTypes = {
     getFiles: PropTypes.func,
     channels: PropTypes.array,
+    isLoggedIn: PropTypes.bool,
   };
 
   constructor(props) {
@@ -109,14 +104,17 @@ class Form extends Component {
       (type) => this.state.types[type] === true
     );
     return (
-      <FormWrapper>
+      <div className="Form">
+        <h2>Search for Files</h2>
         {this.renderChannelSelect()}
+        <Label darkLabel>Date Range</Label>
         <DateFields
           onChange={this.updateDate}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
         />
         <div>
+          <Label darkLabel>Type of Files</Label>
           <Checkbox
             checked={!typeSelected.length}
             onChange={this.updateType}
@@ -125,8 +123,14 @@ class Form extends Component {
           />
           {this.renderTypeOptions()}
         </div>
-        <Button onClick={this.getFiles} text="Get Files" />
-      </FormWrapper>
+        <Button
+          onClick={this.getFiles}
+          text="Get Files"
+          large
+          fullWidth
+          disabled={!this.props.isLoggedIn}
+        />
+      </div>
     );
   }
 }

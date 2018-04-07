@@ -81,6 +81,7 @@ export default class Main extends Component {
           loading={this.state.loading}
         />
         <FileProvider
+          isLoggedIn={this.state.loggedIn}
           accessToken={this.state.profile.accessToken}
           channels={this.state.channels.list}
         >

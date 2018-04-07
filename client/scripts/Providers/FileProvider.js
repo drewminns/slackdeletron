@@ -22,6 +22,7 @@ export default class FileProvider extends Component {
     children: PropTypes.element.isRequired,
     accessToken: PropTypes.string,
     channels: PropTypes.array,
+    isLoggedIn: PropTypes.bool,
   };
 
   state = { ...INITIAL_STATE };
@@ -115,6 +116,7 @@ export default class FileProvider extends Component {
       <FileContext.Provider
         value={{
           state: this.state,
+          isLoggedIn: this.props.isLoggedIn,
           channels: this.props.channels,
           getFiles: this.callGetFiles,
           deleteFile: this.callDeleteFile,

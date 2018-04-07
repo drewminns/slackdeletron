@@ -17,6 +17,7 @@
   "plugins": [
     [
       "transform-runtime",
+      "transform-async-to-generator",
       {
         "polyfill": false,
         "regenerator": true

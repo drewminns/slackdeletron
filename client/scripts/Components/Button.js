@@ -1,52 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-import { BLACK, WHITE, BOX_SHADOW } from '../style';
-
-const ButtonEl = styled.button`
-  background-color: ${BLACK};
-  color: ${WHITE};
-  font-weight: 500;
-  box-shadow: ${BOX_SHADOW};
-  padding: 12px 20px;
-  cursor: pointer;
-  font-size: ${(props) => (props.large ? '26px' : '18px')};
-  width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
-  border: none;
-  appearance: none;
-`;
-const ButtonLink = styled.a`
-  background-color: ${BLACK};
-  color: ${WHITE};
-  text-decoration: none;
-  font-weight: 500;
-  box-shadow: ${BOX_SHADOW};
-  padding: 12px 20px;
-  font-size: ${(props) => (props.large ? '26px' : '18px')};
-  width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
-`;
+import cc from 'classcat';
 
 const Button = ({
   text = '',
   onClick = () => {},
   isLink = false,
   href = '',
+  disabled = false,
   large = false,
-  fullWidth = false,
 }) => {
+  const classes = cc(['Button', { Button__Large: large }]);
   if (isLink && href) {
     return (
-      <ButtonLink href={href} large={large} fullWidth={fullWidth}>
+      <a href={href} className={classes}>
         {text}
-      </ButtonLink>
+      </a>
     );
   }
 
   return (
-    <ButtonEl onClick={onClick} large={large} fullWidth={fullWidth}>
+    <button className={classes} onClick={onClick} disabled={disabled}>
       {text}
-    </ButtonEl>
+    </button>
   );
 };
 
@@ -55,8 +31,8 @@ Button.propTypes = {
   onClick: PropTypes.func,
   isLink: PropTypes.bool,
   href: PropTypes.string,
+  disabled: PropTypes.bool,
   large: PropTypes.bool,
-  fullWidth: PropTypes.bool,
 };
 
 export default Button;

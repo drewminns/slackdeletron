@@ -1,0 +1,23 @@
+$FileWrapperWidth: calc(100% - 300px);
+
+.FileWrapper {
+  position: relative;
+  float: left;
+  width: $FileWrapperWidth;
+
+  &__List {
+    padding-top: 134px;
+  }
+
+  &__Bar {
+    z-index: 200;
+    position: fixed;
+    width: $FileWrapperWidth;
+    background-color: $white;
+    box-shadow: $boxShadow;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
