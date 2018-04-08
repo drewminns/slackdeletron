@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatBytes } from '../utils';
 
-const Count = ({ data, deletedSize }) => {
+const Count = ({ data, deletedSize, teamName }) => {
   const amount = data.length;
   const fileSize = data.reduce((count, file) => {
     return count + file.size;
@@ -11,6 +11,7 @@ const Count = ({ data, deletedSize }) => {
     <div className="Count">
       <p className="Count__Text">
         There are <span className="purple">{amount} files</span> you can delete
+        from your {teamName} workspace.
       </p>
       <p className="Count__Text">
         It could save you <span className="red">{formatBytes(fileSize)}</span>
@@ -28,6 +29,7 @@ const Count = ({ data, deletedSize }) => {
 Count.propTypes = {
   data: PropTypes.array,
   deletedSize: PropTypes.number,
+  teamName: PropTypes.string,
 };
 
 export default Count;

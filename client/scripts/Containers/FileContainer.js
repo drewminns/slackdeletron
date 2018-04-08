@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { FileContext } from '../Providers/FileProvider';
 import Form from './Form';
 import FileWrapper from './FileWrapper';
+import SignIn from './SignIn';
 
 class FileContainer extends Component {
   static propTypes = {
@@ -22,11 +23,16 @@ class FileContainer extends Component {
                 channels={context.channels}
                 isLoggedIn={context.isLoggedIn}
               />
-              <FileWrapper
-                files={context.state.files}
-                deleteFile={context.deleteFile}
-                deletedSize={context.state.deletedSize}
-              />
+              {!context.isLoggedIn ? (
+                <SignIn />
+              ) : (
+                <FileWrapper
+                  teamName={context.teamName}
+                  files={context.state.files}
+                  deleteFile={context.deleteFile}
+                  deletedSize={context.state.deletedSize}
+                />
+              )}
             </main>
           </Fragment>
         )}

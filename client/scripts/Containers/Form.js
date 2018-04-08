@@ -106,14 +106,16 @@ class Form extends Component {
     return (
       <div className="Form">
         <h2>Search for Files</h2>
-        {this.renderChannelSelect()}
-        <Label darkLabel>Date Range</Label>
-        <DateFields
-          onChange={this.updateDate}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-        />
-        <div>
+        <div className="Form__Field">{this.renderChannelSelect()}</div>
+        <div className="Form__Field">
+          <Label darkLabel>Date Range</Label>
+          <DateFields
+            onChange={this.updateDate}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+          />
+        </div>
+        <div className="Form__Field">
           <Label darkLabel>Type of Files</Label>
           <Checkbox
             checked={!typeSelected.length}

@@ -23,6 +23,7 @@ export default class FileProvider extends Component {
     accessToken: PropTypes.string,
     channels: PropTypes.array,
     isLoggedIn: PropTypes.bool,
+    teamName: PropTypes.string,
   };
 
   state = { ...INITIAL_STATE };
@@ -118,6 +119,7 @@ export default class FileProvider extends Component {
           state: this.state,
           isLoggedIn: this.props.isLoggedIn,
           channels: this.props.channels,
+          teamName: this.props.teamName,
           getFiles: this.callGetFiles,
           deleteFile: this.callDeleteFile,
         }}

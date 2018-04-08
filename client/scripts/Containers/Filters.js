@@ -25,8 +25,6 @@ class Filters extends Component {
       <div className="Filters">
         <Select
           label="Sort by Date"
-          emptyValue="none"
-          emptyText="None"
           options={CHANNELS}
           onChange={this.props.onDateChange}
           value={this.props.dateValue}

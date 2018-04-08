@@ -10,10 +10,6 @@
   box-sizing: border-box;
 }
 
-body {
-  padding-top: 113px;
-}
-
 .visually-hidden {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
@@ -53,7 +49,15 @@ body {
 @import 'Components/Count';
 @import 'Components/Filters';
 @import 'Components/File';
+@import 'Components/DateField';
+@import 'Components/SignIn';
+
+#main {
+  padding-top: 113px;
+}
 
 .MainContent {
   background-color: $light;
+  min-height: 100vh;
+  display: flex;
 }

@@ -6,7 +6,10 @@ $FileWrapperWidth: calc(100% - 300px);
   width: $FileWrapperWidth;
 
   &__List {
-    padding-top: 134px;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    overflow-y: scroll;
+    height: calc(100vh - 113px);
   }
 
   &__Bar {

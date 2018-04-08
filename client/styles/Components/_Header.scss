@@ -2,14 +2,14 @@
   background-color: $white;
   box-shadow: $boxShadow;
   padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 300;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
   &__Logo {
     font-size: 0;
