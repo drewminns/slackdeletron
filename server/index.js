@@ -66,8 +66,7 @@ module.exports = (app) => {
       });
     });
   } else {
-    app.use(express.static(path.join(__dirname, 'dist')));
-
+    app.use(express.static(path.join(__dirname, '../dist')));
     app.get('*', (req, res) => {
       res.render(ENTRY.PROD);
     });
