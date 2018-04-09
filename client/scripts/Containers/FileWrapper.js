@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Filters from './Filters';
 import File from '../Components/File';
 import Count from '../Components/Count';
 
+import friendlyBud from '../../images/friendlyBud.svg';
+import stokedBud from '../../images/stokedBud.svg';
+import congratsBud from '../../images/congratsBud.svg';
+
 export default class FileWrapper extends Component {
   static propTypes = {
     deleteFile: PropTypes.func,
     files: PropTypes.array,
-    deletedSize: PropTypes.number,
     teamName: PropTypes.string,
+    hasRun: PropTypes.bool,
+    hasFiles: PropTypes.bool,
   };
 
   constructor(props) {
@@ -42,11 +47,7 @@ export default class FileWrapper extends Component {
 
     return (
       <div className="FileWrapper__Bar">
-        <Count
-          data={files}
-          deletedSize={this.props.deletedSize}
-          teamName={this.props.teamName}
-        />
+        <Count data={files} teamName={this.props.teamName} />
         <Filters
           sizeValue={this.state.size}
           dateValue={this.state.date}
@@ -85,6 +86,52 @@ export default class FileWrapper extends Component {
   }
 
   render() {
+    if (!this.props.hasRun) {
+      return (
+        <div className="FileWrapper FileWrapper--start">
+          <div className="FileWrapper__message">
+            <img src={friendlyBud} alt="Slack Deletron Bud" />
+            <h2>Oh hey, welcome to the Slack Deletron!</h2>
+            <p className="lead">{`Let's get you started!`}</p>
+            <ol>
+              <li>
+                Use the form to search the type of files you want to track down.
+              </li>
+              <li>
+                Click the 'Get Files' button to search for public files on your
+                workspace.
+              </li>
+              <li>Start deleting some files and free up some space!</li>
+            </ol>
+          </div>
+        </div>
+      );
+    } else if (this.props.files.length === 0 && this.props.hasFiles) {
+      return (
+        <div className="FileWrapper FileWrapper--start">
+          <div className="FileWrapper__message">
+            <img src={stokedBud} alt="Slack Deletron Bud" />
+            <h2>Zap! Deleted!</h2>
+            <p className="lead">You get them all from that search!</p>
+            <p>Try another search to see if there's anything left!</p>
+          </div>
+        </div>
+      );
+    } else if (this.props.files.length === 0 && this.props.hasRun) {
+      return (
+        <div className="FileWrapper FileWrapper--start">
+          <div className="FileWrapper__message">
+            <img src={congratsBud} alt="Slack Deletron Bud" />
+            <h2>Sweet! There's nothing there!</h2>
+            <p className="lead">
+              Usually no results is a bad thing, but this is great!
+            </p>
+            <p>Try another search to see if there's anything left!</p>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="FileWrapper">
         {this.displayFilters()}

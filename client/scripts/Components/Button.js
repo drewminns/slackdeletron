@@ -9,18 +9,19 @@ const Button = ({
   href = '',
   disabled = false,
   large = false,
+  classes = '',
 }) => {
-  const classes = cc(['Button', { Button__Large: large }]);
+  const classNames = cc(['Button', { Button__Large: large }, classes]);
   if (isLink && href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classNames}>
         {text}
       </a>
     );
   }
 
   return (
-    <button className={classes} onClick={onClick} disabled={disabled}>
+    <button className={classNames} onClick={onClick} disabled={disabled}>
       {text}
     </button>
   );
@@ -28,6 +29,7 @@ const Button = ({
 
 Button.propTypes = {
   text: PropTypes.string,
+  classes: PropTypes.string,
   onClick: PropTypes.func,
   isLink: PropTypes.bool,
   href: PropTypes.string,

@@ -5,6 +5,56 @@ $FileWrapperWidth: calc(100% - 300px);
   float: left;
   width: $FileWrapperWidth;
 
+  &--start {
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+  }
+
+  &__Details {
+    position: fixed;
+    bottom: 0;
+    width: $FileWrapperWidth;
+    left: 300px;
+    background-color: $white;
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+
+    &-share {
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+
+    .twitter-share-button {
+      background: $purple;
+      color: $light;
+      padding: 5px 12px;
+      text-decoration: none;
+      display: inline-block;
+      margin-right: 25px;
+    }
+  }
+
+  &__message {
+    text-align: center;
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    ol {
+      list-style-position: inside;
+      text-align: left;
+    }
+  }
+
   &__List {
     padding-top: 150px;
     padding-bottom: 50px;

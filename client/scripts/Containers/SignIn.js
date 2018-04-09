@@ -1,19 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import cc from 'classcat';
 import Button from '../Components/Button';
+import FAQ from '../Components/FAQ';
 import FriendlyBud from '../../images/friendlyBud.svg';
-
-const FAQ = [
-  {
-    question: 'How does this work?',
-    answer:
-      'This app uses the <a href="https://api.slack.com/methods" target="_blank">Slack Web API Methods</a>',
-  },
-  { question: '', answer: '' },
-  { question: '', answer: '' },
-  { question: '', answer: '' },
-  { question: '', answer: '' },
-];
 
 export default class SignIn extends Component {
   static propTypes = {};
@@ -22,8 +11,16 @@ export default class SignIn extends Component {
     super(props);
 
     this.state = {
-      showFAQ: true,
+      showFAQ: false,
     };
+  }
+
+  componentWillMount() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'auto';
   }
 
   toggleFAQ = () => {
@@ -51,33 +48,40 @@ export default class SignIn extends Component {
         </p>
         <Button text="Login with Slack" isLink href="api/slack/login" />
         <p>
-          <button onClick={this.toggleFAQ}>
-            Find this sketchy? Got a question? Here’s the F.A.Q.
+          <button onClick={this.toggleFAQ} className="SignIn__button">
+            Got a question? Check out the F.A.Q.
           </button>
+        </p>
+        <p>
+          <a
+            href="https://twitter.com/share"
+            className="twitter-share-button"
+            data-url="http://www.slackdeletron.com"
+            data-text="Delete unwanted files from your Slack Team"
+            data-via="drewisthe"
+          >
+            Tweet
+          </a>
         </p>
       </Fragment>
     );
 
     const backFace = (
       <Fragment>
-        <button onClick={this.toggleFAQ}>Back</button>
-        <h3>What is this thing?!</h3>
-        <ul className="FAQ__List">
-          {FAQ.map((faq, index) => (
-            <li key={index} className="FAQ__List-Item">
-              <p className="FAQ__Question">{faq.question}</p>
-              <p className="FAQ__Answer">{faq.answer}</p>
-            </li>
-          ))}
-        </ul>
+        <button onClick={this.toggleFAQ} className="SignIn__button">
+          Back
+        </button>
+        <FAQ />
       </Fragment>
     );
 
     return (
       <div className="SignIn">
         <div className={contentClass}>
-          <div className="SignIn__Face SignIn__Face--Front">{frontFace}</div>
-          <div className="SignIn__Face SignIn__Face--Back">{backFace}</div>
+          <div className="SignIn__Card">
+            <div className="SignIn__Face SignIn__Face--Front">{frontFace}</div>
+            <div className="SignIn__Face SignIn__Face--Back">{backFace}</div>
+          </div>
         </div>
       </div>
     );

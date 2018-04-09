@@ -13,6 +13,8 @@ const INITIAL_STATE = {
   },
   deletedSize: 0,
   paging: 1,
+  hasRun: false,
+  hasFiles: false,
 };
 
 export const FileContext = createContext();
@@ -60,7 +62,9 @@ export default class FileProvider extends Component {
 
       this.setState({
         files: res.data.files,
+        hasFiles: res.data.files.length > 0,
         error: INITIAL_STATE.error,
+        hasRun: true,
       });
     } catch (err) {
       this.setState({
@@ -98,12 +102,15 @@ export default class FileProvider extends Component {
   deleteFile = (fileId) => {
     const file = this.state.files.filter((item) => item.id === fileId)[0];
     const filteredFiles = this.state.files.filter((item) => item.id !== fileId);
+    const fileSize = file.size + this.state.deletedSize;
     if (!filteredFiles.length) {
-      this.setState({ files: [], error: INITIAL_STATE.error });
+      this.setState({
+        files: [],
+        error: INITIAL_STATE.error,
+        deletedSize: fileSize,
+      });
       return;
     }
-
-    const fileSize = file.size + this.state.deletedSize;
 
     this.setState({
       files: filteredFiles,
