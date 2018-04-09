@@ -13,8 +13,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test",
-      "pre-push": "npm test"
+      "pre-commit": "npm run lint && npm test",
+      "pre-push": "npm run lint && npm test"
     }
   },
   "scripts": {
@@ -24,7 +24,8 @@
     "asset-build":
       "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
-    "lint": "eslint ",
+    "lint":
+      "eslint './client/**/*.js' './server/**/*.js' './routes/**/*.js' './tests/**/*.js'",
     "clean": "rimraf dist"
   },
   "keywords": [],
@@ -57,7 +58,6 @@
     "moment": "^2.22.0",
     "node-sass": "^4.7.2",
     "normalize.css": "^8.0.0",
-    "npm": "^5.8.0",
     "passport": "^0.4.0",
     "passport-slack": "0.0.7",
     "postcss-loader": "^2.1.1",

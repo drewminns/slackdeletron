@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Filters from './Filters';
@@ -92,7 +92,8 @@ export default class FileWrapper extends Component {
           <div className="FileWrapper__message">
             <img src={friendlyBud} alt="Slack Deletron Bud" />
             <h2>Oh hey, welcome to the Slack Deletron!</h2>
-            <p className="lead">{`Let's get you started!`}</p>
+            /* eslint-disable-line no-alert */
+            <p className="lead">{'Let\'s get you started!'}</p>
             <ol>
               <li>
                 Use the form to search the type of files you want to track down.
