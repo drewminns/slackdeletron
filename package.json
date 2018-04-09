@@ -3,15 +3,9 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -25,11 +19,13 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "prod": "npm test && npm run asset-build && npm start",
+    "prod": "npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
     "lint": "eslint ",
+    "heroku-postbuild": "npm run asset-build",
     "clean": "rimraf dist"
   },
   "keywords": [],
