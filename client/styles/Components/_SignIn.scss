@@ -23,6 +23,7 @@
     transform-style: preserve-3d;
     -webkit-transition: all 0.5s linear;
     transition: all 0.5s linear;
+    transform: translateX(-25%);
   }
 
   &__Card {
