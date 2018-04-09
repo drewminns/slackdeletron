@@ -3,6 +3,9 @@
   "version": "3.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.10.0"
+  },
   "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
     "collectCoverageFrom": ["client/**/*.{js,jsx}"],
