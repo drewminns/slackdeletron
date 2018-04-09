@@ -2,30 +2,23 @@
 
 exports[`<Header /> Renders Correctly 1`] = `
 <header
-  className="sc-EHOje gWwVIw"
+  className="Header"
 >
-  <div
-    className="sc-bwzfXH pjOvZ"
+  <h1
+    className="Header__Logo"
   >
-    <div
-      className="sc-bwzfXH fTUftp"
+    Slack Deletron
+  </h1>
+  <div
+    className="Header__Meta"
+  >
+     
+    <a
+      className="Button"
+      href="api/slack/login"
     >
-      <h1
-        className="sc-ifAKCX dLitqJ"
-      >
-        Slack Deletron
-      </h1>
-    </div>
-    <div
-      className="sc-bwzfXH jJbKFp"
-    >
-      <a
-        className="sc-bxivhb knvyqT"
-        href="api/slack/login"
-      >
-        Login with Slack
-      </a>
-    </div>
+      Login with Slack
+    </a>
   </div>
 </header>
 `;

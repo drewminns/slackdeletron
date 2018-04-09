@@ -81,6 +81,8 @@ export default class Main extends Component {
           loading={this.state.loading}
         />
         <FileProvider
+          isLoggedIn={this.state.loggedIn}
+          teamName={this.state.profile.teamName}
           accessToken={this.state.profile.accessToken}
           channels={this.state.channels.list}
         >

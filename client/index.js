@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Main from './scripts/Main';
 const keys = require('../config/keys');
 
-import './scripts/style';
+import './styles/main.scss';
 
 if (process.env.NODE_ENV === 'production') {
   Raven.config(keys.sentry).install();

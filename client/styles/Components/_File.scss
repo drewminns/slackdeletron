@@ -1,0 +1,49 @@
+.File {
+  background: $white;
+  box-shadow: $boxShadow;
+  margin-bottom: 15px;
+
+  &__Image {
+    position: relative;
+    padding-top: 80%;
+    overflow: hidden;
+    box-shadow: $boxShadow;
+  }
+
+  &__ImageType {
+    position: absolute;
+    z-index: 100;
+    display: inline-block;
+    color: $white;
+    top: 0;
+    right: 0;
+    background: $purple;
+    padding: 2px 10px;
+    box-shadow: $boxShadow;
+  }
+
+  &__ImageSource {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+  }
+
+  &__Meta {
+    color: $grey;
+    margin-bottom: 0;
+    font-size: 13px;
+  }
+
+  &__Title {
+    line-height: 1;
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  &__Details {
+    padding: 20px;
+  }
+}

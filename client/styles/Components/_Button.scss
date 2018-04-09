@@ -1,0 +1,22 @@
+.Button {
+  display: inline-block;
+  background: $black;
+  color: $white;
+  text-decoration: none;
+  box-shadow: $boxShadow;
+  appearance: none;
+  border: none;
+  padding: 12px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+    box-shadow: $boxShadowHover;
+  }
+
+  &__Large {
+    padding: 12px 10px;
+    width: 100%;
+  }
+}
