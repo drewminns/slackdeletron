@@ -1,8 +1,14 @@
-@import 'normalize/_import-now.scss';
+@import '~normalize.css/normalize.css';
 @import 'partials/variables';
 @import 'partials/tools';
 @import 'partials/layout';
 @import 'partials/typography';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 .visually-hidden {
   position: absolute !important;
@@ -33,10 +39,26 @@
   }
 }
 
-.box-shadow {
-  box-shadow: $boxShadow;
+@import 'Components/Button';
+@import 'Components/Checkbox';
+@import 'Components/Label';
+@import 'Components/Select';
+@import 'Components/Header';
+@import 'Components/Form';
+@import 'Components/FileWrapper';
+@import 'Components/Count';
+@import 'Components/Filters';
+@import 'Components/File';
+@import 'Components/DateField';
+@import 'Components/SignIn';
+@import 'Components/FAQ';
 
-  &:hover {
-    box-shadow: $boxShadowHover;
-  }
+#main {
+  padding-top: 113px;
+}
+
+.MainContent {
+  background-color: $light;
+  min-height: 100vh;
+  display: flex;
 }

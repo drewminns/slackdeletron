@@ -2,7 +2,8 @@
 
 exports[`<Button /> Renders Correctly 1`] = `
 <button
-  className="sc-bdVaJa jSfqGM"
+  className="Button"
+  disabled={false}
   onClick={[Function]}
 >
   

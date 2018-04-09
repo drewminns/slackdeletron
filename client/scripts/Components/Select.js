@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import cc from 'classcat';
 
-import { BLACK, WHITE, BOX_SHADOW, PRIMARY_FONT } from '../style';
+import Label from './Label';
 
 const Select = ({
   label = '',
@@ -14,6 +14,7 @@ const Select = ({
   isLarge = false,
   darkLabel = false,
 }) => {
+  const classes = cc(['Select__El', { Select__Large: isLarge }]);
   let optionEl = [];
 
   if (emptyText.length) {
@@ -23,65 +24,18 @@ const Select = ({
   var optionValues = [...optionEl, ...options];
 
   return (
-    <SelectDiv>
-      <SelectLabel darkLabel={darkLabel}>{label}</SelectLabel>
-      <SelectEl onChange={onChange} value={value} isLarge={isLarge}>
+    <div className="Select">
+      <Label darkLabel={darkLabel}>{label}</Label>
+      <select className={classes} onChange={onChange} value={value}>
         {optionValues.map((opt) => (
           <option key={opt.id} value={opt.id}>
             {opt.name}
           </option>
         ))}
-      </SelectEl>
-    </SelectDiv>
+      </select>
+    </div>
   );
 };
-
-const SelectDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const SelectLabel = styled.label`
-  display: inline-block;
-  ${(props) =>
-    props.darkLabel
-      ? `
-        background-color: ${BLACK}; 
-        color: ${WHITE};
-        padding: 8px 12px
-        font-size: 18px;
-        margin-bottom: 13px;
-        box-shadow: ${BOX_SHADOW};
-        `
-      : `
-        color: ${BLACK};
-        padding: 3px 0;
-        font-size: 16px;
-        `};
-`;
-
-const SelectEl = styled.select`
-  appearance: none;
-  background-color: ${WHITE};
-  border: 6px solid ${BLACK};
-  border-radius: 0;
-  box-shadow: ${BOX_SHADOW};
-  font-family: ${PRIMARY_FONT};
-  font-weight: 700;
-  ${(props) =>
-    props.isLarge
-      ? `
-        display: block;
-        font-size: 22px;
-        padding: 7px 30px 7px 7px;
-        `
-      : `
-        display: inline-block;
-        font-size: 14px;
-        padding: 3px 30px 3px 10px
-      `};
-`;
 
 Select.propTypes = {
   label: PropTypes.string,
