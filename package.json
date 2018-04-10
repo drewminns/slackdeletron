@@ -6,9 +6,15 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie 10"
+  ],
   "jest": {
-    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
+    "collectCoverageFrom": [
+      "client/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -24,8 +30,7 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build":
-      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
     "lint": "eslint ",
     "heroku-postbuild": "npm run asset-build",
@@ -57,7 +62,6 @@
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.0.6",
-    "html-webpack-pug-plugin": "^0.3.0",
     "moment": "^2.22.0",
     "node-sass": "^4.7.2",
     "normalize.css": "^8.0.0",
@@ -66,13 +70,14 @@
     "passport-slack": "0.0.7",
     "postcss-loader": "^2.1.1",
     "prop-types": "^15.6.1",
-    "pug": "^2.0.1",
+    "raven-js": "^3.24.1",
     "react": "^16.3.0",
     "react-dates": "^16.4.0",
     "react-dom": "^16.3.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.11",
@@ -84,6 +89,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
+    "html-webpack-harddisk-plugin": "^0.2.0",
     "husky": "^0.15.0-rc.13",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
