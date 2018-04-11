@@ -1,0 +1,12 @@
+.Error {
+  position: fixed;
+  width: 100%;
+  background-color: $red;
+  padding: 20px;
+  bottom: -100px;
+  transition: bottom 1s;
+
+  &--Active {
+    bottom: 0;
+  }
+}

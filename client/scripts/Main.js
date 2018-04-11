@@ -3,22 +3,29 @@ import axios from 'axios';
 
 import FileProvider from './Providers/FileProvider';
 import Header from './Components/Header';
+import ErrorBar from './Components/ErrorBar';
 import FileContainer from './Containers/FileContainer';
 
 import { ENDPOINT } from '../../config/constants';
 
+const INITIALSTATE = {
+  loggedIn: false,
+  profile: {},
+  channels: {
+    list: [],
+    cursor: '',
+  },
+  token: '',
+  isAdmin: false,
+  loading: true,
+  error: {
+    present: false,
+    message: '',
+  },
+};
+
 export default class Main extends Component {
-  state = {
-    loggedIn: false,
-    profile: {},
-    channels: {
-      list: [],
-      cursor: '',
-    },
-    token: '',
-    isAdmin: false,
-    loading: true,
-  };
+  state = INITIALSTATE;
 
   componentDidMount = async () => {
     await this.getUserAuth();
@@ -44,6 +51,15 @@ export default class Main extends Component {
     }
   };
 
+  updateError = (present, message = '') => {
+    this.setState({
+      error: {
+        present,
+        message,
+      },
+    });
+  };
+
   getUserAuth = async () => {
     try {
       const res = await axios.get('/api/profile');
@@ -60,6 +76,10 @@ export default class Main extends Component {
           profile: {},
           loggedIn: false,
           loading: false,
+          error: {
+            present: true,
+            messaging: 'Endpoint down',
+          },
         });
       }
     } catch (err) {
@@ -67,6 +87,10 @@ export default class Main extends Component {
         profile: {},
         loggedIn: false,
         loading: false,
+        error: {
+          present: true,
+          messaging: 'Endpoint down',
+        },
       });
     }
   };
@@ -85,9 +109,12 @@ export default class Main extends Component {
           teamName={this.state.profile.teamName}
           accessToken={this.state.profile.accessToken}
           channels={this.state.channels.list}
+          updateError={this.updateError}
         >
           <FileContainer />
         </FileProvider>
+
+        <ErrorBar message="Hello" shouldDisplay={this.state.error.present} />
       </Fragment>
     );
   }
