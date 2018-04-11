@@ -12,10 +12,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const keys = require('../config/keys');
 require('../services/passport');
 
-const ENTRY = {
-  DEV: path.join(__dirname, '../config/templates/dev.html'),
-  PROD: path.join(__dirname, '../dist/index.html'),
-};
+const ENTRY = path.join(__dirname, '../dist/index.html');
 
 module.exports = (app) => {
   app.use(cookieParser());
@@ -59,12 +56,12 @@ module.exports = (app) => {
     );
 
     app.get('*', (req, res, next) => {
-      res.sendFile(ENTRY.DEV);
+      res.sendFile(ENTRY);
     });
   } else {
     app.use(express.static(path.join(__dirname, '../dist')));
     app.get('*', (req, res) => {
-      res.sendFile(ENTRY.PROD);
+      res.sendFile(ENTRY);
     });
   }
 };

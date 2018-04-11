@@ -9,6 +9,7 @@
 
     &:checked + label::before {
       content: url('../images/checkmark.svg');
+      line-height: 0;
     }
   }
 
