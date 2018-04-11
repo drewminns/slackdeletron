@@ -52,17 +52,6 @@ export default class SignIn extends Component {
             Got a question? Check out the F.A.Q.
           </button>
         </p>
-        <p>
-          <a
-            href="https://twitter.com/share"
-            className="twitter-share-button"
-            data-url="http://www.slackdeletron.com"
-            data-text="Delete unwanted files from your Slack Team"
-            data-via="drewisthe"
-          >
-            Tweet
-          </a>
-        </p>
       </Fragment>
     );
 

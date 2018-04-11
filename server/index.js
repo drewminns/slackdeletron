@@ -7,18 +7,14 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 const keys = require('../config/keys');
 require('../services/passport');
 
-const ENTRY = {
-  DEV: path.join(__dirname, '../config/index.pug'),
-  PROD: path.join(__dirname, '../dist/index.pug'),
-};
+const ENTRY = path.join(__dirname, '../dist/index.html');
 
 module.exports = (app) => {
-  app.set('view engine', 'pug');
-
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -60,16 +56,12 @@ module.exports = (app) => {
     );
 
     app.get('*', (req, res, next) => {
-      res.render(ENTRY.DEV, {
-        scripts: DEVOUTPUT,
-        isDev: true,
-      });
+      res.sendFile(ENTRY);
     });
   } else {
-    app.use(express.static(path.join(__dirname, 'dist')));
-
+    app.use(express.static(path.join(__dirname, '../dist')));
     app.get('*', (req, res) => {
-      res.render(ENTRY.PROD);
+      res.sendFile(ENTRY);
     });
   }
 };
