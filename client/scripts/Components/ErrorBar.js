@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cc from 'classcat';
 
-export default class ErrorBar extends Component {
-  static propTypes = {};
+const PREFIXES = ['Woah!', 'Bummer!', 'Dang!', 'Oops!'];
+const PREFIX = PREFIXES[Math.floor(Math.random() * PREFIXES.length)];
 
-  constructor(props) {
-    super(props);
+const ErrorBar = ({ message, present }) => {
+  const classes = cc(['Error', { 'Error--present': present }]);
+  return (
+    <div className={classes}>
+      <p>{present ? `${PREFIX} ${message}` : 'Ok, bye!'}</p>
+    </div>
+  );
+};
 
-    this.state = {
-      isActive: false,
-    };
-  }
+ErrorBar.propTypes = {
+  message: PropTypes.string,
+  present: PropTypes.bool,
+};
 
-  render() {
-    const classes = cc(['Error', { 'Error--Active': this.state.isActive }]);
-    return (
-      <div className={classes}>
-        <p>ERROR</p>
-      </div>
-    );
-  }
-}
+export default ErrorBar;

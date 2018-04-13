@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Motion, spring } from 'react-motion';
 
 import Filters from './Filters';
 import File from '../Components/File';
@@ -18,14 +19,10 @@ export default class FileWrapper extends Component {
     hasFiles: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      size: 'none',
-      date: 'newest',
-    };
-  }
+  state = {
+    size: 'none',
+    date: 'newest',
+  };
 
   onSizeChange = (e) => {
     this.setState({
@@ -59,6 +56,11 @@ export default class FileWrapper extends Component {
   }
 
   renderFiles() {
+    const config = { stiffness: 140, damping: 14 };
+    const toCSS = (scale) => ({
+      transform: `scale3d(${scale}, ${scale}, ${scale})`,
+    });
+
     const files = this.props.files;
     if (this.state.size === 'smallest' && this.state.date === 'newest') {
       files.sort((a, b) => a.size > b.size && a.created < b.created);
@@ -76,11 +78,19 @@ export default class FileWrapper extends Component {
 
     return files.map((file) => (
       <div className="col-md-3" key={file.id}>
-        <File
-          details={file}
-          deleteFile={this.props.deleteFile}
-          className="col-md-4"
-        />
+        <Motion
+          defaultStyle={{ scale: 0 }}
+          style={{ scale: spring(1, config) }}
+        >
+          {(value) => (
+            <File
+              details={file}
+              deleteFile={this.props.deleteFile}
+              className="col-md-4"
+              style={toCSS(value.scale)}
+            />
+          )}
+        </Motion>
       </div>
     ));
   }

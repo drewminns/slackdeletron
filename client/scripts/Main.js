@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
+import Raven from 'raven-js';
 
 import FileProvider from './Providers/FileProvider';
 import Header from './Components/Header';
@@ -51,15 +52,6 @@ export default class Main extends Component {
     }
   };
 
-  updateError = (present, message = '') => {
-    this.setState({
-      error: {
-        present,
-        message,
-      },
-    });
-  };
-
   getUserAuth = async () => {
     try {
       const res = await axios.get('/api/profile');
@@ -72,27 +64,63 @@ export default class Main extends Component {
           token: res.data.profile.accessToken,
         });
       } else {
-        this.setState({
+        this.setState(
+          {
+            profile: {},
+            loggedIn: false,
+            loading: false,
+          },
+          () => {
+            this.updateError(
+              "Something's wrong. Try again later",
+              'getUserAuth - Res did not include logged in value'
+            );
+          }
+        );
+      }
+    } catch (err) {
+      this.setState(
+        {
           profile: {},
           loggedIn: false,
           loading: false,
-          error: {
-            present: true,
-            messaging: 'Endpoint down',
-          },
-        });
-      }
-    } catch (err) {
-      this.setState({
-        profile: {},
-        loggedIn: false,
-        loading: false,
+        },
+        () => {
+          this.updateError(
+            "Something's wrong. Try again later",
+            'getUserAuth catch block'
+          );
+        }
+      );
+    }
+  };
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({ error });
+    Raven.captureException(error, { extra: errorInfo });
+    Raven.showReportDialog();
+  }
+
+  updateError = (messaging = '', errorTrack = '') => {
+    if (!messaging.length) {
+      this.setState({ error: INITIALSTATE.error });
+    }
+
+    this.setState(
+      {
         error: {
           present: true,
-          messaging: 'Endpoint down',
+          messaging,
         },
-      });
-    }
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({ error: INITIALSTATE.error });
+        }, 3000);
+      }
+    );
+
+    Raven.captureMessage(errorTrack);
   };
 
   render() {
@@ -114,7 +142,10 @@ export default class Main extends Component {
           <FileContainer />
         </FileProvider>
 
-        <ErrorBar message="Hello" shouldDisplay={this.state.error.present} />
+        <ErrorBar
+          message={this.state.error.messaging}
+          present={this.state.error.present}
+        />
       </Fragment>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Motion, spring } from 'react-motion';
+
 import { formatBytes } from '../utils';
 import { FileContext } from '../Providers/FileProvider';
 import Form from './Form';
@@ -14,13 +16,9 @@ class FileContainer extends Component {
     accessToken: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showFAQ: false,
-    };
-  }
+  state = {
+    showFAQ: false,
+  };
 
   toggleFAQ = () => {
     this.setState({ showFAQ: !this.state.showFAQ });
@@ -30,12 +28,21 @@ class FileContainer extends Component {
     if (!this.state.showFAQ) {
       return null;
     }
+
+    const config = { stiffness: 140, damping: 14 };
+    const toCSS = (scale) => ({
+      transform: `scale3d(${scale}, ${scale}, ${scale})`,
+    });
     return (
-      <div className="FAQ">
-        <div className="FAQ__Wrapper">
-          <FAQ onClose={this.toggleFAQ} />
-        </div>
-      </div>
+      <Motion defaultStyle={{ scale: 0 }} style={{ scale: spring(1, config) }}>
+        {(value) => (
+          <div className="FAQ" style={toCSS(value.scale)}>
+            <div className="FAQ__Wrapper">
+              <FAQ onClose={this.toggleFAQ} />
+            </div>
+          </div>
+        )}
+      </Motion>
     );
   };
 

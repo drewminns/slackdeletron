@@ -36,6 +36,13 @@ const plugins = ISPROD
         template: path.join(__dirname, './templates/prod.html'),
       }),
       new ExtractTextPlugin('style.[hash:12].min.css'),
+      new SWPrecacheWebpackPlugin({
+        cacheId: 'slack-deletron',
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: 'service-worker.js',
+        minify: true,
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+      }),
     ]
   : [
       new HTMLWebpackPlugin({
@@ -68,16 +75,7 @@ module.exports = {
     minimize: ISPROD,
   },
   target: 'web',
-  plugins: [
-    ...plugins,
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'slack-deletron',
-      dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
-      minify: true,
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
-    }),
-  ],
+  plugins,
   module: {
     rules: [
       {

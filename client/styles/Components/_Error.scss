@@ -3,10 +3,18 @@
   width: 100%;
   background-color: $red;
   padding: 20px;
-  bottom: -100px;
-  transition: bottom 1s;
+  transition: bottom 0.6s ease-in-out;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  color: $white;
+  bottom: -72px;
 
-  &--Active {
+  &--present {
     bottom: 0;
+  }
+
+  p {
+    margin-bottom: 0;
   }
 }

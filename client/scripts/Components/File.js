@@ -21,10 +21,10 @@ function renderImage(file) {
   }
 }
 
-const File = ({ details, deleteFile }) => {
+const File = ({ details, deleteFile, style }) => {
   const date = moment.unix(details.created).fromNow();
   return (
-    <article className="File">
+    <article className="File" style={style}>
       <div className="File__Image">
         <div className="File__ImageType">{details.filetype}</div>
         <img
@@ -55,6 +55,7 @@ const File = ({ details, deleteFile }) => {
 File.propTypes = {
   details: PropTypes.object,
   deleteFile: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default File;

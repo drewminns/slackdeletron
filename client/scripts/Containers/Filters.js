@@ -12,34 +12,32 @@ const SIZE = [
   { id: 'smallest', name: 'Smallest' },
 ];
 
-class Filters extends Component {
-  static propTypes = {
-    onDateChange: PropTypes.func,
-    onSizeChange: PropTypes.func,
-    sizeValue: PropTypes.string,
-    dateValue: PropTypes.string,
-  };
+const Filters = ({ onDateChange, onSizeChange, sizeValue, dateValue }) => {
+  return (
+    <div className="Filters">
+      <Select
+        label="Sort by Date"
+        options={CHANNELS}
+        onChange={onDateChange}
+        value={dateValue}
+      />
+      <Select
+        label="Sort by Size"
+        emptyValue="none"
+        emptyText="None"
+        options={SIZE}
+        onChange={onSizeChange}
+        value={sizeValue}
+      />
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div className="Filters">
-        <Select
-          label="Sort by Date"
-          options={CHANNELS}
-          onChange={this.props.onDateChange}
-          value={this.props.dateValue}
-        />
-        <Select
-          label="Sort by Size"
-          emptyValue="none"
-          emptyText="None"
-          options={SIZE}
-          onChange={this.props.onSizeChange}
-          value={this.props.sizeValue}
-        />
-      </div>
-    );
-  }
-}
+Filters.propTypes = {
+  onDateChange: PropTypes.func,
+  onSizeChange: PropTypes.func,
+  sizeValue: PropTypes.string,
+  dateValue: PropTypes.string,
+};
 
 export default Filters;
