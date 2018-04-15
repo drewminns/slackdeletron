@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatBytes } from '../utils';
 
-const Count = ({ data, teamName }) => {
+const Count = ({ data = [], teamName }) => {
   const amount = data.length;
   const fileSize = data.reduce((count, file) => {
     return count + file.size;
