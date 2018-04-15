@@ -42,6 +42,7 @@
     backface-visibility: hidden;
     perspective: 800px;
     margin-bottom: 25px;
+    border-radius: 3px;
 
     &--Front,
     &--Back {
@@ -63,23 +64,5 @@
         transform: rotateY(0);
       }
     }
-  }
-}
-
-.FAQ {
-  &__List {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  &__question {
-    font-size: 15px;
-    margin-bottom: 0;
-  }
-
-  &__answer {
-    font-size: 15px;
-    font-weight: 400;
   }
 }

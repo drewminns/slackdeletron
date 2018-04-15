@@ -1,4 +1,4 @@
-$FileWrapperWidth: calc(100% - 300px);
+$FileWrapperWidth: calc(100% - 290px);
 
 .FileWrapper {
   position: relative;
@@ -15,7 +15,7 @@ $FileWrapperWidth: calc(100% - 300px);
     position: fixed;
     bottom: 0;
     width: $FileWrapperWidth;
-    left: 300px;
+    left: 290px;
     background-color: $white;
     display: flex;
     padding: 20px;
@@ -34,7 +34,6 @@ $FileWrapperWidth: calc(100% - 300px);
     .twitter-share-button {
       background: $purple;
       color: $light;
-      padding: 5px 12px;
       text-decoration: none;
       display: inline-block;
       margin-right: 25px;
@@ -57,7 +56,7 @@ $FileWrapperWidth: calc(100% - 300px);
 
   &__List {
     padding-top: 150px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
     overflow-y: scroll;
     height: calc(100vh - 113px);
   }

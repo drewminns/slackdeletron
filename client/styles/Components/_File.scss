@@ -7,7 +7,6 @@
     position: relative;
     padding-top: 80%;
     overflow: hidden;
-    box-shadow: $boxShadow;
   }
 
   &__ImageType {
@@ -15,6 +14,7 @@
     z-index: 100;
     display: inline-block;
     color: $white;
+    z-index: 1;
     top: 0;
     right: 0;
     background: $purple;
@@ -39,7 +39,7 @@
 
   &__Title {
     line-height: 1;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 25px;
   }
 

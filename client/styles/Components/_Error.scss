@@ -1,0 +1,35 @@
+.Error {
+  position: fixed;
+  width: 100%;
+  background-color: $red;
+  padding: 20px;
+  transition: bottom 0.6s ease-in-out;
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  color: $white;
+  bottom: -72px;
+  bottom: 0;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

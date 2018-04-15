@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
 import { formatBytes } from '../utils';
 import { FileContext } from '../Providers/FileProvider';
 import Form from './Form';
@@ -14,13 +15,9 @@ class FileContainer extends Component {
     accessToken: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showFAQ: false,
-    };
-  }
+  state = {
+    showFAQ: false,
+  };
 
   toggleFAQ = () => {
     this.setState({ showFAQ: !this.state.showFAQ });
@@ -30,6 +27,7 @@ class FileContainer extends Component {
     if (!this.state.showFAQ) {
       return null;
     }
+
     return (
       <div className="FAQ">
         <div className="FAQ__Wrapper">

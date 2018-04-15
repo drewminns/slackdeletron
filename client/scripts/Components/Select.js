@@ -26,7 +26,12 @@ const Select = ({
   return (
     <div className="Select">
       <Label darkLabel={darkLabel}>{label}</Label>
-      <select className={classes} onChange={onChange} value={value}>
+      <select
+        className={classes}
+        onChange={onChange}
+        onBlur={onChange}
+        value={value}
+      >
         {optionValues.map((opt) => (
           <option key={opt.id} value={opt.id}>
             {opt.name}

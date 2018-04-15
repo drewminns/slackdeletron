@@ -52,6 +52,7 @@
 @import 'Components/DateField';
 @import 'Components/SignIn';
 @import 'Components/FAQ';
+@import 'Components/Error';
 
 #main {
   padding-top: 113px;
@@ -59,6 +60,6 @@
 
 .MainContent {
   background-color: $light;
-  min-height: 100vh;
+  height: calc(100vh - 113px);
   display: flex;
 }

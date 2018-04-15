@@ -10,7 +10,7 @@ body {
   font-family: $base-font;
   letter-spacing: -0.03em;
   line-height: 2;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h1,
@@ -95,7 +95,7 @@ dl {
 }
 
 .title {
-  color: $blue;
+  color: $grey;
   @include rem(font-size, 21px);
   margin-bottom: 1rem;
 }
