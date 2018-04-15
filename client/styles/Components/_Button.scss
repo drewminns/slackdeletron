@@ -6,10 +6,11 @@
   box-shadow: $boxShadow;
   appearance: none;
   border: none;
-  padding: 12px;
+  padding: 8px 15px;
   font-weight: 700;
   cursor: pointer;
   border-radius: 3px;
+  line-height: 1;
 
   &:hover {
     color: $white;
@@ -17,7 +18,7 @@
   }
 
   &__Large {
-    padding: 12px 10px;
+    padding: 12px 10px 14px;
     width: 100%;
   }
 }

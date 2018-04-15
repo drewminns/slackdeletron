@@ -7,7 +7,6 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 const keys = require('../config/keys');
 require('../services/passport');
@@ -34,7 +33,6 @@ module.exports = (app) => {
     // Load Webpack Config
     const config = require('../config/webpack.config.js');
     const compiler = webpack(config);
-    const DEVOUTPUT = config.output.publicPath + config.output.filename;
 
     app.use(
       webpackDevMiddleware(compiler, {

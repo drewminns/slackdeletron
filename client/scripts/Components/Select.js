@@ -28,9 +28,9 @@ const Select = ({
       <Label darkLabel={darkLabel}>{label}</Label>
       <select
         className={classes}
-        value={value}
         onChange={onChange}
         onBlur={onChange}
+        value={value}
       >
         {optionValues.map((opt) => (
           <option key={opt.id} value={opt.id}>

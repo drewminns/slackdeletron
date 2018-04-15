@@ -22,8 +22,18 @@
   }
 }
 
+.DateRangePickerInput__showClearDates {
+  padding-right: 20px;
+}
+
+.DateInput_input__small {
+  padding: 8px 5px 6px;
+}
+
 .DateInput__small {
   width: 99px;
+  font-size: 12px;
+  padding: 0;
 }
 
 .CalendarDay__selected,

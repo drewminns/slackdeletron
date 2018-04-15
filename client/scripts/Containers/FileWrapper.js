@@ -18,14 +18,10 @@ export default class FileWrapper extends Component {
     hasFiles: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      size: 'none',
-      date: 'newest',
-    };
-  }
+  state = {
+    size: 'none',
+    date: 'newest',
+  };
 
   onSizeChange = (e) => {
     this.setState({
@@ -92,14 +88,14 @@ export default class FileWrapper extends Component {
           <div className="FileWrapper__message">
             <img src={friendlyBud} alt="Slack Deletron Bud" />
             <h2>Oh hey, welcome to the Slack Deletron!</h2>
-            /* eslint-disable-line no-alert */
-            <p className="lead">{'Let\'s get you started!'}</p>
+
+            <p className="lead">How to use this contraption</p>
             <ol>
               <li>
                 Use the form to search the type of files you want to track down.
               </li>
               <li>
-                Click the 'Get Files' button to search for public files on your
+                Click the Get Files button to search for public files on your
                 workspace.
               </li>
               <li>Start deleting some files and free up some space!</li>
@@ -114,7 +110,7 @@ export default class FileWrapper extends Component {
             <img src={stokedBud} alt="Slack Deletron Bud" />
             <h2>Zap! Deleted!</h2>
             <p className="lead">You get them all from that search!</p>
-            <p>Try another search to see if there's anything left!</p>
+            <p>Try another search to see if there is anything left!</p>
           </div>
         </div>
       );
@@ -123,11 +119,11 @@ export default class FileWrapper extends Component {
         <div className="FileWrapper FileWrapper--start">
           <div className="FileWrapper__message">
             <img src={congratsBud} alt="Slack Deletron Bud" />
-            <h2>Sweet! There's nothing there!</h2>
+            <h2>Sweet! There is nothing there!</h2>
             <p className="lead">
               Usually no results is a bad thing, but this is great!
             </p>
-            <p>Try another search to see if there's anything left!</p>
+            <p>Try another search to see if there is anything left!</p>
           </div>
         </div>
       );
