@@ -10,6 +10,22 @@
   padding-bottom: 25px;
   clear: both;
 
+  &__List {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__Question {
+    font-size: 15px;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+
+  &__Answer {
+    font-size: 15px;
+  }
+
   &__Close {
     float: right;
   }

@@ -4,6 +4,7 @@
   color: $white;
   width: 290px;
   float: left;
+  overflow-y: scroll;
 
   &__Field {
     margin-bottom: 20px;

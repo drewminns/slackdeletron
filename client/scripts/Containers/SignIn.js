@@ -36,8 +36,10 @@ export default class SignIn extends Component {
     const frontFace = (
       <Fragment>
         <img src={FriendlyBud} alt="Slack Deletron Mascot" />
-        <h1 className="SignIn__Title">Welcome to the Slack Deletron!</h1>
-        <p className="SignIn__Lead">Delete files from your Slack Workspace!</p>
+        <h1 className="SignIn__Title blue">Welcome to the Slack Deletron!</h1>
+        <p className="SignIn__Lead title">
+          Delete files from your Slack Workspace!
+        </p>
         <p>
           Slack Deletron uses the Slack API to help you search, manage and
           delete files from your Slack Workspace.

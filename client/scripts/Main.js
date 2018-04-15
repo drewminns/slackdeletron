@@ -77,21 +77,11 @@ export default class Main extends Component {
           token: res.data.profile.accessToken,
         });
       } else {
-        this.setState(
-          {
-            profile: {},
-            loggedIn: false,
-            loading: false,
-          },
-          () => {
-            this.updateError(
-              // I know...
-              // eslint-disable-next-line
-              "Something's wrong. Try again later",
-              'getUserAuth - Res did not include logged in value'
-            );
-          }
-        );
+        this.setState({
+          profile: {},
+          loggedIn: false,
+          loading: false,
+        });
       }
     } catch (err) {
       this.setState(

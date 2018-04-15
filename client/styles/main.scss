@@ -60,6 +60,6 @@
 
 .MainContent {
   background-color: $light;
-  min-height: 100vh;
+  height: calc(100vh - 113px);
   display: flex;
 }
