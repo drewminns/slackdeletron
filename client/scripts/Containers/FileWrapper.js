@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
 
 import Filters from './Filters';
 import File from '../Components/File';
@@ -56,11 +55,6 @@ export default class FileWrapper extends Component {
   }
 
   renderFiles() {
-    const config = { stiffness: 140, damping: 14 };
-    const toCSS = (scale) => ({
-      transform: `scale3d(${scale}, ${scale}, ${scale})`,
-    });
-
     const files = this.props.files;
     if (this.state.size === 'smallest' && this.state.date === 'newest') {
       files.sort((a, b) => a.size > b.size && a.created < b.created);
@@ -78,19 +72,11 @@ export default class FileWrapper extends Component {
 
     return files.map((file) => (
       <div className="col-md-3" key={file.id}>
-        <Motion
-          defaultStyle={{ scale: 0 }}
-          style={{ scale: spring(1, config) }}
-        >
-          {(value) => (
-            <File
-              details={file}
-              deleteFile={this.props.deleteFile}
-              className="col-md-4"
-              style={toCSS(value.scale)}
-            />
-          )}
-        </Motion>
+        <File
+          details={file}
+          deleteFile={this.props.deleteFile}
+          className="col-md-4"
+        />
       </div>
     ));
   }
@@ -102,13 +88,14 @@ export default class FileWrapper extends Component {
           <div className="FileWrapper__message">
             <img src={friendlyBud} alt="Slack Deletron Bud" />
             <h2>Oh hey, welcome to the Slack Deletron!</h2>
-            <p className="lead">{`Let's get you started!`}</p>
+
+            <p className="lead">How to use this contraption</p>
             <ol>
               <li>
                 Use the form to search the type of files you want to track down.
               </li>
               <li>
-                Click the 'Get Files' button to search for public files on your
+                Click the Get Files button to search for public files on your
                 workspace.
               </li>
               <li>Start deleting some files and free up some space!</li>
@@ -123,7 +110,7 @@ export default class FileWrapper extends Component {
             <img src={stokedBud} alt="Slack Deletron Bud" />
             <h2>Zap! Deleted!</h2>
             <p className="lead">You get them all from that search!</p>
-            <p>Try another search to see if there's anything left!</p>
+            <p>Try another search to see if there is anything left!</p>
           </div>
         </div>
       );
@@ -132,11 +119,11 @@ export default class FileWrapper extends Component {
         <div className="FileWrapper FileWrapper--start">
           <div className="FileWrapper__message">
             <img src={congratsBud} alt="Slack Deletron Bud" />
-            <h2>Sweet! There's nothing there!</h2>
+            <h2>Sweet! There is nothing there!</h2>
             <p className="lead">
               Usually no results is a bad thing, but this is great!
             </p>
-            <p>Try another search to see if there's anything left!</p>
+            <p>Try another search to see if there is anything left!</p>
           </div>
         </div>
       );

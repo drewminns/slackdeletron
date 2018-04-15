@@ -6,15 +6,9 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -30,9 +24,10 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "jest",
-    "lint": "eslint ",
+    "lint": "eslint server/** client/** services/** routes/**",
     "heroku-postbuild": "npm run asset-build",
     "clean": "rimraf dist"
   },
@@ -74,7 +69,8 @@
     "react": "^16.3.0",
     "react-dates": "^16.4.0",
     "react-dom": "^16.3.0",
-    "react-motion": "^0.5.2",
+    "react-spring": "^4.1.2",
+    "react-transition-group": "^2.3.1",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",

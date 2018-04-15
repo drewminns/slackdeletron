@@ -18,6 +18,7 @@ export const FileContext = createContext();
 export default class FileProvider extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
+    // eslint-disable-next-line
     accessToken: PropTypes.string,
     channels: PropTypes.array,
     isLoggedIn: PropTypes.bool,
@@ -69,7 +70,7 @@ export default class FileProvider extends Component {
       });
     } catch (err) {
       this.props.updateError(
-        "Slack looks like it's down :(",
+        'Slack looks like it is down :(',
         `getFiles - ${err}`
       );
       this.setState({

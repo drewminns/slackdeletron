@@ -7,7 +7,6 @@
     position: relative;
     padding-top: 80%;
     overflow: hidden;
-    box-shadow: $boxShadow;
   }
 
   &__ImageType {
@@ -39,7 +38,7 @@
 
   &__Title {
     line-height: 1;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 25px;
   }
 

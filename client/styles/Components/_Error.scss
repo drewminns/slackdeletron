@@ -9,12 +9,27 @@
   align-items: center;
   color: $white;
   bottom: -72px;
-
-  &--present {
-    bottom: 0;
-  }
+  bottom: 0;
 
   p {
     margin-bottom: 0;
   }
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

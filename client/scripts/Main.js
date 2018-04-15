@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import Raven from 'raven-js';
+import { Transition } from 'react-transition-group';
 
 import FileProvider from './Providers/FileProvider';
 import Header from './Components/Header';
@@ -8,6 +9,18 @@ import ErrorBar from './Components/ErrorBar';
 import FileContainer from './Containers/FileContainer';
 
 import { ENDPOINT } from '../../config/constants';
+
+const duration = 500;
+
+const defaultStyle = {
+  transition: `opacity ${duration}ms ease-in-out`,
+  opacity: 0,
+};
+
+const transitionStyles = {
+  entering: { opacity: 0 },
+  entered: { opacity: 1 },
+};
 
 const INITIALSTATE = {
   loggedIn: false,
@@ -72,6 +85,8 @@ export default class Main extends Component {
           },
           () => {
             this.updateError(
+              // I know...
+              // eslint-disable-next-line
               "Something's wrong. Try again later",
               'getUserAuth - Res did not include logged in value'
             );
@@ -87,6 +102,8 @@ export default class Main extends Component {
         },
         () => {
           this.updateError(
+            // I know...
+            // eslint-disable-next-line
             "Something's wrong. Try again later",
             'getUserAuth catch block'
           );
@@ -101,8 +118,8 @@ export default class Main extends Component {
     Raven.showReportDialog();
   }
 
-  updateError = (messaging = '', errorTrack = '') => {
-    if (!messaging.length) {
+  updateError = (message = '', errorTrack = '') => {
+    if (!message.length) {
       this.setState({ error: INITIALSTATE.error });
     }
 
@@ -110,19 +127,18 @@ export default class Main extends Component {
       {
         error: {
           present: true,
-          messaging,
+          message,
         },
       },
       () => {
         setTimeout(() => {
           this.setState({ error: INITIALSTATE.error });
-        }, 3000);
+        }, 5000);
       }
     );
 
     Raven.captureMessage(errorTrack);
   };
-
   render() {
     return (
       <Fragment>
@@ -141,11 +157,15 @@ export default class Main extends Component {
         >
           <FileContainer />
         </FileProvider>
-
-        <ErrorBar
-          message={this.state.error.messaging}
-          present={this.state.error.present}
-        />
+        <Transition in={this.state.error.present} timeout={1000} unmountOnExit>
+          {(state) => (
+            <ErrorBar
+              present={this.state.error.present}
+              message={this.state.error.message}
+              styles={{ ...defaultStyle, ...transitionStyles[state] }}
+            />
+          )}
+        </Transition>
       </Fragment>
     );
   }

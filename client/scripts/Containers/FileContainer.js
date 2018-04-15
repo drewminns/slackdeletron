@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Motion, spring } from 'react-motion';
 
 import { formatBytes } from '../utils';
 import { FileContext } from '../Providers/FileProvider';
@@ -29,20 +28,12 @@ class FileContainer extends Component {
       return null;
     }
 
-    const config = { stiffness: 140, damping: 14 };
-    const toCSS = (scale) => ({
-      transform: `scale3d(${scale}, ${scale}, ${scale})`,
-    });
     return (
-      <Motion defaultStyle={{ scale: 0 }} style={{ scale: spring(1, config) }}>
-        {(value) => (
-          <div className="FAQ" style={toCSS(value.scale)}>
-            <div className="FAQ__Wrapper">
-              <FAQ onClose={this.toggleFAQ} />
-            </div>
-          </div>
-        )}
-      </Motion>
+      <div className="FAQ">
+        <div className="FAQ__Wrapper">
+          <FAQ onClose={this.toggleFAQ} />
+        </div>
+      </div>
     );
   };
 
