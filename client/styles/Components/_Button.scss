@@ -1,0 +1,23 @@
+.Button {
+  display: inline-block;
+  background: $black;
+  color: $white;
+  text-decoration: none;
+  border: 1px solid #e6eefe;
+  appearance: none;
+  border: none;
+  padding: 8px 15px;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 3px;
+  line-height: 1;
+
+  &:hover {
+    color: $white;
+  }
+
+  &__Large {
+    padding: 12px 10px 14px;
+    width: 100%;
+  }
+}

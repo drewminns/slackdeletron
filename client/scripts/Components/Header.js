@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Flex } from 'grid-styled';
 import Button from '../Components/Button';
 
 const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
@@ -9,8 +8,8 @@ const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
   if (isLoggedIn && name && avatar) {
     markup = (
       <Fragment>
-        <img src={avatar} alt={name} />
-        <p>Hey {name}</p>
+        <p className="Header__Name">Hey {name}</p>
+        <img className="Header__Avatar" src={avatar} alt={name} />
         <Button text="Logout" href="api/logout" isLink />
       </Fragment>
     );
@@ -23,15 +22,9 @@ const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
   }
 
   return (
-    <header>
-      <Flex px={2} py={3}>
-        <Flex width={1 / 2} alignItems="center">
-          <h1>Slack Deletron</h1>
-        </Flex>
-        <Flex alignItems="center" ml="auto">
-          {markup}
-        </Flex>
-      </Flex>
+    <header className="Header">
+      <h1 className="Header__Logo">Slack Deletron</h1>
+      <div className="Header__Meta"> {markup}</div>
     </header>
   );
 };

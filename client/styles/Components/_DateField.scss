@@ -1,0 +1,53 @@
+.DateRangePicker {
+  width: 100%;
+}
+
+.DateRangePicker_picker {
+  z-index: 2;
+}
+
+.DateRangePickerInput {
+  background: $white;
+  border: 4px solid $black;
+  width: 100%;
+}
+
+.DateInput_input {
+  font-weight: 400;
+  color: $black;
+  // padding: 8px 5px 6px;
+
+  &::-webkit-input-placeholder {
+    color: $black;
+  }
+
+  &__focused {
+    border-bottom: 2px solid $red;
+  }
+}
+
+.DateRangePickerInput__showClearDates {
+  padding-right: 20px;
+}
+
+.DateInput_input__small {
+  padding: 8px 5px 6px;
+}
+
+.DateInput__small {
+  width: 87px;
+  font-size: 12px;
+  padding: 0;
+}
+
+.CalendarDay__selected,
+.CalendarDay__selected:active,
+.CalendarDay__selected:hover {
+  background-color: $blue;
+  border: 1px solid $blue;
+}
+
+.CalendarDay__selected_span {
+  border: 1px solid $blue;
+  background: lighten($blue, 20%);
+}

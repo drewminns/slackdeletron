@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> Renders Correctly 1`] = `
+<header
+  className="Header"
+>
+  <h1
+    className="Header__Logo"
+  >
+    Slack Deletron
+  </h1>
+  <div
+    className="Header__Meta"
+  >
+     
+    <a
+      className="Button"
+      href="api/slack/login"
+    >
+      Login with Slack
+    </a>
+  </div>
+</header>
+`;

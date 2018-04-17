@@ -1,34 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import DateFields from '../Components/DateFields';
 import Button from '../Components/Button';
 import Checkbox from '../Components/Checkbox';
 import Select from '../Components/Select';
+import Label from '../Components/Label';
 
-const TYPES_DICT = {
-  spaces: 'Posts',
-  snippets: 'Snippets',
-  images: 'Images',
-  videos: 'Videos',
-  gdocs: 'Google Docs',
-  zips: 'Zip Files',
-  pdfs: 'PDF Files',
-};
-
-const INIT_TYPES_STATE = {
-  spaces: false,
-  snippets: false,
-  images: false,
-  videos: false,
-  gdocs: false,
-  zips: false,
-  pdfs: false,
-};
+import { TYPES_DICT, INIT_TYPES_STATE } from '../../../config/constants';
 
 class Form extends Component {
   static propTypes = {
     getFiles: PropTypes.func,
     channels: PropTypes.array,
+    isLoggedIn: PropTypes.bool,
   };
 
   constructor(props) {
@@ -91,6 +76,8 @@ class Form extends Component {
           emptyText="All Channels"
           emptyValue=""
           options={channels}
+          darkLabel
+          isLarge
           value={this.state.channel}
           onChange={this.handleChannelSelect}
         />
@@ -117,14 +104,19 @@ class Form extends Component {
       (type) => this.state.types[type] === true
     );
     return (
-      <div>
-        {this.renderChannelSelect()}
-        <DateFields
-          onChange={this.updateDate}
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-        />
-        <div>
+      <div className="Form">
+        <h2>Search for Files</h2>
+        <div className="Form__Field">{this.renderChannelSelect()}</div>
+        <div className="Form__Field">
+          <Label darkLabel>Date Range</Label>
+          <DateFields
+            onChange={this.updateDate}
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+          />
+        </div>
+        <div className="Form__Field">
+          <Label darkLabel>Type of Files</Label>
           <Checkbox
             checked={!typeSelected.length}
             onChange={this.updateType}
@@ -133,7 +125,13 @@ class Form extends Component {
           />
           {this.renderTypeOptions()}
         </div>
-        <Button onClick={this.getFiles} text="Get Files" />
+        <Button
+          onClick={this.getFiles}
+          text="Get Files"
+          large
+          fullWidth
+          disabled={!this.props.isLoggedIn}
+        />
       </div>
     );
   }

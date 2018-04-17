@@ -1,0 +1,44 @@
+.Header {
+  background-color: $white;
+  box-shadow: $boxShadow;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 500;
+
+  &__Logo {
+    font-size: 0;
+    margin-bottom: 0;
+
+    &::before {
+      background-size: cover;
+      content: '';
+      display: block;
+      height: 73px;
+      width: 280px;
+      background-image: url('../images/logo.svg');
+    }
+  }
+
+  &__Avatar {
+    border-radius: 50%;
+    width: 73px;
+    height: 73px;
+    margin-right: 30px;
+  }
+
+  &__Meta {
+    display: flex;
+    align-items: center;
+  }
+
+  &__Name {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+}

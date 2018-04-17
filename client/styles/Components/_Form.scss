@@ -1,0 +1,13 @@
+.Form {
+  background-image: $gradient;
+  padding: 30px 20px 30px;
+  color: $white;
+  width: 290px;
+  float: left;
+  overflow-y: scroll;
+
+  &__Field {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+}

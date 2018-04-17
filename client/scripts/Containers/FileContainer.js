@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Flex, Box } from 'grid-styled';
 
 import { formatBytes } from '../utils';
-
 import { FileContext } from '../Providers/FileProvider';
 import Form from './Form';
-import Filters from './Filters';
-import File from '../Components/File';
-import Count from '../Components/Count';
+import FileWrapper from './FileWrapper';
+import SignIn from './SignIn';
+import Button from '../Components/Button';
+import FAQ from '../Components/FAQ';
 
 class FileContainer extends Component {
   static propTypes = {
@@ -16,87 +15,88 @@ class FileContainer extends Component {
     accessToken: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      size: 'none',
-      date: 'none',
-    };
-  }
-
-  onSizeChange = (e) => {
-    this.setState({
-      size: e.target.value,
-      date: 'none',
-    });
+  state = {
+    showFAQ: false,
   };
 
-  onDateChange = (e) => {
-    this.setState({
-      date: e.target.value,
-      size: 'none',
-    });
+  toggleFAQ = () => {
+    this.setState({ showFAQ: !this.state.showFAQ });
   };
 
-  displayFilters(files, deletedSize) {
-    if (!files.length) {
+  showFAQ = () => {
+    if (!this.state.showFAQ) {
       return null;
     }
+
     return (
-      <Flex px={2} py={2}>
-        <Box width={3 / 4}>
-          <Count data={files} />
-          <p>Files Deleted: {formatBytes(deletedSize)}</p>
-        </Box>
-        <Box width={1 / 4}>
-          <Filters
-            sizeValue={this.state.size}
-            dateValue={this.state.date}
-            onSizeChange={this.onSizeChange}
-            onDateChange={this.onDateChange}
-          />
-        </Box>
-      </Flex>
+      <div className="FAQ">
+        <div className="FAQ__Wrapper">
+          <FAQ onClose={this.toggleFAQ} />
+        </div>
+      </div>
     );
-  }
+  };
 
-  renderFiles(files, deleteFile) {
-    if (this.state.size === 'smallest') {
-      files.sort((a, b) => a.size > b.size);
-    } else if (this.state.size === 'largest') {
-      files.sort((a, b) => a.size < b.size);
-    }
-
-    if (this.state.date === 'newest') {
-      files.sort((a, b) => a.created < b.created);
-    } else if (this.state.date === 'oldest') {
-      files.sort((a, b) => a.created > b.created);
-    }
-
-    return files.map((file) => (
-      <File details={file} key={file.id} deleteFile={deleteFile} />
-    ));
-  }
+  displayBar = (deletedSize, hasRun) => {
+    return (
+      <div className="FileWrapper__Details">
+        <div>
+          {deletedSize > 0 && hasRun ? (
+            <p className="Count__Text">
+              Nice! You just saved{' '}
+              <span className="blue">{formatBytes(deletedSize)}</span>
+            </p>
+          ) : null}
+        </div>
+        <div className="FileWrapper__Details-share">
+          <p>
+            <a
+              href="https://twitter.com/share"
+              className="twitter-share-button Button"
+              data-url="http://www.slackdeletron.com"
+              data-text="Delete unwanted files from your Slack Team"
+              data-via="drewisthe"
+            >
+              Tweet about Slack Deletron
+            </a>
+          </p>
+          <Button onClick={this.toggleFAQ} text="Questions? FAQ" />
+        </div>
+      </div>
+    );
+  };
 
   render() {
     return (
       <FileContext.Consumer>
         {(context) => (
-          <Flex>
-            <Box width={1 / 5} p={2}>
-              <Form getFiles={context.getFiles} channels={context.channels} />
-            </Box>
-            <Box width={4 / 5} p={2}>
-              {this.displayFilters(
-                context.state.files,
-                context.state.deletedSize
+          <Fragment>
+            <main className="MainContent cf">
+              <Form
+                getFiles={context.getFiles}
+                channels={context.channels}
+                isLoggedIn={context.isLoggedIn}
+              />
+              {!context.isLoggedIn ? (
+                <SignIn />
+              ) : (
+                <Fragment>
+                  {this.showFAQ()}
+                  <FileWrapper
+                    hasRun={context.state.hasRun}
+                    hasFiles={context.state.hasFiles}
+                    teamName={context.teamName}
+                    files={context.state.files}
+                    deleteFile={context.deleteFile}
+                  />
+                  {this.displayBar(
+                    context.state.deletedSize,
+                    context.state.hasRun
+                  )}
+                </Fragment>
               )}
-              <Flex flexWrap="wrap">
-                {this.renderFiles(context.state.files, context.deleteFile)}
-              </Flex>
-            </Box>
-          </Flex>
+            </main>
+          </Fragment>
         )}
       </FileContext.Consumer>
     );

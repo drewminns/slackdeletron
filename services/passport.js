@@ -22,6 +22,7 @@ passport.use(
         name: profile.user.name,
         userId: profile.user.id,
         teamId: profile.team.id,
+        teamName: profile.team.name,
         avatar: profile.user.image_192,
         accessToken: accessToken,
       };

@@ -1,0 +1,16 @@
+.Label {
+  display: inline-block;
+  color: $black;
+  padding: 3px 0;
+  line-height: 1;
+  font-size: 14px;
+
+  &__Dark {
+    background-color: $black;
+    color: $white;
+    padding: 6px 12px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-shadow: $boxShadow;
+  }
+}

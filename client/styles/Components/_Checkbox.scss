@@ -1,0 +1,41 @@
+.Checkbox {
+  margin: 1px 0;
+
+  &__Input {
+    height: 0;
+    width: 0;
+    position: absolute;
+    visibility: hidden;
+
+    &:checked + label::before {
+      content: url('../images/checkmark.svg');
+      line-height: 0;
+    }
+  }
+
+  &__Label {
+    display: inline-block;
+    background-color: $black;
+    color: $white;
+    padding: 6px 8px 8px;
+    line-height: 1;
+    font-size: 15px;
+    margin-bottom: 13px;
+    margin-left: 40px;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      position: absolute;
+      left: -38px;
+      top: 0;
+      display: inline-block;
+      border: 6px solid $black;
+      content: '';
+      padding: 3px 2px;
+      background-color: $white;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}

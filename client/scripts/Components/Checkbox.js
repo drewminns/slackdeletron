@@ -1,10 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const CheckboxDiv = styled.div``;
-const CheckboxLabel = styled.label``;
-const CheckboxInput = styled.input``;
 
 const Checkbox = ({
   label = '',
@@ -13,18 +8,19 @@ const Checkbox = ({
   value = '',
 }) => {
   return (
-    <CheckboxDiv>
-      <CheckboxLabel>
-        <CheckboxInput
-          id={value}
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-          value={value}
-        />
+    <div className="Checkbox">
+      <input
+        className="Checkbox__Input"
+        id={value}
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        value={value}
+      />
+      <label className="Checkbox__Label" htmlFor={value} checked={checked}>
         {label}
-      </CheckboxLabel>
-    </CheckboxDiv>
+      </label>
+    </div>
   );
 };
 
