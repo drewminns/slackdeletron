@@ -5,6 +5,8 @@ V3.0
 [![Build Status](https://travis-ci.org/drewminns/slackdeletron.svg?branch=master)](https://travis-ci.org/drewminns/slackdeletron)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
+[slackdeletron.com](https://slackdeletron.com)
+
 ## What the?
 
 Slack Deletron is a service that helps users of Slack manage files and storage on their workspaces. The site is a UI wrapper over the [Slack API Web Methods](https://api.slack.com/methods) available to all users.
@@ -20,6 +22,40 @@ The API has it's limits so this project tries to work it's best within them, but
 So Yes, you used to be able to bulk delete files in older versions. However, Slack has applied [rate limits](https://api.slack.com/docs/rate-limits) to it's API to limit concurrent requests to their server. Totally fair, the old versions of this app would hammer them. You see, the only way to delete a file is to send off a request with the file ID. To do bulk deletion, the app would make a large number of individual requests to the endpoint for each file ID, which could lead to other async issues aside.
 
 Instead of setting up a queueing system to manage bulk deletion requests, handling different services and servers, and creating a notification system; I decided to put the focus on managing the files and **finally** addressing the features that people tweet, email and leave in the Github issues.
+
+## Running Locally
+
+1.  Clone the Repo locally
+
+`git clone git@github.com:drewminns/slackdeletron.git`
+
+2.  Install the dependencies
+
+`npm i`
+
+3.  Create a new Slack App for local development at [https://api.slack.com/apps](https://api.slack.com/apps). You'll need to give it a name and assign to a Slack Workspace. In the App Credentials section, grab the Client ID and the Client Secret values.
+
+4.  Create a `dev.js` file in the `config/keys` directory to hold your local configuration.
+
+```
+module.exports = {
+  slackClientID: <Client ID>,
+  slackClientSecret: <Client Secret>,
+  cookieKey: <Random string>,
+}
+```
+
+5.  Run the app
+
+`npm run dev`
+
+## Contribution
+
+I'm thrilled that you want to add a feature, fix a bug or improve the code! Pull the code down, create a feature branch and get to it.
+
+You can find some issues [here](https://github.com/drewminns/slackdeletron/issues) that need love!
+
+All branches are run through CI for testing and require myself to merge it in!
 
 ## FAQ
 
