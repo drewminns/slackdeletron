@@ -6,15 +6,9 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -28,10 +22,13 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "prod": "npm run lint && npm test && npm run asset-build",
+    "prod":
+      "npm run lint && npm test && npm run asset-build && npm run move-assets",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js && npm run move-assets",
     "test": "jest",
+    "move-assets": "cp -rf config/images/ dist",
     "lint": "eslint server/** client/** services/** routes/**",
     "heroku-postbuild": "npm run asset-build",
     "clean": "rimraf dist"
