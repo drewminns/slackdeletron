@@ -3,8 +3,7 @@ import cc from 'classcat';
 import FAQ from '../Components/FAQ';
 import FriendlyBud from '../../images/friendlyBud.svg';
 
-import keys from '../../../config/keys/index';
-
+import keys from '../../../config/keys';
 export default class SignIn extends Component {
   static propTypes = {};
 
@@ -50,9 +49,9 @@ export default class SignIn extends Component {
           help you get rid of stuff
         </p>
         <a
-          href={`https://slack.com/oauth/authorize?client_id=${
-            process.env.SLACK_CLIENT_ID
-          }&scope=users:read,files:read,files:write:user,channels:read`}
+          href={`https://slack.com/oauth/authorize?client_id=${process.env
+            .SLACK_CLIENT_ID ||
+            keys.slackClientID}&scope=users:read,files:read,files:write:user,channels:read`}
         >
           <img
             alt="Add to Slack"
