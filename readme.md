@@ -7,6 +7,8 @@ V3.0
 
 [slackdeletron.com](https://slackdeletron.com)
 
+<a href="https://slack.com/oauth/authorize?client_id=38414671253.343467267060&scope=channels:read,files:read,files:write:user,users:read"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+
 ## What the?
 
 Slack Deletron is a service that helps users of Slack manage files and storage on their workspaces. The site is a UI wrapper over the [Slack API Web Methods](https://api.slack.com/methods) available to all users.
@@ -97,6 +99,14 @@ Testing/Utility:
 * [Axios](https://github.com/axios/axios)
 * [Husky](https://github.com/typicode/husky)
 * [Travis CI](https://travis-ci.org/)
+
+## Privacy
+
+This tool does not share personal information with third parties other than Slack, nor do we store any information about your visit to this site other than to analyze and optimize your experience through the use of cookies.
+
+You can turn off the use of cookies at anytime by changing your specific browser settings.
+
+This privacy policy is subject to change without notice. If you have any questions feel free to contact me directly here: dminns@gmail.com.
 
 ## License
 
