@@ -51,11 +51,10 @@ class FileContainer extends Component {
         <div className="FileWrapper__Details-share">
           <p>
             <a
-              href="https://twitter.com/share"
+              href="https://twitter.com/intent/tweet?text=Delete%20and%20manage%20files%20from%20your%20Slack%20workspace%20with%20Slack%20Deletron&url=https://www.slackdeletron.com&hashtags=slack&via=drewisthe"
               className="twitter-share-button Button"
-              data-url="http://www.slackdeletron.com"
-              data-text="Delete unwanted files from your Slack Team"
-              data-via="drewisthe"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Tweet about Slack Deletron
             </a>
