@@ -3,4 +3,5 @@ module.exports = {
   slackClientSecret: process.env.SLACK_CLIENT_SECRET,
   cookieKey: process.env.COOKIE_KEY,
   sentry: process.env.SENTRY,
+  distributionToken: process.env.SLACK_DIST_TOKEN,
 };

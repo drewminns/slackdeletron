@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import cc from 'classcat';
-import Button from '../Components/Button';
 import FAQ from '../Components/FAQ';
 import FriendlyBud from '../../images/friendlyBud.svg';
+
+import keys from '../../../config/keys/index';
 
 export default class SignIn extends Component {
   static propTypes = {};
@@ -48,7 +49,19 @@ export default class SignIn extends Component {
           We save nothing <span className="purple">(seriously)</span> and only
           help you get rid of stuff
         </p>
-        <Button text="Login with Slack" isLink href="api/slack/login" />
+        <a
+          href={`https://slack.com/oauth/authorize?client_id=${
+            keys.distributionToken
+          }&scope=users:read,files:read,files:write:user,channels:read`}
+        >
+          <img
+            alt="Add to Slack"
+            height="40"
+            width="139"
+            src="https://platform.slack-edge.com/img/add_to_slack.png"
+            srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+          />
+        </a>
         <p>
           <button onClick={this.toggleFAQ} className="SignIn__button">
             Got a question? Check out the F.A.Q.
