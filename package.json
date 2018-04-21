@@ -26,7 +26,7 @@
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
     "asset-build":
       "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
-    "test": "jest",
+    "test": "NODE_ENV=test jest",
     "lint": "eslint server/** client/** services/** routes/**",
     "heroku-postbuild": "npm run asset-build",
     "clean": "rimraf dist"
