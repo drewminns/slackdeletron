@@ -8,7 +8,7 @@ const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 const ISPROD = process.env.NODE_ENV === 'production';
 const PUBLIC_PATH = ISPROD
-  ? 'https://slackdeletron.com/'
+  ? 'https://www.slackdeletron.com/'
   : 'http://localhost:8081';
 
 const postcss = {
@@ -30,6 +30,8 @@ const plugins = ISPROD
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('production'),
+          SLACK_CLIENT_ID: JSON.stringify(process.env.SLACK_CLIENT_ID),
+          SENTRY: JSON.stringify(process.env.SENTRY),
         },
       }),
       new HTMLWebpackPlugin({
@@ -39,9 +41,14 @@ const plugins = ISPROD
       new SWPrecacheWebpackPlugin({
         cacheId: 'slack-deletron',
         dontCacheBustUrlsMatching: /\.\w{8}\./,
-        filename: 'service-worker.js',
+        filename: 'sw.js',
         minify: true,
-        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        navigateFallback: 'https://www.slackdeletron.com/index.html',
+        staticFileGlobsIgnorePatterns: [
+          /\.map$/,
+          /asset-manifest\.json$/,
+          /\.html$/,
+        ],
       }),
     ]
   : [
