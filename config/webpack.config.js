@@ -30,6 +30,8 @@ const plugins = ISPROD
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify('production'),
+          SLACK_CLIENT_ID: JSON.stringify(process.env.SLACK_CLIENT_ID),
+          SENTRY: JSON.stringify(process.env.SENTRY),
         },
       }),
       new HTMLWebpackPlugin({

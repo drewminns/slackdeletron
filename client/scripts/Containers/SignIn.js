@@ -51,7 +51,7 @@ export default class SignIn extends Component {
         </p>
         <a
           href={`https://slack.com/oauth/authorize?client_id=${
-            keys.slackClientID
+            process.env.SLACK_CLIENT_ID
           }&scope=users:read,files:read,files:write:user,channels:read`}
         >
           <img
