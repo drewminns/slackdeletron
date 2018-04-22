@@ -4,7 +4,17 @@ const axios = require('axios');
 const { ENDPOINT } = require('../config/constants');
 
 module.exports = (app) => {
-  app.get('/api/slack/login', passport.authenticate('slack'));
+  app.get(
+    '/auth/slack',
+    passport.authenticate('slack', {
+      scope: [
+        'identity.basic',
+        'identity.email',
+        'identity.team',
+        'identity.avatar',
+      ],
+    })
+  );
 
   app.get(
     '/api/slack/callback',
@@ -22,25 +32,50 @@ module.exports = (app) => {
     res.redirect('/');
   });
 
-  app.get('/api/profile', async (req, res) => {
+  app.get('/api/profile', (req, res) => {
     if (!req.user) {
       res.send({
         loggedIn: false,
         profile: null,
       });
       return;
+    } else {
+      if (!req.user.avatar) {
+        axios
+          .get(`${ENDPOINT}users.info`, {
+            params: {
+              token: req.user.accessToken,
+              user: req.user.userId,
+            },
+          })
+          .then((userInfo) => {
+            // eslint-disable-next-line
+            console.log(userInfo.data);
+            res.send({
+              ok: true,
+              loggedIn: true,
+              profile: {
+                ...req.user,
+                avatar: userInfo.data.user.profile.image_192,
+              },
+            });
+            return;
+          })
+          .catch((err) => {
+            // eslint-disable-next-line
+            console.log(err);
+            res.send({ ok: false });
+            return;
+          });
+      } else {
+        res.send({
+          ok: true,
+          loggedIn: true,
+          profile: {
+            ...req.user,
+          },
+        });
+      }
     }
-
-    const userInfo = await axios.get(`${ENDPOINT}users.info`, {
-      params: {
-        token: req.user.accessToken,
-        user: req.user.userId,
-      },
-    });
-
-    res.send({
-      loggedIn: true,
-      profile: { ...req.user, isAdmin: userInfo.data.user.is_admin },
-    });
   });
 };

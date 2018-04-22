@@ -49,10 +49,9 @@ export default class SignIn extends Component {
           help you get rid of stuff
         </p>
         <a
-          className="LoginButton"
           href={`https://slack.com/oauth/authorize?client_id=${process.env
             .SLACK_CLIENT_ID ||
-            keys.slackClientID}&scope=channels:read,files:read,files:write:user,users:read`}
+            keys.slackClientID}&scope=users:read,files:read,files:write:user,channels:read`}
         >
           <img
             alt="Sign in with Slack"

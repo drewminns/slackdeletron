@@ -1,5 +1,5 @@
 const passport = require('passport');
-const SlackStrategy = require('passport-slack').Strategy;
+const SlackStrategy = require('@aoberoi/passport-slack').default.Strategy;
 
 const keys = require('../config/keys');
 
@@ -17,14 +17,13 @@ passport.use(
       clientID: keys.slackClientID,
       clientSecret: keys.slackClientSecret,
     },
-    (accessToken, refreshToken, profile, done) => {
+    (accessToken, scopes, team, extra, profiles, done) => {
       const object = {
-        name: profile.user.name,
-        userId: profile.user.id,
-        teamId: profile.team.id,
-        teamName: profile.team.name,
-        avatar: profile.user.image_192,
+        name: profiles.user.name,
+        userId: profiles.user.id,
+        teamId: profiles.team.id,
         accessToken: accessToken,
+        avatar: profiles.user.image_192,
       };
 
       done(null, object);
