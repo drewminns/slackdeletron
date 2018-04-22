@@ -16,6 +16,7 @@ passport.use(
     {
       clientID: keys.slackClientID,
       clientSecret: keys.slackClientSecret,
+      scope: 'identity.basic',
     },
     (accessToken, scopes, team, extra, profiles, done) => {
       const object = {
@@ -23,10 +24,8 @@ passport.use(
         userId: profiles.user.id,
         teamId: profiles.team.id,
         accessToken: accessToken,
+        avatar: profiles.user.image_192,
       };
-
-      // eslint-disable-next-line
-      console.log(object);
 
       done(null, object);
     }

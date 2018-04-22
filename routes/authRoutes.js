@@ -22,29 +22,21 @@ module.exports = (app) => {
     res.redirect('/');
   });
 
-  app.get('/api/profile', async (req, res) => {
+  app.get('/api/profile', (req, res) => {
     if (!req.user) {
       res.send({
         loggedIn: false,
         profile: null,
       });
       return;
+    } else {
+      res.send({
+        ok: true,
+        loggedIn: true,
+        profile: {
+          ...req.user,
+        },
+      });
     }
-
-    const userInfo = await axios.get(`${ENDPOINT}users.info`, {
-      params: {
-        token: req.user.accessToken,
-        user: req.user.userId,
-      },
-    });
-
-    res.send({
-      loggedIn: true,
-      profile: {
-        ...req.user,
-        avatar: userInfo.data.user.profile.image_192,
-        isAdmin: userInfo.data.user.is_admin,
-      },
-    });
   });
 };
