@@ -22,14 +22,14 @@ const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
           className="LoginButton"
           href={`https://slack.com/oauth/authorize?client_id=${process.env
             .SLACK_CLIENT_ID ||
-            keys.slackClientID}&scope=users:read,files:read,files:write:user,channels:read`}
+            keys.slackClientID}&scope=channels:read,files:read,files:write:user,users:read`}
         >
           <img
-            alt="Add to Slack"
+            alt="Sign in with Slack"
             height="40"
-            width="139"
-            src="https://platform.slack-edge.com/img/add_to_slack.png"
-            srcSet="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"
+            width="172"
+            src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
+            srcSet="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x"
           />
         </a>
       </Fragment>

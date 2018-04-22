@@ -51,6 +51,7 @@ export default class FileProvider extends Component {
       const res = await axios.get(`${ENDPOINT}files.list`, {
         params: {
           token: this.props.accessToken,
+          user: this.props.userId,
           ts_from: fromValue,
           ts_to: toValue,
           types,
