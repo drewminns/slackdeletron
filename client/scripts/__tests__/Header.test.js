@@ -21,7 +21,9 @@ describe('<Header />', () => {
 
   it('renders a Header component in the loggedOut State', () => {
     const wrapper = mount(<Header />);
-    expect(wrapper.find('a.LoginButton').props().href).toContain('/auth/slack');
+    expect(wrapper.find('a.LoginButton').props().href).toContain(
+      'https://slack.com/oauth/authorize'
+    );
   });
 
   it('renders a loggedIn Header with a name and an avatar', () => {
@@ -37,7 +39,9 @@ describe('<Header />', () => {
 
   it('does not render a Header component in the loggedIn State with no other props provided', () => {
     const wrapper = shallow(<Header isLoggedIn />);
-    expect(wrapper.find('a.LoginButton').props().href).toContain('/auth/slack');
+    expect(wrapper.find('a.LoginButton').props().href).toContain(
+      'https://slack.com/oauth/authorize'
+    );
   });
 
   it('does not render a Header component in the loggedIn State when other values are provided', () => {
@@ -45,7 +49,9 @@ describe('<Header />', () => {
     const linkText = wrapper.find('a.LoginButton');
     const text = wrapper.find('p');
     const image = wrapper.find('img.Header__Avatar');
-    expect(linkText.props().href).toContain('/auth/slack');
+    expect(linkText.props().href).toContain(
+      'https://slack.com/oauth/authorize'
+    );
     expect(text).toHaveLength(0);
     expect(image).toHaveLength(0);
   });

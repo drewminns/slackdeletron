@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Components/Button';
 
+import keys from '../../../config/keys';
+
 const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
   let markup = null;
 
@@ -16,7 +18,12 @@ const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
   } else {
     markup = (
       <Fragment>
-        <a className="LoginButton" href="/auth/slack">
+        <a
+          className="LoginButton"
+          href={`https://slack.com/oauth/authorize?client_id=${process.env
+            .SLACK_CLIENT_ID ||
+            keys.slackClientID}&scope=channels:read,files:read,files:write:user,users:read`}
+        >
           <img
             alt="Sign in with Slack"
             height="40"

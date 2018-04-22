@@ -4,7 +4,17 @@ const axios = require('axios');
 const { ENDPOINT } = require('../config/constants');
 
 module.exports = (app) => {
-  app.get('/auth/slack', passport.authenticate('slack'));
+  app.get(
+    '/auth/slack',
+    passport.authenticate('slack', {
+      scope: [
+        'identity.basic',
+        'identity.email',
+        'identity.team',
+        'identity.avatar',
+      ],
+    })
+  );
 
   app.get(
     '/api/slack/callback',
@@ -23,6 +33,8 @@ module.exports = (app) => {
   });
 
   app.get('/api/profile', (req, res) => {
+    // eslint-disable-next-line
+    console.log(req.user);
     if (!req.user) {
       res.send({
         loggedIn: false,
