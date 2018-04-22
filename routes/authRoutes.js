@@ -30,13 +30,40 @@ module.exports = (app) => {
       });
       return;
     } else {
-      res.send({
-        ok: true,
-        loggedIn: true,
-        profile: {
-          ...req.user,
-        },
-      });
+      if (!req.user.avatar) {
+        axios
+          .get(`${ENDPOINT}users.info`, {
+            params: {
+              token: req.user.accessToken,
+              user: req.user.userId,
+            },
+          })
+          .then((userInfo) => {
+            res.send({
+              ok: true,
+              loggedIn: true,
+              profile: {
+                ...req.user,
+                avatar: userInfo.data.user.profile.image_192,
+              },
+            });
+            return;
+          })
+          .catch((err) => {
+            // eslint-disable-next-line
+            console.log(err);
+            res.send({ ok: false });
+            return;
+          });
+      } else {
+        res.send({
+          ok: true,
+          loggedIn: true,
+          profile: {
+            ...req.user,
+          },
+        });
+      }
     }
   });
 };
