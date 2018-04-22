@@ -33,8 +33,6 @@ module.exports = (app) => {
   });
 
   app.get('/api/profile', (req, res) => {
-    // eslint-disable-next-line
-    console.log(req.user);
     if (!req.user) {
       res.send({
         loggedIn: false,
