@@ -4,11 +4,9 @@ const axios = require('axios');
 const { ENDPOINT } = require('../config/constants');
 
 module.exports = (app) => {
-  app.get('/api/slack/login', passport.authenticate('slack'));
-
   app.get(
     '/api/slack/callback',
-    passport.authenticate('slack', {
+    passport.authenticate('Slack', {
       successRedirect: '/',
       failureRedirect: '/',
     }),

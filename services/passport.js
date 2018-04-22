@@ -1,5 +1,5 @@
 const passport = require('passport');
-const SlackStrategy = require('passport-slack').Strategy;
+const SlackStrategy = require('passport-slack-oauth2').Strategy;
 
 const keys = require('../config/keys');
 
