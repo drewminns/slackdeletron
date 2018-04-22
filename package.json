@@ -6,15 +6,9 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -30,7 +24,8 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm run lint && npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "NODE_ENV=test jest",
     "lint": "eslint server/** client/** services/** routes/**",
     "heroku-postbuild": "npm run asset-build",
@@ -40,6 +35,7 @@
   "author": "Drew Minns",
   "license": "ISC",
   "dependencies": {
+    "@aoberoi/passport-slack": "^1.0.5",
     "autoprefixer": "^8.1.0",
     "axios": "^0.18.0",
     "babel-core": "^6.26.0",
@@ -66,8 +62,6 @@
     "node-sass": "^4.7.2",
     "normalize.css": "^8.0.0",
     "passport": "^0.4.0",
-    "passport-slack": "0.0.7",
-    "passport-slack-oauth2": "^1.0.2",
     "postcss-loader": "^2.1.1",
     "prop-types": "^15.6.1",
     "raven-js": "^3.24.1",

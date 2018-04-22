@@ -141,6 +141,7 @@ export default class Main extends Component {
         <FileProvider
           isLoggedIn={this.state.loggedIn}
           teamName={this.state.profile.teamName}
+          userId={this.state.profile.userId}
           accessToken={this.state.profile.accessToken}
           channels={this.state.channels.list}
           updateError={this.updateError}

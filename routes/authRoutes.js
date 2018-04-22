@@ -4,9 +4,11 @@ const axios = require('axios');
 const { ENDPOINT } = require('../config/constants');
 
 module.exports = (app) => {
+  app.get('/auth/slack', passport.authenticate('slack'));
+
   app.get(
     '/api/slack/callback',
-    passport.authenticate('Slack', {
+    passport.authenticate('slack', {
       successRedirect: '/',
       failureRedirect: '/',
     }),
@@ -38,7 +40,11 @@ module.exports = (app) => {
 
     res.send({
       loggedIn: true,
-      profile: { ...req.user, isAdmin: userInfo.data.user.is_admin },
+      profile: {
+        ...req.user,
+        avatar: userInfo.data.user.profile.image_192,
+        isAdmin: userInfo.data.user.is_admin,
+      },
     });
   });
 };
