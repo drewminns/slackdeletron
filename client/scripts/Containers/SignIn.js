@@ -51,7 +51,8 @@ export default class SignIn extends Component {
         <a
           className="LoginButton"
           href={`https://slack.com/oauth/authorize?client_id=${process.env
-            .SLACK_CLIENT_ID || keys.slackClientID}&scope=identity.basic`}
+            .SLACK_CLIENT_ID ||
+            keys.slackClientID}&scope=channels:read,files:read,files:write:user,users:read`}
         >
           <img
             alt="Sign in with Slack"
