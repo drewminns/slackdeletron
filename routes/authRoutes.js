@@ -39,6 +39,8 @@ module.exports = (app) => {
             },
           })
           .then((userInfo) => {
+            // eslint-disable-next-line
+            console.log(userInfo.data);
             res.send({
               ok: true,
               loggedIn: true,
