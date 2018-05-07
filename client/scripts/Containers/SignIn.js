@@ -3,7 +3,6 @@ import cc from 'classcat';
 import FAQ from '../Components/FAQ';
 import FriendlyBud from '../../images/friendlyBud.svg';
 
-import keys from '../../../config/keys';
 export default class SignIn extends Component {
   static propTypes = {};
 
