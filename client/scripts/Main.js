@@ -31,6 +31,7 @@ const INITIALSTATE = {
   },
   token: '',
   isAdmin: false,
+  user_id: '',
   loading: true,
   error: {
     present: false,
@@ -69,12 +70,13 @@ export default class Main extends Component {
     try {
       const res = await axios.get('/api/profile');
 
-      if (res.data.loggedIn) {
+      if (res.data.ok) {
         this.setState({
-          profile: res.data.profile,
+          profile: res.data.user.profile,
           loggedIn: true,
           loading: false,
-          token: res.data.profile.accessToken,
+          token: res.data.token,
+          user_id: res.data.user_id,
         });
       } else {
         this.setState({
@@ -129,20 +131,21 @@ export default class Main extends Component {
 
     Raven.captureMessage(errorTrack);
   };
+
   render() {
     return (
       <Fragment>
         <Header
           isLoggedIn={this.state.loggedIn}
-          name={this.state.profile.name}
-          avatar={this.state.profile.avatar}
+          name={this.state.profile.first_name}
+          avatar={this.state.profile.image_192 || this.state.profile.image_72}
           loading={this.state.loading}
         />
         <FileProvider
           isLoggedIn={this.state.loggedIn}
           teamName={this.state.profile.teamName}
-          userId={this.state.profile.userId}
-          accessToken={this.state.profile.accessToken}
+          userId={this.state.user_id}
+          accessToken={this.state.token}
           channels={this.state.channels.list}
           updateError={this.updateError}
         >

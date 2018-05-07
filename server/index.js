@@ -1,31 +1,26 @@
 const express = require('express');
-const cookieSession = require('cookie-session');
-const passport = require('passport');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const keys = require('../config/keys');
-require('../services/passport');
 
 const ENTRY = path.join(__dirname, '../dist/index.html');
 
 module.exports = (app) => {
-  app.use(cookieParser());
-  app.use(bodyParser.urlencoded({ extended: true }));
-
   app.use(
-    cookieSession({
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      keys: [keys.cookieKey],
+    expressSession({
+      secret: keys.cookieKey,
+      resave: false,
+      saveUninitialized: true,
     })
   );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
+  
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   require('../routes/authRoutes')(app);
 
