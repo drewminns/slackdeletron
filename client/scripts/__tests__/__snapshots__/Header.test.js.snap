@@ -15,7 +15,7 @@ exports[`<Header /> Renders Correctly 1`] = `
      
     <a
       className="LoginButton"
-      href="https://slack.com/oauth/authorize?client_id=123456789.987654321&scope=channels:read,files:read,files:write:user,users:read"
+      href="auth/slack"
     >
       <img
         alt="Sign in with Slack"
