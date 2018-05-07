@@ -59,7 +59,7 @@ export default class FileWrapper extends Component {
     if (this.state.size === 'smallest' && this.state.date === 'newest') {
       files.sort((a, b) => a.size > b.size && a.created < b.created);
     } else if (this.state.size === 'largest' && this.state.date === 'newest') {
-      files.sort((a, b) => a.size < b.size && a.created < b.created);
+      files.sort((a, b) => a.created < b.created && a.size < b.size);
     } else if (this.state.size === 'smallest' && this.state.date === 'oldest') {
       files.sort((a, b) => a.size > b.size && a.created > b.created);
     } else if (this.state.size === 'largest' && this.state.data === 'oldest') {

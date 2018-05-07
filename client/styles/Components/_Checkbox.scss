@@ -17,10 +17,10 @@
     display: inline-block;
     background-color: $black;
     color: $white;
-    padding: 6px 8px 8px;
+    padding: 8px;
     line-height: 1;
-    font-size: 15px;
-    margin-bottom: 13px;
+    font-size: 14px;
+    margin-bottom: 5px;
     margin-left: 40px;
     position: relative;
     cursor: pointer;
@@ -30,9 +30,9 @@
       left: -38px;
       top: 0;
       display: inline-block;
-      border: 6px solid $black;
+      border: 4px solid $black;
       content: '';
-      padding: 3px 2px;
+      padding: 5px 4px;
       background-color: $white;
       width: 30px;
       height: 30px;

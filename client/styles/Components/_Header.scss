@@ -1,7 +1,7 @@
 .Header {
   background-color: $white;
   box-shadow: $boxShadow;
-  padding: 20px 40px;
+  padding: 9px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19,8 +19,8 @@
       background-size: cover;
       content: '';
       display: block;
-      height: 73px;
-      width: 280px;
+      height: 66px;
+      width: 250px;
       background-image: url('../images/logo.svg');
     }
   }

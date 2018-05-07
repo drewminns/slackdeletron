@@ -44,7 +44,7 @@ class FileContainer extends Component {
           {deletedSize > 0 && hasRun ? (
             <p className="Count__Text">
               Nice! You just saved{' '}
-              <span className="blue">{formatBytes(deletedSize)}</span>
+              <span className="red">{formatBytes(deletedSize)}</span>
             </p>
           ) : null}
         </div>
@@ -59,7 +59,11 @@ class FileContainer extends Component {
               Tweet about Slack Deletron
             </a>
           </p>
-          <Button onClick={this.toggleFAQ} text="Questions? FAQ" />
+          <Button
+            onClick={this.toggleFAQ}
+            text="Questions? FAQ"
+            classes="FileWrapper__Details-faq"
+          />
         </div>
       </div>
     );

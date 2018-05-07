@@ -2,5 +2,6 @@
   &__Text {
     margin: 0;
     line-height: 1.4;
+    @include rem(font-size, 16px);
   }
 }
