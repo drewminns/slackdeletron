@@ -23,13 +23,19 @@ const Select = ({
 
   var optionValues = [...optionEl, ...options];
 
+  const handleEvent = (e) => {
+    if (e.target.value !== value) {
+      onChange(e);
+    }
+  };
+
   return (
     <div className="Select">
       <Label darkLabel={darkLabel}>{label}</Label>
       <select
         className={classes}
-        onChange={onChange}
-        onBlur={onChange}
+        onChange={handleEvent}
+        onBlur={handleEvent}
         value={value}
       >
         {optionValues.map((opt) => (
@@ -49,6 +55,7 @@ Select.propTypes = {
   emptyValue: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
+  onBlur: PropTypes.func,
   isLarge: PropTypes.bool,
   darkLabel: PropTypes.bool,
 };
