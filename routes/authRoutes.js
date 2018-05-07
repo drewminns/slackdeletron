@@ -1,81 +1,72 @@
-const passport = require('passport');
 const axios = require('axios');
+const url = require('url');
 
-const { ENDPOINT } = require('../config/constants');
+const keys = require('../config/keys');
 
 module.exports = (app) => {
-  app.get(
-    '/auth/slack',
-    passport.authenticate('slack', {
-      scope: [
-        'identity.basic',
-        'identity.email',
-        'identity.team',
-        'identity.avatar',
-      ],
-    })
-  );
+  app.get('/auth/slack', (req, res) => {
+    res.redirect(
+      url.format({
+        pathname: 'https://slack.com/oauth/authorize',
+        query: {
+          client_id: keys.slackClientID,
+          scope: 'users:read channels:read files:read files:write:user',
+        },
+      })
+    );
+  });
 
-  app.get(
-    '/api/slack/callback',
-    passport.authenticate('slack', {
-      successRedirect: '/',
-      failureRedirect: '/',
-    }),
-    function(req, res) {
-      res.redirect('/');
-    }
-  );
+  app.get('/api/slack/callback', (req, res) => {
+    axios
+      .get('https://slack.com/api/oauth.access', {
+        params: {
+          code: req.query.code,
+          client_id: keys.slackClientID,
+          client_secret: keys.slackClientSecret,
+        },
+      })
+      .then((response) => {
+        if (response.data.ok) {
+          req.session.slack = response.data;
+          req.session.save((err) => {
+            if (!err) {
+              return res.redirect('/');
+            }
+          });
+        } else {
+          res.redirect('/');
+        }
+      });
+  });
 
   app.get('/api/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    req.session.destroy(function(err) {
+      res.redirect('/');
+    });
   });
 
   app.get('/api/profile', (req, res) => {
-    if (!req.user) {
-      res.send({
-        loggedIn: false,
-        profile: null,
-      });
-      return;
-    } else {
-      if (!req.user.avatar) {
-        axios
-          .get(`${ENDPOINT}users.info`, {
-            params: {
-              token: req.user.accessToken,
-              user: req.user.userId,
-            },
-          })
-          .then((userInfo) => {
-            // eslint-disable-next-line
-            console.log(userInfo.data);
-            res.send({
-              ok: true,
-              loggedIn: true,
-              profile: {
-                ...req.user,
-                avatar: userInfo.data.user.profile.image_192,
-              },
-            });
-            return;
-          })
-          .catch((err) => {
-            // eslint-disable-next-line
-            console.log(err);
-            res.send({ ok: false });
-            return;
-          });
-      } else {
-        res.send({
-          ok: true,
-          loggedIn: true,
-          profile: {
-            ...req.user,
-          },
-        });
-      }
+    if (!req.session.slack) {
+      return res.redirect('/');
     }
+    const token = req.session.slack.access_token;
+    const user = req.session.slack.user_id;
+    axios
+      .get('https://slack.com/api/users.info', {
+        params: {
+          token,
+          user,
+        },
+      })
+      .then((response) => {
+        if (response.data.ok) {
+          return res.send({ ...response.data, token, user_id: user });
+        }
+
+        res.send({ ok: false });
+      })
+      .catch((err) => {
+        res.send(err);
+      });
   });
 };

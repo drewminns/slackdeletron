@@ -1,7 +1,7 @@
 .Header {
   background-color: $white;
   box-shadow: $boxShadow;
-  padding: 20px 40px;
+  padding: 9px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,6 +10,7 @@
   left: 0;
   width: 100%;
   z-index: 500;
+  height: 91px;
 
   &__Logo {
     font-size: 0;
@@ -19,8 +20,8 @@
       background-size: cover;
       content: '';
       display: block;
-      height: 73px;
-      width: 280px;
+      height: 66px;
+      width: 250px;
       background-image: url('../images/logo.svg');
     }
   }

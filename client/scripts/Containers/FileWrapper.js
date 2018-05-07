@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { sortFiles } from '../utils';
+
 import Filters from './Filters';
 import File from '../Components/File';
 import Count from '../Components/Count';
@@ -55,20 +57,7 @@ export default class FileWrapper extends Component {
   }
 
   renderFiles() {
-    const files = this.props.files;
-    if (this.state.size === 'smallest' && this.state.date === 'newest') {
-      files.sort((a, b) => a.size > b.size && a.created < b.created);
-    } else if (this.state.size === 'largest' && this.state.date === 'newest') {
-      files.sort((a, b) => a.size < b.size && a.created < b.created);
-    } else if (this.state.size === 'smallest' && this.state.date === 'oldest') {
-      files.sort((a, b) => a.size > b.size && a.created > b.created);
-    } else if (this.state.size === 'largest' && this.state.data === 'oldest') {
-      files.sort((a, b) => a.size < b.size && a.created > b.created);
-    } else if (this.state.date === 'newest') {
-      files.sort((a, b) => a.created < b.created);
-    } else if (this.state.date === 'oldest') {
-      files.sort((a, b) => a.created > b.created);
-    }
+    const files = sortFiles(this.props.files, this.state.size, this.state.date);
 
     return files.map((file) => (
       <div className="col-md-3" key={file.id}>

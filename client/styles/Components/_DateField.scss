@@ -26,6 +26,10 @@
   }
 }
 
+.DateRangePickerInput_clearDates {
+  top: 44%;
+}
+
 .DateRangePickerInput__showClearDates {
   padding-right: 20px;
 }
@@ -38,6 +42,10 @@
   width: 87px;
   font-size: 12px;
   padding: 0;
+}
+
+.DateRangePickerInput_arrow {
+  vertical-align: top;
 }
 
 .CalendarDay__selected,

@@ -3,7 +3,6 @@ import cc from 'classcat';
 import FAQ from '../Components/FAQ';
 import FriendlyBud from '../../images/friendlyBud.svg';
 
-import keys from '../../../config/keys';
 export default class SignIn extends Component {
   static propTypes = {};
 
@@ -48,11 +47,7 @@ export default class SignIn extends Component {
           We save nothing <span className="purple">(seriously)</span> and only
           help you get rid of stuff
         </p>
-        <a
-          href={`https://slack.com/oauth/authorize?client_id=${process.env
-            .SLACK_CLIENT_ID ||
-            keys.slackClientID}&scope=users:read,files:read,files:write:user,channels:read`}
-        >
+        <a href="auth/slack">
           <img
             alt="Sign in with Slack"
             height="40"

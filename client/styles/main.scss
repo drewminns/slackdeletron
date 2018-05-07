@@ -54,12 +54,16 @@
 @import 'Components/FAQ';
 @import 'Components/Error';
 
+body {
+  background-color: $black;
+}
+
 #main {
-  padding-top: 113px;
+  padding-top: 91px;
 }
 
 .MainContent {
   background-color: $light;
-  height: calc(100vh - 113px);
+  min-height: calc(100vh - 91px);
   display: flex;
 }
