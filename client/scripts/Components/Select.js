@@ -55,7 +55,6 @@ Select.propTypes = {
   emptyValue: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
-  onBlur: PropTypes.func,
   isLarge: PropTypes.bool,
   darkLabel: PropTypes.bool,
 };
