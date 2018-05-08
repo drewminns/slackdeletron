@@ -38,7 +38,7 @@ module.exports = {
     {
       question: 'Is this thing safe?',
       answer:
-        'I store nothing. The only information needed to log you in is stored in your browser as a cookie. There are no databases, no caching (except on your own machine), anything.',
+        'I store nothing. The only information needed to log you in is stored is stored as a unique session. There are no databases, no caching (except on your own machine), anything.',
     },
     {
       question: 'I have a feature/idea/request/job offer/how is this built?',

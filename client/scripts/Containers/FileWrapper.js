@@ -6,6 +6,7 @@ import { sortFiles } from '../utils';
 import Filters from './Filters';
 import File from '../Components/File';
 import Count from '../Components/Count';
+import Button from '../Components/Button';
 
 import friendlyBud from '../../images/friendlyBud.svg';
 import stokedBud from '../../images/stokedBud.svg';
@@ -14,8 +15,10 @@ import congratsBud from '../../images/congratsBud.svg';
 export default class FileWrapper extends Component {
   static propTypes = {
     deleteFile: PropTypes.func,
+    handlePageUpdate: PropTypes.func,
     files: PropTypes.array,
     teamName: PropTypes.string,
+    paging: PropTypes.object,
     hasRun: PropTypes.bool,
     hasFiles: PropTypes.bool,
   };
@@ -37,6 +40,39 @@ export default class FileWrapper extends Component {
     });
   };
 
+  onPageDecrement = (val) => {
+    if (val <= 1) return;
+    this.props.handlePageUpdate(this.props.paging.page - 1);
+  };
+
+  onPageIncrement = (val) => {
+    if (val > this.props.paging.pages) return;
+    this.props.handlePageUpdate(this.props.paging.page + 1);
+  };
+
+  displayButtons() {
+    const paging = this.props.paging;
+    if (paging.pages === 1) return;
+
+    return (
+      <div className="FileWrapper__paging">
+        <Button
+          onClick={this.onPageDecrement}
+          disabled={paging.page === 1}
+          text="Prev Page"
+          classes="FileWrapper__paging-button"
+        />
+        <span className="FileWrapper__paging-count">Page {paging.page}</span>
+        <Button
+          onClick={this.onPageIncrement}
+          disabled={paging.page === paging.pages}
+          text="Next Page"
+          classes="FileWrapper__paging-button"
+        />
+      </div>
+    );
+  }
+
   displayFilters() {
     const files = this.props.files;
     if (!files.length) {
@@ -45,7 +81,13 @@ export default class FileWrapper extends Component {
 
     return (
       <div className="FileWrapper__Bar">
-        <Count data={files} teamName={this.props.teamName} />
+        <Count
+          data={files}
+          total={this.props.paging.total}
+          teamName={this.props.teamName}
+        />
+        {this.displayButtons()}
+
         <Filters
           sizeValue={this.state.size}
           dateValue={this.state.date}
@@ -85,7 +127,8 @@ export default class FileWrapper extends Component {
               </li>
               <li>
                 Click the Get Files button to search for public files on your
-                workspace.
+                workspace. If you are an admin, you will see all public files
+                you can delete.
               </li>
               <li>Start deleting some files and free up some space!</li>
             </ol>
@@ -117,7 +160,6 @@ export default class FileWrapper extends Component {
         </div>
       );
     }
-
     return (
       <div className="FileWrapper">
         {this.displayFilters()}

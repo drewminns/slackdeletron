@@ -77,6 +77,7 @@ export default class Main extends Component {
           loading: false,
           token: res.data.token,
           user_id: res.data.user_id,
+          isAdmin: res.data.user.is_admin,
         });
       } else {
         this.setState({
@@ -138,6 +139,7 @@ export default class Main extends Component {
         <Header
           isLoggedIn={this.state.loggedIn}
           name={this.state.profile.first_name}
+          isAdmin={this.state.isAdmin}
           avatar={this.state.profile.image_192 || this.state.profile.image_72}
           loading={this.state.loading}
         />
@@ -146,6 +148,7 @@ export default class Main extends Component {
           teamName={this.state.profile.teamName}
           userId={this.state.user_id}
           accessToken={this.state.token}
+          isAdmin={this.state.isAdmin}
           channels={this.state.channels.list}
           updateError={this.updateError}
         >

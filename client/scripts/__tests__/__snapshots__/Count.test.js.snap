@@ -7,20 +7,25 @@ exports[`<Checkbox /> renders correctly 1`] = `
   <p
     className="Count__Text"
   >
-    There are 
+    There is
+     
     <span
       className="purple"
     >
-      0
-       files
+       
+      file
     </span>
-     you can delete from your 
-     workspace.
+     
+    you can delete from your workspace.
   </p>
   <p
     className="Count__Text"
   >
-    It could save you 
+    Here is
+     
+    0
+     worth
+     
     <span
       className="red"
     >

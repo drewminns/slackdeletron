@@ -89,8 +89,10 @@ class FileContainer extends Component {
                     hasRun={context.state.hasRun}
                     hasFiles={context.state.hasFiles}
                     teamName={context.teamName}
+                    paging={context.state.paging}
                     files={context.state.files}
                     deleteFile={context.deleteFile}
+                    handlePageUpdate={context.handlePageUpdate}
                   />
                   {this.displayBar(
                     context.state.deletedSize,

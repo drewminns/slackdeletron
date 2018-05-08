@@ -7,13 +7,11 @@ V3.0
 
 [slackdeletron.com](https://slackdeletron.com)
 
-<a href="https://slack.com/oauth/authorize?client_id=38414671253.343467267060&scope=channels:read,files:read,files:write:user,users:read"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
-
 ## What the?
 
 Slack Deletron is a service that helps users of Slack manage files and storage on their workspaces. The site is a UI wrapper over the [Slack API Web Methods](https://api.slack.com/methods) available to all users.
 
-I do not work for Slack (although I would 😘), so this is purely a fun side project to help out the community.
+I do not work for Slack (although I would 😘 - Call me: [drewminns.com](http://drewminns.com) ) , so this is purely a fun side project to help out the community.
 
 The API has it's limits so this project tries to work it's best within them, but of course, not all features are possible.
 
@@ -87,8 +85,6 @@ Client Side:
 Server Side:
 
 * [Express](https://expressjs.com/)
-* [Passport](http://www.passportjs.org/)
-* [Cookie Session](https://github.com/expressjs/cookie-session)
 * [Webpack Dev Middleware](https://github.com/webpack/webpack-dev-middleware)
 * [Webpack Hot Middleware](https://github.com/webpack-contrib/webpack-hot-middleware)
 
