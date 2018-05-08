@@ -11,7 +11,7 @@ V3.0
 
 Slack Deletron is a service that helps users of Slack manage files and storage on their workspaces. The site is a UI wrapper over the [Slack API Web Methods](https://api.slack.com/methods) available to all users.
 
-I do not work for Slack (although I would 😘), so this is purely a fun side project to help out the community.
+I do not work for Slack (although I would 😘 - Call me: [drewminns.com](http://drewminns.com) ) , so this is purely a fun side project to help out the community.
 
 The API has it's limits so this project tries to work it's best within them, but of course, not all features are possible.
 
