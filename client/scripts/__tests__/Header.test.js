@@ -30,7 +30,7 @@ describe('<Header />', () => {
     const image = wrapper.find('img');
     const link = wrapper.find('a');
     expect(link.text()).toBe('Logout');
-    expect(text.text()).toBe(`Hey ${NAME}`);
+    expect(text.text()).toBe(`Hey ${NAME} `);
     expect(image.prop('src')).toEqual(AVATAR);
     expect(image.prop('alt')).toEqual(NAME);
   });

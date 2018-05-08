@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 
-app.enable('trust proxy');
-
 app.use(function(req, res, next) {
   res.header(
     'Access-Control-Allow-Headers',
@@ -10,16 +8,6 @@ app.use(function(req, res, next) {
   );
   next();
 });
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(function(req, res, next) {
-    if (req.secure) {
-      next();
-    } else {
-      res.redirect(`https://${req.headers.host + req.url}`);
-    }
-  });
-}
 
 require('./server/index')(app);
 

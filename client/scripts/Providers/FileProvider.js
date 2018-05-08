@@ -8,9 +8,20 @@ import { ENDPOINT } from '../../../config/constants';
 const INITIAL_STATE = {
   files: [],
   deletedSize: 0,
-  paging: 1,
+  paging: {
+    total: 0,
+    page: 1,
+    pages: 1,
+  },
+  currentPage: 1,
   hasRun: false,
   hasFiles: false,
+  searchDetails: {
+    from: null,
+    to: null,
+    types: null,
+    channel: null,
+  },
 };
 
 export const FileContext = createContext();
@@ -28,12 +39,7 @@ export default class FileProvider extends Component {
 
   state = { ...INITIAL_STATE };
 
-  callGetFiles = async (
-    from = null,
-    to = null,
-    types = null,
-    channel = null
-  ) => {
+  getFiles = (from = null, to = null, types = null, channel = null) => {
     const now = moment()
       .seconds(0)
       .milliseconds(0)
@@ -47,15 +53,33 @@ export default class FileProvider extends Component {
       toValue = !moment(now).isSame(to) ? moment(to).unix() : null;
     }
 
+    this.setState(
+      {
+        searchDetails: {
+          from: fromValue,
+          to: toValue,
+          types,
+          channel,
+        },
+      },
+      () => {
+        this.callGetFiles();
+      }
+    );
+  };
+
+  // ### TODO Refactor the shit out of this
+  callGetFiles = async () => {
     try {
       const res = await axios.get(`${ENDPOINT}files.list`, {
         params: {
           token: this.props.accessToken,
-          user: this.props.userId,
-          ts_from: fromValue,
-          ts_to: toValue,
-          types,
-          channel,
+          user: !this.props.isAdmin ? this.props.userId : null,
+          ts_from: this.state.searchDetails.from,
+          ts_to: this.state.searchDetails.to,
+          page: this.state.currentPage,
+          types: this.state.searchDetails.types,
+          channel: this.state.searchDetails.channel,
         },
       });
 
@@ -64,10 +88,22 @@ export default class FileProvider extends Component {
         return;
       }
 
+      // If results are completely empty, reset the page count
+      if (!res.data.files.length) {
+        this.setState({
+          files: [],
+          hasFiles: false,
+          hasRun: true,
+          currentPage: 1,
+        });
+        return;
+      }
+
       this.setState({
         files: res.data.files,
         hasFiles: res.data.files.length > 0,
         hasRun: true,
+        paging: res.data.paging,
       });
     } catch (err) {
       this.props.updateError(
@@ -76,8 +112,15 @@ export default class FileProvider extends Component {
       );
       this.setState({
         files: [],
+        paging: INITIAL_STATE.paging,
       });
     }
+  };
+
+  handlePageUpdate = (pageNumber) => {
+    this.setState({ currentPage: pageNumber }, () => {
+      this.callGetFiles();
+    });
   };
 
   callDeleteFile = async (fileId) => {
@@ -132,9 +175,9 @@ export default class FileProvider extends Component {
           state: this.state,
           isLoggedIn: this.props.isLoggedIn,
           channels: this.props.channels,
-          teamName: this.props.teamName,
-          getFiles: this.callGetFiles,
+          getFiles: this.getFiles,
           deleteFile: this.callDeleteFile,
+          handlePageUpdate: this.handlePageUpdate,
         }}
       >
         {this.props.children}

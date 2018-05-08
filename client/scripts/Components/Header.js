@@ -2,13 +2,20 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Components/Button';
 
-const Header = ({ isLoggedIn = false, name = '', avatar = '' }) => {
+const Header = ({
+  isLoggedIn = false,
+  name = '',
+  avatar = '',
+  isAdmin = false,
+}) => {
   let markup = null;
 
   if (isLoggedIn && name && avatar) {
     markup = (
       <Fragment>
-        <p className="Header__Name">Hey {name}</p>
+        <p className="Header__Name">
+          Hey {name} {isAdmin && <span className="red"> - ADMIN</span>}
+        </p>
         <img className="Header__Avatar" src={avatar} alt={name} />
         <Button text="Logout" href="api/logout" isLink />
       </Fragment>
