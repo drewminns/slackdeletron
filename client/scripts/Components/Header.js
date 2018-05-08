@@ -48,6 +48,7 @@ Header.propTypes = {
   isLoggedIn: PropTypes.bool,
   name: PropTypes.string,
   avatar: PropTypes.string,
+  isAdmin: PropTypes.bool,
 };
 
 export default Header;

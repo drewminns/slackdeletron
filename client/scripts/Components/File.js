@@ -40,6 +40,7 @@ const File = ({ details, deleteFile, style }) => {
         <h3 className="File__Title">{details.name}</h3>
         <Button
           text="Delete File"
+          classes="File__Button"
           // I know...
           // eslint-disable-next-line
           onClick={() => {
