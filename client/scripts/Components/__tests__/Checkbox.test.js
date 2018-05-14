@@ -14,15 +14,7 @@ describe('<Checkbox />', () => {
   });
 
   it('Renders a label', () => {
-    const checkbox = shallow(<Checkbox label={LABEL} />);
-    expect(checkbox.text()).toBe(LABEL);
-  });
-
-  it('Calls a function when clicked', () => {
-    const checkbox = shallow(
-      <Checkbox label={LABEL} onChange={mockCallback} />
-    );
-    checkbox.find('input.Checkbox__Input').simulate('change');
-    expect(mockCallback).toBeCalled();
+    const checkbox = renderer.create(<Checkbox label={LABEL} />).toJSON();
+    expect(checkbox).toMatchSnapshot();
   });
 });
