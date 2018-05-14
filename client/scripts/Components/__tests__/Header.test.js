@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Header from '../Components/Header';
+import Header from '../Header';
 
 const AVATAR =
   'https://secure.gravatar.com/avatar/f2d55f35afbc3f607e34504f5a2d7d88.jpg?s=192&d=https%3A%2F%2Fa.slack-edge.com%2F7fa9%2Fimg%2Favatars%2Fava_0006-192.png';

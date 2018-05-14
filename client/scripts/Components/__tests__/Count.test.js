@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Count from '../Components/Count';
+import Count from '../Count';
 
 const MOCK_DATA = [{ size: 300 }, { size: 200 }, { size: 500 }];
 

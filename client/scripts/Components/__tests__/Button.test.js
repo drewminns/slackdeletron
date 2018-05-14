@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
-import Button from '../Components/Button';
+import Button from '../Button';
 
 describe('<Button />', () => {
   it('Renders Correctly', () => {
