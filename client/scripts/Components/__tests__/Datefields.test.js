@@ -6,8 +6,8 @@ import moment from 'moment';
 import DateFields from '../DateFields';
 
 const DEFAULT_PROPS = {
-  stateDate: moment('2018-05-14').utc(),
-  endDate: moment('2018-05-15').utc(),
+  stateDate: moment.unix(1526311584),
+  endDate: moment.unix(1526311585),
   onChange: jest.fn()
 };
 
