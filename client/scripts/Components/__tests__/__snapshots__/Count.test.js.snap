@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkbox /> displays the correct data 1`] = `
+<div
+  className="Count"
+>
+  <p
+    className="Count__Text"
+  >
+    There are
+     
+    <span
+      className="purple"
+    >
+      3
+       
+      files
+    </span>
+     
+    you can delete from your workspace.
+  </p>
+  <p
+    className="Count__Text"
+  >
+    Here are
+     
+    3
+     worth
+     
+    <span
+      className="red"
+    >
+      1000 Bytes
+    </span>
+  </p>
+</div>
+`;
+
+exports[`<Checkbox /> displays the correct data when a smaller total is passed 1`] = `
+<div
+  className="Count"
+>
+  <p
+    className="Count__Text"
+  >
+    There is
+     
+    <span
+      className="purple"
+    >
+      1
+       
+      file
+    </span>
+     
+    you can delete from your workspace.
+  </p>
+  <p
+    className="Count__Text"
+  >
+    Here is
+     
+    1
+     worth
+     
+    <span
+      className="red"
+    >
+      300 Bytes
+    </span>
+  </p>
+</div>
+`;
+
+exports[`<Checkbox /> renders correctly 1`] = `
+<div
+  className="Count"
+>
+  <p
+    className="Count__Text"
+  >
+    There is
+     
+    <span
+      className="purple"
+    >
+       
+      file
+    </span>
+     
+    you can delete from your workspace.
+  </p>
+  <p
+    className="Count__Text"
+  >
+    Here is
+     
+    0
+     worth
+     
+    <span
+      className="red"
+    >
+      0 Bytes
+    </span>
+  </p>
+</div>
+`;
