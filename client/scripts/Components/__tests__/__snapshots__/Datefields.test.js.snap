@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DateFields /> Renders Correctly 1`] = `
+<div>
+  <withStyles(DateRangePicker)
+    anchorDirection="left"
+    block={false}
+    calendarInfoPosition="bottom"
+    customArrowIcon={null}
+    customCloseIcon={null}
+    customInputIcon={null}
+    daySize={39}
+    disabled={false}
+    displayFormat={[Function]}
+    enableOutsideDays={false}
+    endDate={"2018-05-14T15:26:25.000Z"}
+    endDateId="endDateId"
+    endDatePlaceholderText="End Date"
+    firstDayOfWeek={null}
+    focusedInput={null}
+    hideKeyboardShortcutsPanel={false}
+    horizontalMargin={0}
+    initialVisibleMonth={null}
+    inputIconPosition="before"
+    isDayBlocked={[Function]}
+    isDayHighlighted={[Function]}
+    isOutsideRange={[Function]}
+    isRTL={false}
+    keepFocusOnInput={false}
+    keepOpenOnDateSelect={false}
+    minimumNights={1}
+    monthFormat="MMMM YYYY"
+    navNext={null}
+    navPrev={null}
+    noBorder={false}
+    numberOfMonths={2}
+    onClose={[Function]}
+    onDatesChange={[MockFunction]}
+    onFocusChange={[Function]}
+    onNextMonthClick={[Function]}
+    onPrevMonthClick={[Function]}
+    openDirection="down"
+    orientation="horizontal"
+    phrases={
+      Object {
+        "calendarLabel": "Calendar",
+        "chooseAvailableEndDate": [Function],
+        "chooseAvailableStartDate": [Function],
+        "clearDates": "Clear Dates",
+        "closeDatePicker": "Close",
+        "dateIsSelected": [Function],
+        "dateIsUnavailable": [Function],
+        "enterKey": "Enter key",
+        "escape": "Escape key",
+        "focusStartDate": "Interact with the calendar and add the check-in date for your trip.",
+        "hideKeyboardShortcutsPanel": "Close the shortcuts panel.",
+        "homeEnd": "Home and end keys",
+        "jumpToNextMonth": "Move forward to switch to the next month.",
+        "jumpToPrevMonth": "Move backward to switch to the previous month.",
+        "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+        "keyboardShortcuts": "Keyboard Shortcuts",
+        "leftArrowRightArrow": "Right and left arrow keys",
+        "moveFocusByOneDay": "Move backward (left) and forward (right) by one day.",
+        "moveFocusByOneMonth": "Switch months.",
+        "moveFocusByOneWeek": "Move backward (up) and forward (down) by one week.",
+        "moveFocustoStartAndEndOfWeek": "Go to the first or last day of a week.",
+        "openThisPanel": "Open this panel.",
+        "pageUpPageDown": "page up and page down keys",
+        "questionMark": "Question mark",
+        "returnFocusToInput": "Return to the date input field.",
+        "selectFocusedDate": "Select the date in focus.",
+        "showKeyboardShortcutsPanel": "Open the keyboard shortcuts panel.",
+        "upArrowDownArrow": "up and down arrow keys",
+      }
+    }
+    readOnly={false}
+    regular={false}
+    renderCalendarDay={undefined}
+    renderCalendarInfo={null}
+    renderDayContents={null}
+    renderMonth={null}
+    reopenPickerOnClearDates={false}
+    required={false}
+    screenReaderInputMessage=""
+    showClearDates={true}
+    showDefaultInputIcon={false}
+    small={true}
+    startDate={null}
+    startDateId="startDate"
+    startDatePlaceholderText="Start Date"
+    transitionDuration={undefined}
+    verticalHeight={null}
+    verticalSpacing={22}
+    weekDayFormat="dd"
+    withFullScreenPortal={false}
+    withPortal={false}
+  />
+</div>
+`;
