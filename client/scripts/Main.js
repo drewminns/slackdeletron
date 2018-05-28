@@ -49,7 +49,7 @@ export default class Main extends Component {
 
   getChannels = async (token) => {
     if (token.length) {
-      const res = await axios.get(`${ENDPOINT}/channels.list`, {
+      const res = await axios.get(`${ENDPOINT}channels.list`, {
         params: {
           token: this.state.token,
           exclude_members: true,
