@@ -21,25 +21,3 @@ exports[`<Checkbox /> Renders Correctly 1`] = `
   </label>
 </div>
 `;
-
-exports[`<Checkbox /> Renders a label 1`] = `
-<div
-  className="Checkbox"
->
-  <input
-    checked={false}
-    className="Checkbox__Input"
-    id=""
-    onChange={[Function]}
-    type="checkbox"
-    value=""
-  />
-  <label
-    checked={false}
-    className="Checkbox__Label"
-    htmlFor=""
-  >
-    LABEL TEXT
-  </label>
-</div>
-`;
