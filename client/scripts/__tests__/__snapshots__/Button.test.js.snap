@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Renders Correctly 1`] = `
+<button
+  className="Button"
+  disabled={false}
+  onClick={[Function]}
+>
+  
+</button>
+`;

@@ -108,12 +108,8 @@ export default class FileProvider extends Component {
           ts_from: this.state.searchDetails.from,
           ts_to: this.state.searchDetails.to,
           page: this.state.currentPage,
-          types: this.state.searchDetails.types.length
-            ? this.state.searchDetails.types
-            : null,
-          channel: this.state.searchDetails.channel.length
-            ? this.state.searchDetails.channel
-            : null,
+          types: this.state.searchDetails.types,
+          channel: this.state.searchDetails.channel,
         },
       });
 
