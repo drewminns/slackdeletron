@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 
 import { formatBytes } from '../utils';
 import { FileContext } from '../Providers/FileProvider';
@@ -10,11 +9,6 @@ import Button from '../Components/Button';
 import FAQ from '../Components/FAQ';
 
 class FileContainer extends Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool,
-    accessToken: PropTypes.string,
-  };
-
   state = {
     showFAQ: false,
   };

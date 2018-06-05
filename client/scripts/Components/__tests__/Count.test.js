@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Count from '../Count';
@@ -15,12 +14,16 @@ describe('<Checkbox />', () => {
   });
 
   it('displays the correct data', () => {
-    const count = renderer.create(<Count data={MOCK_DATA} total={MOCK_DATA.length} />).toJSON();
+    const count = renderer
+      .create(<Count data={MOCK_DATA} total={MOCK_DATA.length} />)
+      .toJSON();
     expect(count).toMatchSnapshot();
   });
 
   it('displays the correct data when a smaller total is passed', () => {
-    const count = renderer.create(<Count data={MOCK_DATA_SMALL} total={MOCK_DATA_SMALL.length} />).toJSON();
+    const count = renderer
+      .create(<Count data={MOCK_DATA_SMALL} total={MOCK_DATA_SMALL.length} />)
+      .toJSON();
     expect(count).toMatchSnapshot();
   });
 });

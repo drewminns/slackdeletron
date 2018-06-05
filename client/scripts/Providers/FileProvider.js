@@ -37,6 +37,8 @@ export default class FileProvider extends Component {
     channels: PropTypes.array,
     isLoggedIn: PropTypes.bool,
     updateError: PropTypes.func,
+    isAdmin: PropTypes.bool,
+    userId: PropTypes.string,
   };
 
   state = { ...INITIAL_STATE };

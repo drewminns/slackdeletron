@@ -48,6 +48,51 @@ export default class Main extends Component {
     await this.getPrivateGroups(this.state.token);
   };
 
+  componentDidCatch(error, errorInfo) {
+    this.setState({ error });
+    Raven.captureException(error, { extra: errorInfo });
+    Raven.showReportDialog();
+  }
+
+  getUserAuth = async () => {
+    try {
+      const res = await axios.get('/api/profile');
+
+      if (res.data.ok) {
+        this.setState({
+          profile: res.data.user.profile,
+          loggedIn: true,
+          loading: false,
+          token: res.data.token,
+          user_id: res.data.user_id,
+          isAdmin: res.data.user.is_admin,
+        });
+      } else {
+        this.setState({
+          profile: {},
+          loggedIn: false,
+          loading: false,
+        });
+      }
+    } catch (err) {
+      this.setState(
+        {
+          profile: {},
+          loggedIn: false,
+          loading: false,
+        },
+        () => {
+          this.updateError(
+            // I know...
+            // eslint-disable-next-line
+            "Something's wrong. Try again later",
+            'getUserAuth catch block'
+          );
+        }
+      );
+    }
+  };
+
   getChannels = async (token) => {
     if (token.length) {
       const res = await axios.get(`${ENDPOINT}channels.list`, {
@@ -89,51 +134,6 @@ export default class Main extends Component {
       }
     }
   };
-
-  getUserAuth = async () => {
-    try {
-      const res = await axios.get('/api/profile');
-
-      if (res.data.ok) {
-        this.setState({
-          profile: res.data.user.profile,
-          loggedIn: true,
-          loading: false,
-          token: res.data.token,
-          user_id: res.data.user_id,
-          isAdmin: res.data.user.is_admin,
-        });
-      } else {
-        this.setState({
-          profile: {},
-          loggedIn: false,
-          loading: false,
-        });
-      }
-    } catch (err) {
-      this.setState(
-        {
-          profile: {},
-          loggedIn: false,
-          loading: false,
-        },
-        () => {
-          this.updateError(
-            // I know...
-            // eslint-disable-next-line
-            "Something's wrong. Try again later",
-            'getUserAuth catch block'
-          );
-        }
-      );
-    }
-  };
-
-  componentDidCatch(error, errorInfo) {
-    this.setState({ error });
-    Raven.captureException(error, { extra: errorInfo });
-    Raven.showReportDialog();
-  }
 
   updateError = (message = '', errorTrack = '') => {
     if (!message.length) {

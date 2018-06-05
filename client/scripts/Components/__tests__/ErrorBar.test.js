@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import ErrorBar from '../ErrorBar';
 
 const DEFAULT_PROPS = {
-  message: "Something bad happened!",
+  message: 'Something bad happened!',
   styles: {
     color: 'blue'
   }
