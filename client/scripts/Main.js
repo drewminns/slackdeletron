@@ -77,12 +77,16 @@ export default class Main extends Component {
           exclude_archived: true,
         },
       });
-      const newGroups = this.state.channels.list.concat(res.data.groups);
-      this.setState({
-        channels: {
-          list: newGroups,
-        },
-      });
+
+      if (res.data.ok) {
+        const newGroups = this.state.channels.list.concat(res.data.groups);
+
+        this.setState({
+          channels: {
+            list: newGroups,
+          },
+        });
+      }
     }
   };
 

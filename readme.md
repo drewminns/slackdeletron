@@ -25,6 +25,11 @@ Instead of setting up a queueing system to manage bulk deletion requests, handli
 
 ## Running Locally
 
+### Requirements
+
+* [Node](https://nodejs.org/en/)
+* [Nodemon](https://nodemon.io/)
+
 1.  Clone the Repo locally
 
 `git clone git@github.com:drewminns/slackdeletron.git`
