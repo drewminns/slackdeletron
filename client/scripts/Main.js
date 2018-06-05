@@ -45,11 +45,12 @@ export default class Main extends Component {
   componentDidMount = async () => {
     await this.getUserAuth();
     await this.getChannels(this.state.token);
+    await this.getPrivateGroups(this.state.token);
   };
 
   getChannels = async (token) => {
     if (token.length) {
-      const res = await axios.get(`${ENDPOINT}/channels.list`, {
+      const res = await axios.get(`${ENDPOINT}channels.list`, {
         params: {
           token: this.state.token,
           exclude_members: true,
@@ -57,10 +58,29 @@ export default class Main extends Component {
           limit: 200,
         },
       });
+      const newChannels = this.state.channels.list.concat(res.data.channels);
       this.setState({
         channels: {
-          list: res.data.channels,
+          list: newChannels,
           cursor: res.data.response_metadata.next_cursor,
+        },
+      });
+    }
+  };
+
+  getPrivateGroups = async (token) => {
+    if (token.length) {
+      const res = await axios.get(`${ENDPOINT}groups.list`, {
+        params: {
+          token: this.state.token,
+          exclude_members: true,
+          exclude_archived: true,
+        },
+      });
+      const newGroups = this.state.channels.list.concat(res.data.groups);
+      this.setState({
+        channels: {
+          list: newGroups,
         },
       });
     }
