@@ -6,15 +6,9 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 10"
-  ],
+  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
   "jest": {
-    "collectCoverageFrom": [
-      "client/**/*.{js,jsx}"
-    ],
+    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -30,10 +24,11 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm run lint && npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build":
+      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "NODE_ENV=test jest",
     "heroku-postbuild": "npm run asset-build",
-    "lint": "eslint server/** client/** services/** routes/**",
+    "lint": "eslint server/** client/** routes/**",
     "clean": "rimraf dist"
   },
   "keywords": [],
@@ -87,6 +82,7 @@
     "webpack-hot-middleware": "^2.21.2"
   },
   "devDependencies": {
+    "chalk": "^2.4.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-prettier": "^2.9.0",

@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Header from '../Header';
@@ -15,7 +14,9 @@ describe('<Header />', () => {
   });
 
   it('renders a loggedIn Header with a name and an avatar', () => {
-    const header = renderer.create(<Header name={NAME} avatar={AVATAR} isLoggedIn />).toJSON();
+    const header = renderer
+      .create(<Header name={NAME} avatar={AVATAR} isLoggedIn />)
+      .toJSON();
     expect(header).toMatchSnapshot();
   });
 
@@ -25,7 +26,9 @@ describe('<Header />', () => {
   });
 
   it('does not render a Header component in the loggedIn State when other values are provided', () => {
-    const header = renderer.create(<Header name={NAME} avatar={AVATAR} />).toJSON();
+    const header = renderer
+      .create(<Header name={NAME} avatar={AVATAR} />)
+      .toJSON();
     expect(header).toMatchSnapshot();
   });
 });

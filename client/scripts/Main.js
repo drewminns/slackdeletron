@@ -48,43 +48,11 @@ export default class Main extends Component {
     await this.getPrivateGroups(this.state.token);
   };
 
-  getChannels = async (token) => {
-    if (token.length) {
-      const res = await axios.get(`${ENDPOINT}channels.list`, {
-        params: {
-          token: this.state.token,
-          exclude_members: true,
-          exclude_archived: true,
-          limit: 200,
-        },
-      });
-      const newChannels = this.state.channels.list.concat(res.data.channels);
-      this.setState({
-        channels: {
-          list: newChannels,
-          cursor: res.data.response_metadata.next_cursor,
-        },
-      });
-    }
-  };
-
-  getPrivateGroups = async (token) => {
-    if (token.length) {
-      const res = await axios.get(`${ENDPOINT}groups.list`, {
-        params: {
-          token: this.state.token,
-          exclude_members: true,
-          exclude_archived: true,
-        },
-      });
-      const newGroups = this.state.channels.list.concat(res.data.groups);
-      this.setState({
-        channels: {
-          list: newGroups,
-        },
-      });
-    }
-  };
+  componentDidCatch(error, errorInfo) {
+    this.setState({ error });
+    Raven.captureException(error, { extra: errorInfo });
+    Raven.showReportDialog();
+  }
 
   getUserAuth = async () => {
     try {
@@ -125,11 +93,47 @@ export default class Main extends Component {
     }
   };
 
-  componentDidCatch(error, errorInfo) {
-    this.setState({ error });
-    Raven.captureException(error, { extra: errorInfo });
-    Raven.showReportDialog();
-  }
+  getChannels = async (token) => {
+    if (token.length) {
+      const res = await axios.get(`${ENDPOINT}channels.list`, {
+        params: {
+          token: this.state.token,
+          exclude_members: true,
+          exclude_archived: true,
+          limit: 200,
+        },
+      });
+      const newChannels = this.state.channels.list.concat(res.data.channels);
+      this.setState({
+        channels: {
+          list: newChannels,
+          cursor: res.data.response_metadata.next_cursor,
+        },
+      });
+    }
+  };
+
+  getPrivateGroups = async (token) => {
+    if (token.length) {
+      const res = await axios.get(`${ENDPOINT}groups.list`, {
+        params: {
+          token: this.state.token,
+          exclude_members: true,
+          exclude_archived: true,
+        },
+      });
+
+      if (res.data.ok) {
+        const newGroups = this.state.channels.list.concat(res.data.groups);
+
+        this.setState({
+          channels: {
+            list: newGroups,
+          },
+        });
+      }
+    }
+  };
 
   updateError = (message = '', errorTrack = '') => {
     if (!message.length) {

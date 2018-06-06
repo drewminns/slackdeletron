@@ -5,15 +5,15 @@ const keys = require('../config/keys');
 
 module.exports = (app) => {
   app.get('/auth/slack', (req, res) => {
-    res.redirect(
-      url.format({
-        pathname: 'https://slack.com/oauth/authorize',
-        query: {
-          client_id: keys.slackClientID,
-          scope: 'users:read channels:read files:read files:write:user',
-        },
-      })
-    );
+    const urlPath = url.format({
+      pathname: 'https://slack.com/oauth/authorize',
+      query: {
+        client_id: keys.slackClientID,
+        scope:
+          'users:read channels:read files:read files:write:user groups:read',
+      },
+    });
+    res.redirect(urlPath);
   });
 
   app.get('/api/slack/callback', (req, res) => {

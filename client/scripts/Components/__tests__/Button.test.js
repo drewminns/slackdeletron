@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Button from '../Button';
@@ -12,7 +11,8 @@ describe('<Button />', () => {
 
   it('Renders an A element when required', () => {
     const TEXT = 'CLICK ME';
-    const button = renderer.create(<Button text={TEXT} isLink href="#" />).toJSON;
+    const button = renderer.create(<Button text={TEXT} isLink href="#" />)
+      .toJSON;
     expect(button).toMatchSnapshot();
   });
 

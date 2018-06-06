@@ -1,11 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import Checkbox from '../Checkbox';
 
 const LABEL = 'LABEL TEXT';
-const mockCallback = jest.fn();
+// const mockCallback = jest.fn();
 
 describe('<Checkbox />', () => {
   it('Renders Correctly', () => {
