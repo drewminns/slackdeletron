@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Does not render an A element if href prop is not provided 1`] = `
+<button
+  className="Button"
+  disabled={false}
+  onClick={[Function]}
+>
+  CLICK ME
+</button>
+`;
+
+exports[`<Button /> Renders Correctly 1`] = `
+<button
+  className="Button"
+  disabled={false}
+  onClick={[Function]}
+>
+  
+</button>
+`;
+
+exports[`<Button /> Renders an A element when required 1`] = `[Function]`;
