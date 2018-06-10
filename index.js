@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const chalk = require('chalk');
 
+const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
+
 app.use(function(req, res, next) {
   res.header(
     'Access-Control-Allow-Headers',
@@ -9,6 +11,8 @@ app.use(function(req, res, next) {
   );
   next();
 });
+
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [/\/insecure/], 301));
 
 require('./server/index')(app);
 
