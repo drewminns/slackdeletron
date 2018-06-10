@@ -6,9 +6,15 @@
   "engines": {
     "node": "8.10.0"
   },
-  "browserslist": ["> 1%", "last 2 versions", "ie 10"],
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "ie 10"
+  ],
   "jest": {
-    "collectCoverageFrom": ["client/**/*.{js,jsx}"],
+    "collectCoverageFrom": [
+      "client/**/*.{js,jsx}"
+    ],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
@@ -24,8 +30,7 @@
     "start": "NODE_ENV=production node index.js",
     "prod": "npm run lint && npm test && npm run asset-build",
     "dev": "NODE_ENV=development nodemon index.js --ignore client",
-    "asset-build":
-      "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
+    "asset-build": "npm run clean && NODE_ENV=production webpack-cli --config config/webpack.config.js",
     "test": "NODE_ENV=test jest",
     "heroku-postbuild": "npm run asset-build",
     "lint": "eslint server/** client/** routes/**",
@@ -56,6 +61,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
     "express": "^4.16.2",
+    "express-http-to-https": "^1.1.4",
     "express-session": "^1.15.6",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
