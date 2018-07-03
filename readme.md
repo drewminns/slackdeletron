@@ -40,7 +40,16 @@ Instead of setting up a queueing system to manage bulk deletion requests, handli
 
 3.  Create a new Slack App for local development at [https://api.slack.com/apps](https://api.slack.com/apps). You'll need to give it a name and assign to a Slack Workspace. In the App Credentials section, grab the Client ID and the Client Secret values.
 
-4.  Create a `dev.js` file in the `config/keys` directory to hold your local configuration.
+4. Configure the oAuth Permissions that the app will need, by clicking on 'Add features and functionality' -> 'Permissions' button. In that section, add the callback url to your local running instance `http://localhost:8081/api/slack/callback`.
+
+5. Below the Callback URL, configure the scopes that your app will need.
+  - channels:read
+  - groups:read
+  - files:read
+  - files:write:user
+  - users:read
+
+6.  Create a `dev.js` file in the `config/keys` directory to hold your local configuration.
 
 ```
 module.exports = {
