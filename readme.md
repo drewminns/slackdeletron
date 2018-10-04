@@ -5,7 +5,7 @@ V3.0
 [![Build Status](https://travis-ci.org/drewminns/slackdeletron.svg?branch=master)](https://travis-ci.org/drewminns/slackdeletron)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
-[slackdeletron.com](https://slackdeletron.com)
+[slackdeletron.com](https://www.slackdeletron.com)
 
 ## What the?
 
