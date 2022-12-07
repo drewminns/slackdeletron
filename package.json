@@ -60,7 +60,7 @@
     "eslint": "^4.19.1",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-http-to-https": "^1.1.4",
     "express-session": "^1.15.6",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
